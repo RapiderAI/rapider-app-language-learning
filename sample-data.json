@@ -1,0 +1,635 @@
+{
+  "LrnCourse": [
+    {
+      "id": "00000000-0180-0001-0000-000000000001",
+      "courseCode": "LC-2026-0001",
+      "title": "Course #1 — Enterprise Primary Record",
+      "summary": "Course summary configuration (1)",
+      "description": "Course description configuration (1)",
+      "audienceRuleRef": "Course audienceRuleRef configuration (1)",
+      "ownerUserRef": "Course ownerUserRef configuration (1)",
+      "deliveryModes": [
+        "item-1-a",
+        "item-1-b"
+      ],
+      "language": "Course language configuration (1)",
+      "tags": [
+        "item-1-a",
+        "item-1-b"
+      ],
+      "visibility": "Course visibility configuration (1)",
+      "status": "ACTIVE",
+      "currentVersionRef": "Course currentVersionRef configuration (1)",
+      "isDeleted": false,
+      "competencies": [
+        "item-1-a",
+        "item-1-b"
+      ],
+      "learningObjectives": [
+        "item-1-a",
+        "item-1-b"
+      ],
+      "targetAudienceProfile": "Course targetAudienceProfile configuration (1)",
+      "methodology": "Course methodology configuration (1)",
+      "modality": "Course modality configuration (1)",
+      "navigationMode": "Course navigationMode configuration (1)",
+      "userCanLeave": true,
+      "isRequired": true,
+      "isRequestable": true,
+      "haveExamination": true,
+      "haveCertificate": true,
+      "defaultParticipantQuota": 10,
+      "defaultAttendancePercentage": 10,
+      "defaultMinSuccessGrade": 10
+    },
+    {
+      "id": "00000000-0180-0001-0000-000000000002",
+      "courseCode": "LC-2026-0002",
+      "title": "Course #2 — Enterprise Operations Record",
+      "summary": "Course summary configuration (2)",
+      "description": "Course description configuration (2)",
+      "audienceRuleRef": "Course audienceRuleRef configuration (2)",
+      "ownerUserRef": "Course ownerUserRef configuration (2)",
+      "deliveryModes": [
+        "item-2-a",
+        "item-2-b"
+      ],
+      "language": "Course language configuration (2)",
+      "tags": [
+        "item-2-a",
+        "item-2-b"
+      ],
+      "visibility": "Course visibility configuration (2)",
+      "status": "IN_PROGRESS",
+      "currentVersionRef": "Course currentVersionRef configuration (2)",
+      "isDeleted": false,
+      "competencies": [
+        "item-2-a",
+        "item-2-b"
+      ],
+      "learningObjectives": [
+        "item-2-a",
+        "item-2-b"
+      ],
+      "targetAudienceProfile": "Course targetAudienceProfile configuration (2)",
+      "methodology": "Course methodology configuration (2)",
+      "modality": "Course modality configuration (2)",
+      "navigationMode": "Course navigationMode configuration (2)",
+      "userCanLeave": true,
+      "isRequired": true,
+      "isRequestable": true,
+      "haveExamination": true,
+      "haveCertificate": true,
+      "defaultParticipantQuota": 20,
+      "defaultAttendancePercentage": 20,
+      "defaultMinSuccessGrade": 20
+    },
+    {
+      "id": "00000000-0180-0001-0000-000000000003",
+      "courseCode": "LC-2026-0003",
+      "title": "Course #3 — Enterprise Compliance Record",
+      "summary": "Course summary configuration (3)",
+      "description": "Course description configuration (3)",
+      "audienceRuleRef": "Course audienceRuleRef configuration (3)",
+      "ownerUserRef": "Course ownerUserRef configuration (3)",
+      "deliveryModes": [
+        "item-3-a",
+        "item-3-b"
+      ],
+      "language": "Course language configuration (3)",
+      "tags": [
+        "item-3-a",
+        "item-3-b"
+      ],
+      "visibility": "Course visibility configuration (3)",
+      "status": "COMPLETED",
+      "currentVersionRef": "Course currentVersionRef configuration (3)",
+      "isDeleted": false,
+      "competencies": [
+        "item-3-a",
+        "item-3-b"
+      ],
+      "learningObjectives": [
+        "item-3-a",
+        "item-3-b"
+      ],
+      "targetAudienceProfile": "Course targetAudienceProfile configuration (3)",
+      "methodology": "Course methodology configuration (3)",
+      "modality": "Course modality configuration (3)",
+      "navigationMode": "Course navigationMode configuration (3)",
+      "userCanLeave": false,
+      "isRequired": false,
+      "isRequestable": false,
+      "haveExamination": false,
+      "haveCertificate": false,
+      "defaultParticipantQuota": 30,
+      "defaultAttendancePercentage": 30,
+      "defaultMinSuccessGrade": 30
+    }
+  ],
+  "LrnCredential": [
+    {
+      "id": "00000000-0180-0002-0000-000000000001",
+      "learnerRef": "Learning Credential learnerRef configuration (1)",
+      "courseRef": "Learning Credential courseRef configuration (1)",
+      "enrollmentRef": "Learning Credential enrollmentRef configuration (1)",
+      "type": "Learning Credential type configuration (1)",
+      "issuedAt": "2026-11-01T10:00:00Z",
+      "expiresAt": "2026-11-01T10:00:00Z",
+      "verificationCode": "LC-2026-0001",
+      "templateVersion": "Learning Credential templateVersion configuration (1)",
+      "revokedAt": "2026-11-01T10:00:00Z",
+      "isDeleted": false,
+      "completionDecisionRef": "Learning Credential completionDecisionRef configuration (1)",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "00000000-0180-0002-0000-000000000002",
+      "learnerRef": "Learning Credential learnerRef configuration (2)",
+      "courseRef": "Learning Credential courseRef configuration (2)",
+      "enrollmentRef": "Learning Credential enrollmentRef configuration (2)",
+      "type": "Learning Credential type configuration (2)",
+      "issuedAt": "2026-11-02T10:00:00Z",
+      "expiresAt": "2026-11-02T10:00:00Z",
+      "verificationCode": "LC-2026-0002",
+      "templateVersion": "Learning Credential templateVersion configuration (2)",
+      "revokedAt": "2026-11-02T10:00:00Z",
+      "isDeleted": false,
+      "completionDecisionRef": "Learning Credential completionDecisionRef configuration (2)",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "00000000-0180-0002-0000-000000000003",
+      "learnerRef": "Learning Credential learnerRef configuration (3)",
+      "courseRef": "Learning Credential courseRef configuration (3)",
+      "enrollmentRef": "Learning Credential enrollmentRef configuration (3)",
+      "type": "Learning Credential type configuration (3)",
+      "issuedAt": "2026-11-03T10:00:00Z",
+      "expiresAt": "2026-11-03T10:00:00Z",
+      "verificationCode": "LC-2026-0003",
+      "templateVersion": "Learning Credential templateVersion configuration (3)",
+      "revokedAt": "2026-11-03T10:00:00Z",
+      "isDeleted": false,
+      "completionDecisionRef": "Learning Credential completionDecisionRef configuration (3)",
+      "status": "COMPLETED"
+    }
+  ],
+  "LrnEnrollment": [
+    {
+      "id": "00000000-0180-0003-0000-000000000001",
+      "learnerRef": "Course Enrollment learnerRef configuration (1)",
+      "courseRef": "Course Enrollment courseRef configuration (1)",
+      "courseVersionRef": "Course Enrollment courseVersionRef configuration (1)",
+      "assignmentRef": "Course Enrollment assignmentRef configuration (1)",
+      "state": "Course Enrollment state configuration (1)",
+      "startedAt": "2026-11-01T10:00:00Z",
+      "lastActivityAt": "2026-11-01T10:00:00Z",
+      "completedAt": "2026-11-01T10:00:00Z",
+      "finalScore": 85,
+      "completionEvidenceRef": "Course Enrollment completionEvidenceRef configuration (1)",
+      "source": "Course Enrollment source configuration (1)",
+      "isDeleted": false,
+      "adminNotes": "Course Enrollment adminNotes configuration (1)",
+      "attendancePercentage": 10,
+      "evaluationCompleted": true,
+      "cohortRef": "Course Enrollment cohortRef configuration (1)",
+      "completionPolicySnapshot": "Course Enrollment completionPolicySnapshot configuration (1)",
+      "status": "ACTIVE"
+    },
+    {
+      "id": "00000000-0180-0003-0000-000000000002",
+      "learnerRef": "Course Enrollment learnerRef configuration (2)",
+      "courseRef": "Course Enrollment courseRef configuration (2)",
+      "courseVersionRef": "Course Enrollment courseVersionRef configuration (2)",
+      "assignmentRef": "Course Enrollment assignmentRef configuration (2)",
+      "state": "Course Enrollment state configuration (2)",
+      "startedAt": "2026-11-02T10:00:00Z",
+      "lastActivityAt": "2026-11-02T10:00:00Z",
+      "completedAt": "2026-11-02T10:00:00Z",
+      "finalScore": 90,
+      "completionEvidenceRef": "Course Enrollment completionEvidenceRef configuration (2)",
+      "source": "Course Enrollment source configuration (2)",
+      "isDeleted": false,
+      "adminNotes": "Course Enrollment adminNotes configuration (2)",
+      "attendancePercentage": 20,
+      "evaluationCompleted": true,
+      "cohortRef": "Course Enrollment cohortRef configuration (2)",
+      "completionPolicySnapshot": "Course Enrollment completionPolicySnapshot configuration (2)",
+      "status": "IN_PROGRESS"
+    },
+    {
+      "id": "00000000-0180-0003-0000-000000000003",
+      "learnerRef": "Course Enrollment learnerRef configuration (3)",
+      "courseRef": "Course Enrollment courseRef configuration (3)",
+      "courseVersionRef": "Course Enrollment courseVersionRef configuration (3)",
+      "assignmentRef": "Course Enrollment assignmentRef configuration (3)",
+      "state": "Course Enrollment state configuration (3)",
+      "startedAt": "2026-11-03T10:00:00Z",
+      "lastActivityAt": "2026-11-03T10:00:00Z",
+      "completedAt": "2026-11-03T10:00:00Z",
+      "finalScore": 95,
+      "completionEvidenceRef": "Course Enrollment completionEvidenceRef configuration (3)",
+      "source": "Course Enrollment source configuration (3)",
+      "isDeleted": false,
+      "adminNotes": "Course Enrollment adminNotes configuration (3)",
+      "attendancePercentage": 30,
+      "evaluationCompleted": false,
+      "cohortRef": "Course Enrollment cohortRef configuration (3)",
+      "completionPolicySnapshot": "Course Enrollment completionPolicySnapshot configuration (3)",
+      "status": "COMPLETED"
+    }
+  ],
+  "LrnSkillDefinition": [
+    {
+      "id": "00000000-0180-0004-0000-000000000001",
+      "taxonomyRef": "Skill Definition taxonomyRef configuration (1)",
+      "code": "LSD-2026-0001",
+      "label": "Skill Definition #1 — Enterprise Primary Record",
+      "description": "Skill Definition description configuration (1)",
+      "category": "Skill Definition category configuration (1)",
+      "parentRef": "Skill Definition parentRef configuration (1)",
+      "synonyms": [
+        "item-1-a",
+        "item-1-b"
+      ],
+      "localeLabels": {
+        "configured": true,
+        "tier": 1
+      },
+      "version": 1,
+      "proficiencyScaleRef": "Skill Definition proficiencyScaleRef configuration (1)",
+      "status": "ACTIVE",
+      "canonicalExternalRef": {
+        "configured": true,
+        "tier": 1
+      },
+      "isDeleted": false,
+      "recordVersion": 10
+    },
+    {
+      "id": "00000000-0180-0004-0000-000000000002",
+      "taxonomyRef": "Skill Definition taxonomyRef configuration (2)",
+      "code": "LSD-2026-0002",
+      "label": "Skill Definition #2 — Enterprise Operations Record",
+      "description": "Skill Definition description configuration (2)",
+      "category": "Skill Definition category configuration (2)",
+      "parentRef": "Skill Definition parentRef configuration (2)",
+      "synonyms": [
+        "item-2-a",
+        "item-2-b"
+      ],
+      "localeLabels": {
+        "configured": true,
+        "tier": 2
+      },
+      "version": 2,
+      "proficiencyScaleRef": "Skill Definition proficiencyScaleRef configuration (2)",
+      "status": "IN_PROGRESS",
+      "canonicalExternalRef": {
+        "configured": true,
+        "tier": 2
+      },
+      "isDeleted": false,
+      "recordVersion": 20
+    },
+    {
+      "id": "00000000-0180-0004-0000-000000000003",
+      "taxonomyRef": "Skill Definition taxonomyRef configuration (3)",
+      "code": "LSD-2026-0003",
+      "label": "Skill Definition #3 — Enterprise Compliance Record",
+      "description": "Skill Definition description configuration (3)",
+      "category": "Skill Definition category configuration (3)",
+      "parentRef": "Skill Definition parentRef configuration (3)",
+      "synonyms": [
+        "item-3-a",
+        "item-3-b"
+      ],
+      "localeLabels": {
+        "configured": true,
+        "tier": 3
+      },
+      "version": 3,
+      "proficiencyScaleRef": "Skill Definition proficiencyScaleRef configuration (3)",
+      "status": "COMPLETED",
+      "canonicalExternalRef": {
+        "configured": true,
+        "tier": 3
+      },
+      "isDeleted": false,
+      "recordVersion": 30
+    }
+  ],
+  "PrsLangCourseUnit": [
+    {
+      "id": "00000000-0180-0005-0000-000000000001",
+      "ownerUserId": "00000000-0180-0001-0000-000000000001",
+      "sourceLanguageCode": "PLCU-2026-0001",
+      "targetLanguageCode": "PLCU-2026-0001",
+      "cefrBand": "Lang Course Unit cefrBand configuration (1)",
+      "status": "ACTIVE",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0005-0000-000000000002",
+      "ownerUserId": "00000000-0180-0001-0000-000000000002",
+      "sourceLanguageCode": "PLCU-2026-0002",
+      "targetLanguageCode": "PLCU-2026-0002",
+      "cefrBand": "Lang Course Unit cefrBand configuration (2)",
+      "status": "IN_PROGRESS",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0005-0000-000000000003",
+      "ownerUserId": "00000000-0180-0001-0000-000000000003",
+      "sourceLanguageCode": "PLCU-2026-0003",
+      "targetLanguageCode": "PLCU-2026-0003",
+      "cefrBand": "Lang Course Unit cefrBand configuration (3)",
+      "status": "COMPLETED",
+      "isDeleted": false
+    }
+  ],
+  "PrsLangLearnerProfile": [
+    {
+      "id": "00000000-0180-0006-0000-000000000001",
+      "ownerUserId": "00000000-0180-0001-0000-000000000001",
+      "ownerUserRef": "Lang Learner Profile ownerUserRef configuration (1)",
+      "activeTargetLanguage": "Lang Learner Profile activeTargetLanguage configuration (1)",
+      "sourceLanguage": "Lang Learner Profile sourceLanguage configuration (1)",
+      "currentCefrBand": "Lang Learner Profile currentCefrBand configuration (1)",
+      "proficiencyScore160": 85,
+      "dailyGoalMinutes": 10,
+      "timezoneId": "00000000-0180-0001-0000-000000000001",
+      "currentStreakDays": 10,
+      "longestStreakDays": 10,
+      "lastStudyLocalDate": "2026-11-01T10:00:00Z",
+      "streakFreezesAvailable": 10,
+      "calmModeEnabled": true,
+      "retainVoiceAudio": true,
+      "version": 1,
+      "status": "ACTIVE",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0006-0000-000000000002",
+      "ownerUserId": "00000000-0180-0001-0000-000000000002",
+      "ownerUserRef": "Lang Learner Profile ownerUserRef configuration (2)",
+      "activeTargetLanguage": "Lang Learner Profile activeTargetLanguage configuration (2)",
+      "sourceLanguage": "Lang Learner Profile sourceLanguage configuration (2)",
+      "currentCefrBand": "Lang Learner Profile currentCefrBand configuration (2)",
+      "proficiencyScore160": 90,
+      "dailyGoalMinutes": 20,
+      "timezoneId": "00000000-0180-0001-0000-000000000002",
+      "currentStreakDays": 20,
+      "longestStreakDays": 20,
+      "lastStudyLocalDate": "2026-11-02T10:00:00Z",
+      "streakFreezesAvailable": 20,
+      "calmModeEnabled": true,
+      "retainVoiceAudio": true,
+      "version": 2,
+      "status": "IN_PROGRESS",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0006-0000-000000000003",
+      "ownerUserId": "00000000-0180-0001-0000-000000000003",
+      "ownerUserRef": "Lang Learner Profile ownerUserRef configuration (3)",
+      "activeTargetLanguage": "Lang Learner Profile activeTargetLanguage configuration (3)",
+      "sourceLanguage": "Lang Learner Profile sourceLanguage configuration (3)",
+      "currentCefrBand": "Lang Learner Profile currentCefrBand configuration (3)",
+      "proficiencyScore160": 95,
+      "dailyGoalMinutes": 30,
+      "timezoneId": "00000000-0180-0001-0000-000000000003",
+      "currentStreakDays": 30,
+      "longestStreakDays": 30,
+      "lastStudyLocalDate": "2026-11-03T10:00:00Z",
+      "streakFreezesAvailable": 30,
+      "calmModeEnabled": false,
+      "retainVoiceAudio": false,
+      "version": 3,
+      "status": "COMPLETED",
+      "isDeleted": false
+    }
+  ],
+  "PrsLangLessonSession": [
+    {
+      "id": "00000000-0180-0007-0000-000000000001",
+      "ownerUserId": "00000000-0180-0001-0000-000000000001",
+      "ownerUserRef": "Lang Lesson Session ownerUserRef configuration (1)",
+      "profileId": "00000000-0180-0001-0000-000000000001",
+      "unitId": "00000000-0180-0001-0000-000000000001",
+      "sessionType": "Lang Lesson Session sessionType configuration (1)",
+      "status": "ACTIVE",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0007-0000-000000000002",
+      "ownerUserId": "00000000-0180-0001-0000-000000000002",
+      "ownerUserRef": "Lang Lesson Session ownerUserRef configuration (2)",
+      "profileId": "00000000-0180-0001-0000-000000000002",
+      "unitId": "00000000-0180-0001-0000-000000000002",
+      "sessionType": "Lang Lesson Session sessionType configuration (2)",
+      "status": "IN_PROGRESS",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0007-0000-000000000003",
+      "ownerUserId": "00000000-0180-0001-0000-000000000003",
+      "ownerUserRef": "Lang Lesson Session ownerUserRef configuration (3)",
+      "profileId": "00000000-0180-0001-0000-000000000003",
+      "unitId": "00000000-0180-0001-0000-000000000003",
+      "sessionType": "Lang Lesson Session sessionType configuration (3)",
+      "status": "COMPLETED",
+      "isDeleted": false
+    }
+  ],
+  "PrsLangVocabCard": [
+    {
+      "id": "00000000-0180-0008-0000-000000000001",
+      "ownerUserId": "00000000-0180-0001-0000-000000000001",
+      "ownerUserRef": "Lang Vocab Card ownerUserRef configuration (1)",
+      "profileId": "00000000-0180-0001-0000-000000000001",
+      "targetTerm": "Lang Vocab Card targetTerm configuration (1)",
+      "romanization": "Lang Vocab Card romanization configuration (1)",
+      "translation": "Lang Vocab Card translation configuration (1)",
+      "exampleSentence": "Lang Vocab Card exampleSentence configuration (1)",
+      "partOfSpeech": "Lang Vocab Card partOfSpeech configuration (1)",
+      "deckTag": "Lang Vocab Card deckTag configuration (1)",
+      "masteryStage": "Lang Vocab Card masteryStage configuration (1)",
+      "status": "ACTIVE",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0008-0000-000000000002",
+      "ownerUserId": "00000000-0180-0001-0000-000000000002",
+      "ownerUserRef": "Lang Vocab Card ownerUserRef configuration (2)",
+      "profileId": "00000000-0180-0001-0000-000000000002",
+      "targetTerm": "Lang Vocab Card targetTerm configuration (2)",
+      "romanization": "Lang Vocab Card romanization configuration (2)",
+      "translation": "Lang Vocab Card translation configuration (2)",
+      "exampleSentence": "Lang Vocab Card exampleSentence configuration (2)",
+      "partOfSpeech": "Lang Vocab Card partOfSpeech configuration (2)",
+      "deckTag": "Lang Vocab Card deckTag configuration (2)",
+      "masteryStage": "Lang Vocab Card masteryStage configuration (2)",
+      "status": "IN_PROGRESS",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0008-0000-000000000003",
+      "ownerUserId": "00000000-0180-0001-0000-000000000003",
+      "ownerUserRef": "Lang Vocab Card ownerUserRef configuration (3)",
+      "profileId": "00000000-0180-0001-0000-000000000003",
+      "targetTerm": "Lang Vocab Card targetTerm configuration (3)",
+      "romanization": "Lang Vocab Card romanization configuration (3)",
+      "translation": "Lang Vocab Card translation configuration (3)",
+      "exampleSentence": "Lang Vocab Card exampleSentence configuration (3)",
+      "partOfSpeech": "Lang Vocab Card partOfSpeech configuration (3)",
+      "deckTag": "Lang Vocab Card deckTag configuration (3)",
+      "masteryStage": "Lang Vocab Card masteryStage configuration (3)",
+      "status": "COMPLETED",
+      "isDeleted": false
+    }
+  ],
+  "PrsLangMistakeEntry": [
+    {
+      "id": "00000000-0180-0009-0000-000000000001",
+      "ownerUserId": "00000000-0180-0001-0000-000000000001",
+      "ownerUserRef": "Lang Mistake Entry ownerUserRef configuration (1)",
+      "profileId": "00000000-0180-0001-0000-000000000001",
+      "unitId": "00000000-0180-0001-0000-000000000001",
+      "errorCategory": "Lang Mistake Entry errorCategory configuration (1)",
+      "status": "ACTIVE",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0009-0000-000000000002",
+      "ownerUserId": "00000000-0180-0001-0000-000000000002",
+      "ownerUserRef": "Lang Mistake Entry ownerUserRef configuration (2)",
+      "profileId": "00000000-0180-0001-0000-000000000002",
+      "unitId": "00000000-0180-0001-0000-000000000002",
+      "errorCategory": "Lang Mistake Entry errorCategory configuration (2)",
+      "status": "IN_PROGRESS",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0009-0000-000000000003",
+      "ownerUserId": "00000000-0180-0001-0000-000000000003",
+      "ownerUserRef": "Lang Mistake Entry ownerUserRef configuration (3)",
+      "profileId": "00000000-0180-0001-0000-000000000003",
+      "unitId": "00000000-0180-0001-0000-000000000003",
+      "errorCategory": "Lang Mistake Entry errorCategory configuration (3)",
+      "status": "COMPLETED",
+      "isDeleted": false
+    }
+  ],
+  "PrsLangConversationSession": [
+    {
+      "id": "00000000-0180-0010-0000-000000000001",
+      "ownerUserId": "00000000-0180-0001-0000-000000000001",
+      "ownerUserRef": "Lang Conversation Session ownerUserRef configuration (1)",
+      "profileId": "00000000-0180-0001-0000-000000000001",
+      "scenarioKey": "PLCS-2026-0001",
+      "cefrBand": "Lang Conversation Session cefrBand configuration (1)",
+      "modality": "Lang Conversation Session modality configuration (1)",
+      "status": "ACTIVE",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0010-0000-000000000002",
+      "ownerUserId": "00000000-0180-0001-0000-000000000002",
+      "ownerUserRef": "Lang Conversation Session ownerUserRef configuration (2)",
+      "profileId": "00000000-0180-0001-0000-000000000002",
+      "scenarioKey": "PLCS-2026-0002",
+      "cefrBand": "Lang Conversation Session cefrBand configuration (2)",
+      "modality": "Lang Conversation Session modality configuration (2)",
+      "status": "IN_PROGRESS",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0010-0000-000000000003",
+      "ownerUserId": "00000000-0180-0001-0000-000000000003",
+      "ownerUserRef": "Lang Conversation Session ownerUserRef configuration (3)",
+      "profileId": "00000000-0180-0001-0000-000000000003",
+      "scenarioKey": "PLCS-2026-0003",
+      "cefrBand": "Lang Conversation Session cefrBand configuration (3)",
+      "modality": "Lang Conversation Session modality configuration (3)",
+      "status": "COMPLETED",
+      "isDeleted": false
+    }
+  ],
+  "PrsLangCheckpointAttempt": [
+    {
+      "id": "00000000-0180-0011-0000-000000000001",
+      "ownerUserId": "00000000-0180-0001-0000-000000000001",
+      "ownerUserRef": "Lang Checkpoint Attempt ownerUserRef configuration (1)",
+      "profileId": "00000000-0180-0001-0000-000000000001",
+      "examType": "Lang Checkpoint Attempt examType configuration (1)",
+      "status": "ACTIVE",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0011-0000-000000000002",
+      "ownerUserId": "00000000-0180-0001-0000-000000000002",
+      "ownerUserRef": "Lang Checkpoint Attempt ownerUserRef configuration (2)",
+      "profileId": "00000000-0180-0001-0000-000000000002",
+      "examType": "Lang Checkpoint Attempt examType configuration (2)",
+      "status": "IN_PROGRESS",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0011-0000-000000000003",
+      "ownerUserId": "00000000-0180-0001-0000-000000000003",
+      "ownerUserRef": "Lang Checkpoint Attempt ownerUserRef configuration (3)",
+      "profileId": "00000000-0180-0001-0000-000000000003",
+      "examType": "Lang Checkpoint Attempt examType configuration (3)",
+      "status": "COMPLETED",
+      "isDeleted": false
+    }
+  ],
+  "PrsLangTutorGrant": [
+    {
+      "id": "00000000-0180-0012-0000-000000000001",
+      "ownerUserId": "00000000-0180-0001-0000-000000000001",
+      "ownerUserRef": "Lang Tutor Grant ownerUserRef configuration (1)",
+      "profileId": "00000000-0180-0001-0000-000000000001",
+      "tutorUserRef": "Lang Tutor Grant tutorUserRef configuration (1)",
+      "tutorPhoneE164": "+1-555-019-2801",
+      "sharedSessionIds": [
+        "item-1-a",
+        "item-1-b"
+      ],
+      "grantStatus": "Lang Tutor Grant grantStatus configuration (1)",
+      "status": "ACTIVE",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0012-0000-000000000002",
+      "ownerUserId": "00000000-0180-0001-0000-000000000002",
+      "ownerUserRef": "Lang Tutor Grant ownerUserRef configuration (2)",
+      "profileId": "00000000-0180-0001-0000-000000000002",
+      "tutorUserRef": "Lang Tutor Grant tutorUserRef configuration (2)",
+      "tutorPhoneE164": "+1-555-019-2802",
+      "sharedSessionIds": [
+        "item-2-a",
+        "item-2-b"
+      ],
+      "grantStatus": "Lang Tutor Grant grantStatus configuration (2)",
+      "status": "IN_PROGRESS",
+      "isDeleted": false
+    },
+    {
+      "id": "00000000-0180-0012-0000-000000000003",
+      "ownerUserId": "00000000-0180-0001-0000-000000000003",
+      "ownerUserRef": "Lang Tutor Grant ownerUserRef configuration (3)",
+      "profileId": "00000000-0180-0001-0000-000000000003",
+      "tutorUserRef": "Lang Tutor Grant tutorUserRef configuration (3)",
+      "tutorPhoneE164": "+1-555-019-2803",
+      "sharedSessionIds": [
+        "item-3-a",
+        "item-3-b"
+      ],
+      "grantStatus": "Lang Tutor Grant grantStatus configuration (3)",
+      "status": "COMPLETED",
+      "isDeleted": false
+    }
+  ]
+}

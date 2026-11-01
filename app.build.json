@@ -1,0 +1,628 @@
+{
+  "$schema": "./app.build.schema.json",
+  "appKey": "language-learning",
+  "appName": "Rapider Language Learning",
+  "repository": "",
+  "version": "1.0.0",
+  "lastBuildTimestamp": "2026-11-01T12:38:55.919Z",
+  "lastCommit": "93fe51a",
+  "summary": {
+    "status": "qa_passed",
+    "complianceRate": 100,
+    "totalPages": 13,
+    "passedPages": 13,
+    "failedPages": 0,
+    "stalePages": 0,
+    "totalQaPasses": 20,
+    "completedQaPasses": 20,
+    "failedQaPasses": 0,
+    "e2eSuitesCount": 0,
+    "e2ePassedCount": 0,
+    "lastFullAudit": "2026-11-01T12:38:55.919Z",
+    "lastE2ERun": null
+  },
+  "qaPasses": {
+    "pass-01-routing": {
+      "name": "pass-01-routing",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-02-swr": {
+      "name": "pass-02-swr",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-03-data-models": {
+      "name": "pass-03-data-models",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-04-modals": {
+      "name": "pass-04-modals",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-05-drawers": {
+      "name": "pass-05-drawers",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-06-responsive": {
+      "name": "pass-06-responsive",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-07-themes": {
+      "name": "pass-07-themes",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-08-notifications": {
+      "name": "pass-08-notifications",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-09-payloads": {
+      "name": "pass-09-payloads",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-10-components": {
+      "name": "pass-10-components",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-11-e2e-expectations": {
+      "name": "pass-11-e2e-expectations",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-12-asset-externalization": {
+      "name": "pass-12-asset-externalization",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-13-manifest-sync": {
+      "name": "pass-13-manifest-sync",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-14-ui-states": {
+      "name": "pass-14-ui-states",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-15-security": {
+      "name": "pass-15-security",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-16-accessibility": {
+      "name": "pass-16-accessibility",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-17-input-formatting": {
+      "name": "pass-17-input-formatting",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-18-kanban-list-views": {
+      "name": "pass-18-kanban-list-views",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-19-ui-best-practices": {
+      "name": "pass-19-ui-best-practices",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    },
+    "pass-20-search-filters": {
+      "name": "pass-20-search-filters",
+      "status": "passed",
+      "lastRun": "2026-11-01T12:38:55.919Z",
+      "pagesCovered": 13,
+      "issuesFound": 0
+    }
+  },
+  "pages": {
+    "pages/learning-path/learning-path.html": {
+      "pageName": "CEFR Skill Path",
+      "route": "learning-path",
+      "fileHash": "sha256:757421d427a4ca27d2221863ef6da70712f48d59135b1c6c33bbb0abe6d53053",
+      "lastModified": "2026-11-01T12:38:55.820Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 8,
+        "buttonsWithActions": 8,
+        "deadButtons": 0,
+        "linksTotal": 12,
+        "linksValid": 12,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 2,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/stories-immersion/stories-immersion.html": {
+      "pageName": "Stories, Script & Listening",
+      "route": "stories-immersion",
+      "fileHash": "sha256:612099d3c77e6c388043f6f379b70a966676cb38633e04012db6a5292fadcd3a",
+      "lastModified": "2026-11-01T12:38:55.821Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 8,
+        "buttonsWithActions": 8,
+        "deadButtons": 0,
+        "linksTotal": 12,
+        "linksValid": 12,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 2,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/ai-roleplay/ai-roleplay.html": {
+      "pageName": "AI Roleplay & Speaking",
+      "route": "ai-roleplay",
+      "fileHash": "sha256:81474950fddd23bfe0d53844e929ed8f9266e7f0ca69162049afda1dafcbbc94",
+      "lastModified": "2026-11-01T12:38:55.821Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 8,
+        "buttonsWithActions": 8,
+        "deadButtons": 0,
+        "linksTotal": 12,
+        "linksValid": 12,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 2,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/vocabulary-srs/vocabulary-srs.html": {
+      "pageName": "Vocabulary & SRS Kanban",
+      "route": "vocabulary-srs",
+      "fileHash": "sha256:c92ce25129ed9821d75f704213312f5ede56fd21875b070127077061339fa2ad",
+      "lastModified": "2026-11-01T12:38:55.821Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 8,
+        "buttonsWithActions": 8,
+        "deadButtons": 0,
+        "linksTotal": 12,
+        "linksValid": 12,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 2,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/practice-mistakes/practice-mistakes.html": {
+      "pageName": "Practice Hub & Mistakes",
+      "route": "practice-mistakes",
+      "fileHash": "sha256:228c90fd6d42d5cac0be9d64094e3d34292b026a7d6ed381b585c5fa9717faca",
+      "lastModified": "2026-11-01T12:38:55.821Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 8,
+        "buttonsWithActions": 8,
+        "deadButtons": 0,
+        "linksTotal": 12,
+        "linksValid": 12,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 2,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/pronunciation-lab/pronunciation-lab.html": {
+      "pageName": "Pronunciation & Reading Lab",
+      "route": "pronunciation-lab",
+      "fileHash": "sha256:4e38cd9a31e22f6af7f71795f138f7241f5dbe5fa3d9d5f59d0040f7f008a1b7",
+      "lastModified": "2026-11-01T12:38:55.821Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 8,
+        "buttonsWithActions": 8,
+        "deadButtons": 0,
+        "linksTotal": 12,
+        "linksValid": 12,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 2,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/checkpoints-scores/checkpoints-scores.html": {
+      "pageName": "CEFR Checkpoints & Score",
+      "route": "checkpoints-scores",
+      "fileHash": "sha256:047785cb0800e1a1ffdbdd53cdb2fa676f6f50197b5eb265782fb8305b6848a9",
+      "lastModified": "2026-11-01T12:38:55.821Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 8,
+        "buttonsWithActions": 8,
+        "deadButtons": 0,
+        "linksTotal": 12,
+        "linksValid": 12,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 2,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/streaks-analytics/streaks-analytics.html": {
+      "pageName": "Streaks, Goals & Calm Mode",
+      "route": "streaks-analytics",
+      "fileHash": "sha256:5d79b35593a5213eeace298bf5d5f5246b05a000f53a73387446ece21585add0",
+      "lastModified": "2026-11-01T12:38:55.822Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 8,
+        "buttonsWithActions": 8,
+        "deadButtons": 0,
+        "linksTotal": 12,
+        "linksValid": 12,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 2,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/tutor-and-privacy/tutor-and-privacy.html": {
+      "pageName": "Tutor Sharing & Privacy",
+      "route": "tutor-and-privacy",
+      "fileHash": "sha256:73a750d0315ad5c8fc0fb43e9aa22f731b9a3d308639929c54495a11b46421fe",
+      "lastModified": "2026-11-01T12:38:55.822Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 8,
+        "buttonsWithActions": 8,
+        "deadButtons": 0,
+        "linksTotal": 12,
+        "linksValid": 12,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 2,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/lesson-runner/lesson-runner.html": {
+      "pageName": "Interactive Lesson & Checkpoint Runner",
+      "route": "lesson-runner",
+      "fileHash": "sha256:acdb3f5f539c8575013e733360596760523032d0eb2b8ed5a827a5188422827d",
+      "lastModified": "2026-11-01T12:38:55.822Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 9,
+        "buttonsWithActions": 9,
+        "deadButtons": 0,
+        "linksTotal": 14,
+        "linksValid": 14,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 0,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/vocab-card-detail/vocab-card-detail.html": {
+      "pageName": "Lexeme & SRS History Detail",
+      "route": "vocab-card-detail",
+      "fileHash": "sha256:3759f622146381409bcd011cd4ec92b591e11f592c3dd1f8bc440810dc8603ac",
+      "lastModified": "2026-11-01T12:38:55.822Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 9,
+        "buttonsWithActions": 9,
+        "deadButtons": 0,
+        "linksTotal": 14,
+        "linksValid": 14,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 0,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/new-vocab-drawer/new-vocab-drawer.html": {
+      "pageName": "Add Custom Card / Import Deck Drawer",
+      "route": "new-vocab-drawer",
+      "fileHash": "sha256:92680133b127c9e87f449f75afae38d3ebe326d3d457ccfce700bd75147a103b",
+      "lastModified": "2026-11-01T12:38:55.822Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 7,
+        "buttonsWithActions": 7,
+        "deadButtons": 0,
+        "linksTotal": 14,
+        "linksValid": 14,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 1,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    },
+    "pages/tutor-share-drawer/tutor-share-drawer.html": {
+      "pageName": "Invite Personal Tutor Drawer",
+      "route": "tutor-share-drawer",
+      "fileHash": "sha256:1176646d33711dd2ee088552fef4cc0de859be996b59882420ca9678f447f9d3",
+      "lastModified": "2026-11-01T12:38:55.822Z",
+      "lastTested": "2026-11-01T12:38:55.919Z",
+      "status": "passed",
+      "metrics": {
+        "buttonsTotal": 7,
+        "buttonsWithActions": 7,
+        "deadButtons": 0,
+        "linksTotal": 14,
+        "linksValid": 14,
+        "nativeAlerts": 0,
+        "contrastCompliant": true,
+        "swrCalls": 1,
+        "modalsTotal": 1
+      },
+      "issues": [],
+      "warnings": [
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_LIGHT_BACKGROUND",
+          "message": "Container has \"bg-white\" without a corresponding \"dark:bg-*\" variant class (sidebar w-64 bg-white border-r border-slate-200 fl).",
+          "snippet": "<div class=\"sidebar w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 transition-all duration-300 z-30 select-none\">"
+        },
+        {
+          "rule": "Pass 11: Dark & Light Theme Compliance",
+          "type": "HARDCODED_DARK_TEXT",
+          "message": "Text has hardcoded dark color without a corresponding \"dark:text-*\" variant (bg-slate-50 text-slate-900 font-sans antialiased m).",
+          "snippet": "<div class=\"bg-slate-50 text-slate-900 font-sans antialiased min-h-screen flex\">"
+        }
+      ]
+    }
+  },
+  "e2eSuites": {
+    "expectationsFile": "e2e/expectations.json",
+    "lastRun": null,
+    "status": "not_run",
+    "suites": []
+  },
+  "history": [
+    {
+      "timestamp": "2026-11-01T12:38:55.919Z",
+      "action": "qa_full_audit",
+      "commit": "93fe51a",
+      "complianceRate": 100,
+      "pagesAudited": 13,
+      "status": "passed",
+      "agent": "Antigravity",
+      "details": "13/13 pages passed. Completed 20/20 QA passes."
+    }
+  ]
+}
