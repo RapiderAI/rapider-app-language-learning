@@ -13,7 +13,7 @@
   "isPublic": true,
   "isPaid": false,
   "price": "Free",
-  "status": "application-definition-in-progress",
+  "status": "data-models-in-progress",
   "developerName": "Tansel Ozkusaksiz",
   "createdById": "e995822b-f88d-40ef-86df-0f07cb1149d8",
   "createdBy": "Tansel Ozkusaksiz",
@@ -31,7 +31,2255 @@
     "createdById": "e995822b-f88d-40ef-86df-0f07cb1149d8",
     "createdBy": "Tansel Ozkusaksiz"
   },
-  "dataModels": [],
+  "dataModels": [
+    {
+      "name": "LrnCourse",
+      "title": "Course",
+      "description": "Core learning course definition, metadata, syllabus, and delivery configuration.",
+      "domainName": "Rapider Learning Suite",
+      "domainKey": "LRN",
+      "datatableName": "LrnCourse",
+      "dataTableName": "LrnCourse",
+      "sqlTableName": "lrn_course",
+      "isolationScope": "ENTERPRISE_SHARED",
+      "titleFieldTemplate": "{{ title }}",
+      "scope": {
+        "where": {}
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "title",
+          "description",
+          "summary"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Course, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "courseCode",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "summary",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "audienceRuleRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "ownerUserRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "deliveryModes",
+          "type": "array",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": true
+        },
+        {
+          "name": "language",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "tags",
+          "type": "array",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": true
+        },
+        {
+          "name": "visibility",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "currentVersionRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "competencies",
+          "type": "array",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": true
+        },
+        {
+          "name": "learningObjectives",
+          "type": "array",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": true
+        },
+        {
+          "name": "targetAudienceProfile",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "methodology",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "modality",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "navigationMode",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "userCanLeave",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "isRequired",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "isRequestable",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "haveExamination",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "haveCertificate",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "defaultParticipantQuota",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "defaultAttendancePercentage",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "defaultMinSuccessGrade",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        }
+      ],
+      "relations": [
+        {
+          "name": "versions",
+          "type": "hasMany",
+          "sourceModel": "LrnCourse",
+          "sourceField": "id",
+          "targetModel": "LrnCourseVersion",
+          "targetField": "courseRef",
+          "throughModel": null,
+          "description": "LrnCourse relation to LrnCourseVersion."
+        },
+        {
+          "name": "assignments",
+          "type": "hasMany",
+          "sourceModel": "LrnCourse",
+          "sourceField": "id",
+          "targetModel": "LrnAssignment",
+          "targetField": "courseRef",
+          "throughModel": null,
+          "description": "LrnCourse relation to LrnAssignment."
+        },
+        {
+          "name": "enrollments",
+          "type": "hasMany",
+          "sourceModel": "LrnCourse",
+          "sourceField": "id",
+          "targetModel": "LrnEnrollment",
+          "targetField": "courseRef",
+          "throughModel": null,
+          "description": "LrnCourse relation to LrnEnrollment."
+        },
+        {
+          "name": "credentials",
+          "type": "hasMany",
+          "sourceModel": "LrnCourse",
+          "sourceField": "id",
+          "targetModel": "LrnCredential",
+          "targetField": "courseRef",
+          "throughModel": null,
+          "description": "LrnCourse relation to LrnCredential."
+        }
+      ]
+    },
+    {
+      "name": "LrnCredential",
+      "title": "Learning Credential",
+      "description": "Verifiable certificate, badge, or license issued upon successful course completion.",
+      "domainName": "Rapider Learning Suite",
+      "domainKey": "LRN",
+      "datatableName": "LrnCredential",
+      "dataTableName": "LrnCredential",
+      "sqlTableName": "lrn_credential",
+      "isolationScope": "ENTERPRISE_SHARED",
+      "titleFieldTemplate": "{{ id }}",
+      "scope": {
+        "where": {}
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "id"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Learning Credential, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "learnerRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "courseRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "enrollmentRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "issuedAt",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "expiresAt",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "verificationCode",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "templateVersion",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "revokedAt",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "completionDecisionRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Lifecycle or record status.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        }
+      ],
+      "relations": [
+        {
+          "name": "course",
+          "type": "belongsTo",
+          "sourceModel": "LrnCredential",
+          "sourceField": "courseRef",
+          "targetModel": "LrnCourse",
+          "targetField": "id",
+          "throughModel": null,
+          "description": "LrnCredential relation to LrnCourse."
+        }
+      ]
+    },
+    {
+      "name": "LrnEnrollment",
+      "title": "Course Enrollment",
+      "description": "Active learner enrollment linking a learner to a specific course version and progress lifecycle.",
+      "domainName": "Rapider Learning Suite",
+      "domainKey": "LRN",
+      "datatableName": "LrnEnrollment",
+      "dataTableName": "LrnEnrollment",
+      "sqlTableName": "lrn_enrollment",
+      "isolationScope": "ENTERPRISE_SHARED",
+      "titleFieldTemplate": "{{ id }}",
+      "scope": {
+        "where": {}
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "id"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Course Enrollment, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "learnerRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "courseRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "courseVersionRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "assignmentRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "state",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "startedAt",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "lastActivityAt",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "completedAt",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "finalScore",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "completionEvidenceRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "source",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "adminNotes",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "attendancePercentage",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "evaluationCompleted",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "cohortRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "completionPolicySnapshot",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Lifecycle or record status.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        }
+      ],
+      "relations": [
+        {
+          "name": "course",
+          "type": "belongsTo",
+          "sourceModel": "LrnEnrollment",
+          "sourceField": "courseRef",
+          "targetModel": "LrnCourse",
+          "targetField": "id",
+          "throughModel": null,
+          "description": "LrnEnrollment relation to LrnCourse."
+        },
+        {
+          "name": "progressList",
+          "type": "hasMany",
+          "sourceModel": "LrnEnrollment",
+          "sourceField": "id",
+          "targetModel": "LrnProgress",
+          "targetField": "enrollmentRef",
+          "throughModel": null,
+          "description": "LrnEnrollment relation to LrnProgress."
+        }
+      ]
+    },
+    {
+      "name": "LrnSkillDefinition",
+      "title": "Skill Definition",
+      "description": "Canonical definition only if Learning owns the taxonomy",
+      "domainName": "Rapider Learning Suite",
+      "domainKey": "LRN",
+      "datatableName": "LrnSkillDefinition",
+      "dataTableName": "LrnSkillDefinition",
+      "sqlTableName": "lrn_skill_definition",
+      "isolationScope": "ENTERPRISE_SHARED",
+      "titleFieldTemplate": "{{ code }}",
+      "scope": {
+        "where": {}
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "code",
+          "description"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Skill Definition, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "taxonomyRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "code",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "category",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "parentRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "synonyms",
+          "type": "array",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": true
+        },
+        {
+          "name": "localeLabels",
+          "type": "object",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "version",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "proficiencyScaleRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "canonicalExternalRef",
+          "type": "object",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "recordVersion",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        }
+      ],
+      "relations": [
+        {
+          "name": "taxonomy",
+          "type": "belongsTo",
+          "sourceModel": "LrnSkillDefinition",
+          "sourceField": "taxonomyRef",
+          "targetModel": "LrnSkillTaxonomy",
+          "targetField": "id",
+          "throughModel": null,
+          "description": "LrnSkillDefinition relation to LrnSkillTaxonomy."
+        },
+        {
+          "name": "parent",
+          "type": "belongsTo",
+          "sourceModel": "LrnSkillDefinition",
+          "sourceField": "parentRef",
+          "targetModel": "LrnSkillDefinition",
+          "targetField": "id",
+          "throughModel": null,
+          "description": "LrnSkillDefinition relation to LrnSkillDefinition."
+        },
+        {
+          "name": "proficiencyScale",
+          "type": "belongsTo",
+          "sourceModel": "LrnSkillDefinition",
+          "sourceField": "proficiencyScaleRef",
+          "targetModel": "LrnProficiencyScale",
+          "targetField": "id",
+          "throughModel": null,
+          "description": "LrnSkillDefinition relation to LrnProficiencyScale."
+        }
+      ]
+    },
+    {
+      "name": "PrsLangCourseUnit",
+      "title": "Lang Course Unit",
+      "description": "`A2` \\",
+      "domainName": "Rapider Personal Suite",
+      "domainKey": "PRS",
+      "datatableName": "PrsLangCourseUnit",
+      "dataTableName": "PrsLangCourseUnit",
+      "sqlTableName": "prs_lang_course_unit",
+      "isolationScope": "PERSONAL_OWNER_ONLY_ISOLATED",
+      "titleFieldTemplate": "{{ id }}",
+      "scope": {
+        "where": {
+          "ownerUserId": "{{ currentUser.id }}"
+        }
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "id"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Lang Course Unit, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "ownerUserId",
+          "type": "string",
+          "description": "Strict per-user isolation boundary; rows are visible only to the authenticated ownerUserId.",
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "sourceLanguageCode",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "targetLanguageCode",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "cefrBand",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Lifecycle or record status.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "Soft deletion flag.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        }
+      ],
+      "relations": []
+    },
+    {
+      "name": "PrsLangLearnerProfile",
+      "title": "Lang Learner Profile",
+      "description": "Streak evaluation strictly uses `LocalDate` in `timezoneId`; `retainVoiceAudio` defaults to `false` (ephemeral speech scoring).",
+      "domainName": "Rapider Personal Suite",
+      "domainKey": "PRS",
+      "datatableName": "PrsLangLearnerProfile",
+      "dataTableName": "PrsLangLearnerProfile",
+      "sqlTableName": "prs_lang_learner_profile",
+      "isolationScope": "PERSONAL_OWNER_ONLY_ISOLATED",
+      "titleFieldTemplate": "{{ id }}",
+      "scope": {
+        "where": {
+          "ownerUserId": "{{ currentUser.id }}"
+        }
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "id"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Lang Learner Profile, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "ownerUserId",
+          "type": "string",
+          "description": "Strict per-user isolation boundary; rows are visible only to the authenticated ownerUserId.",
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "ownerUserRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "activeTargetLanguage",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "sourceLanguage",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "currentCefrBand",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "proficiencyScore160",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "dailyGoalMinutes",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "timezoneId",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "currentStreakDays",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "longestStreakDays",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "lastStudyLocalDate",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "streakFreezesAvailable",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "calmModeEnabled",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "retainVoiceAudio",
+          "type": "boolean",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        },
+        {
+          "name": "version",
+          "type": "number",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Lifecycle or record status.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "Soft deletion flag.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        }
+      ],
+      "relations": []
+    },
+    {
+      "name": "PrsLangLessonSession",
+      "title": "Lang Lesson Session",
+      "description": "`MISTAKE_DRILL` \\",
+      "domainName": "Rapider Personal Suite",
+      "domainKey": "PRS",
+      "datatableName": "PrsLangLessonSession",
+      "dataTableName": "PrsLangLessonSession",
+      "sqlTableName": "prs_lang_lesson_session",
+      "isolationScope": "PERSONAL_OWNER_ONLY_ISOLATED",
+      "titleFieldTemplate": "{{ id }}",
+      "scope": {
+        "where": {
+          "ownerUserId": "{{ currentUser.id }}"
+        }
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "id"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Lang Lesson Session, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "ownerUserId",
+          "type": "string",
+          "description": "Strict per-user isolation boundary; rows are visible only to the authenticated ownerUserId.",
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "ownerUserRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "profileId",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "unitId",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "sessionType",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Lifecycle or record status.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "Soft deletion flag.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        }
+      ],
+      "relations": []
+    },
+    {
+      "name": "PrsLangVocabCard",
+      "title": "Lang Vocab Card",
+      "description": "`REVIEW_DUE` \\",
+      "domainName": "Rapider Personal Suite",
+      "domainKey": "PRS",
+      "datatableName": "PrsLangVocabCard",
+      "dataTableName": "PrsLangVocabCard",
+      "sqlTableName": "prs_lang_vocab_card",
+      "isolationScope": "PERSONAL_OWNER_ONLY_ISOLATED",
+      "titleFieldTemplate": "{{ id }}",
+      "scope": {
+        "where": {
+          "ownerUserId": "{{ currentUser.id }}"
+        }
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "id"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Lang Vocab Card, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "ownerUserId",
+          "type": "string",
+          "description": "Strict per-user isolation boundary; rows are visible only to the authenticated ownerUserId.",
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "ownerUserRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "profileId",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "targetTerm",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "romanization",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "translation",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "exampleSentence",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "partOfSpeech",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "deckTag",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "masteryStage",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Lifecycle or record status.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "Soft deletion flag.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        }
+      ],
+      "relations": []
+    },
+    {
+      "name": "PrsLangMistakeEntry",
+      "title": "Lang Mistake Entry",
+      "description": "`WORD_ORDER` \\",
+      "domainName": "Rapider Personal Suite",
+      "domainKey": "PRS",
+      "datatableName": "PrsLangMistakeEntry",
+      "dataTableName": "PrsLangMistakeEntry",
+      "sqlTableName": "prs_lang_mistake_entry",
+      "isolationScope": "PERSONAL_OWNER_ONLY_ISOLATED",
+      "titleFieldTemplate": "{{ id }}",
+      "scope": {
+        "where": {
+          "ownerUserId": "{{ currentUser.id }}"
+        }
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "id"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Lang Mistake Entry, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "ownerUserId",
+          "type": "string",
+          "description": "Strict per-user isolation boundary; rows are visible only to the authenticated ownerUserId.",
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "ownerUserRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "profileId",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "unitId",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "errorCategory",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Lifecycle or record status.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "Soft deletion flag.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        }
+      ],
+      "relations": []
+    },
+    {
+      "name": "PrsLangConversationSession",
+      "title": "Lang Conversation Session",
+      "description": "Optional tutor review via `PrsLangTutorGrant` + `projectChannelMessage`",
+      "domainName": "Rapider Personal Suite",
+      "domainKey": "PRS",
+      "datatableName": "PrsLangConversationSession",
+      "dataTableName": "PrsLangConversationSession",
+      "sqlTableName": "prs_lang_conversation_session",
+      "isolationScope": "PERSONAL_OWNER_ONLY_ISOLATED",
+      "titleFieldTemplate": "{{ id }}",
+      "scope": {
+        "where": {
+          "ownerUserId": "{{ currentUser.id }}"
+        }
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "id"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Lang Conversation Session, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "ownerUserId",
+          "type": "string",
+          "description": "Strict per-user isolation boundary; rows are visible only to the authenticated ownerUserId.",
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "ownerUserRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "profileId",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "scenarioKey",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "cefrBand",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "modality",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Lifecycle or record status.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "Soft deletion flag.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        }
+      ],
+      "relations": []
+    },
+    {
+      "name": "PrsLangCheckpointAttempt",
+      "title": "Lang Checkpoint Attempt",
+      "description": "`CEFR_BAND_CHECKPOINT`), `targetCefrBand` (`A1` \\",
+      "domainName": "Rapider Personal Suite",
+      "domainKey": "PRS",
+      "datatableName": "PrsLangCheckpointAttempt",
+      "dataTableName": "PrsLangCheckpointAttempt",
+      "sqlTableName": "prs_lang_checkpoint_attempt",
+      "isolationScope": "PERSONAL_OWNER_ONLY_ISOLATED",
+      "titleFieldTemplate": "{{ id }}",
+      "scope": {
+        "where": {
+          "ownerUserId": "{{ currentUser.id }}"
+        }
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "id"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Lang Checkpoint Attempt, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "ownerUserId",
+          "type": "string",
+          "description": "Strict per-user isolation boundary; rows are visible only to the authenticated ownerUserId.",
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "ownerUserRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "profileId",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "examType",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Lifecycle or record status.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "Soft deletion flag.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        }
+      ],
+      "relations": []
+    },
+    {
+      "name": "PrsLangTutorGrant",
+      "title": "Lang Tutor Grant",
+      "description": "`REVOKED`), `workItemRef` (UUID?), `revokedAt` (DateTime?), `version` (Int)",
+      "domainName": "Rapider Personal Suite",
+      "domainKey": "PRS",
+      "datatableName": "PrsLangTutorGrant",
+      "dataTableName": "PrsLangTutorGrant",
+      "sqlTableName": "prs_lang_tutor_grant",
+      "isolationScope": "PERSONAL_OWNER_ONLY_ISOLATED",
+      "titleFieldTemplate": "{{ id }}",
+      "scope": {
+        "where": {
+          "ownerUserId": "{{ currentUser.id }}"
+        }
+      },
+      "aiAgentConfig": {
+        "vectorSearchFields": [
+          "id"
+        ],
+        "planning": {
+          "availableOperations": [
+            "create",
+            "update",
+            "read",
+            "delete"
+          ]
+        },
+        "entityItemCreate": {
+          "requiredFields": [
+            "id"
+          ],
+          "immutableFields": [
+            "isDeleted"
+          ],
+          "requiredRelations": [],
+          "autoGenerateFields": [
+            "id"
+          ],
+          "additionalPrompt": "When creating Lang Tutor Grant, ensure required attributes are populated.",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": ""
+        },
+        "entityItemUpdate": {
+          "immutableFields": [
+            "id"
+          ],
+          "autoGenerateFields": [],
+          "additionalPrompt": "",
+          "requireUserConfirmation": false,
+          "customValidationPrompt": "",
+          "restrictedStates": []
+        },
+        "entityRead": {
+          "defaultPageSize": 20,
+          "defaultContextLimit": 30,
+          "hiddenFields": [
+            "isDeleted"
+          ],
+          "maskedFields": [],
+          "additionalPrompt": ""
+        },
+        "entityItemDelete": {
+          "requireCaptchaConfirmation": true,
+          "cascadingRelations": [],
+          "restrictedStates": []
+        }
+      },
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Primary key UUID.",
+          "isPrimaryKey": true,
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false,
+          "defaultFn": "uuidv4"
+        },
+        {
+          "name": "ownerUserId",
+          "type": "string",
+          "description": "Strict per-user isolation boundary; rows are visible only to the authenticated ownerUserId.",
+          "isRequired": true,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "ownerUserRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "profileId",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "tutorUserRef",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "tutorPhoneE164",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "sharedSessionIds",
+          "type": "array",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": true
+        },
+        {
+          "name": "grantStatus",
+          "type": "string",
+          "description": "",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "string",
+          "description": "Lifecycle or record status.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false
+        },
+        {
+          "name": "isDeleted",
+          "type": "boolean",
+          "description": "Soft deletion flag.",
+          "isRequired": false,
+          "isHidden": false,
+          "isArray": false,
+          "default": false
+        }
+      ],
+      "relations": []
+    }
+  ],
   "variables": [],
   "tools": [],
   "workflows": [],
