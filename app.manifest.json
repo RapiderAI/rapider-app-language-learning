@@ -3431,7 +3431,8 @@
       "pageTitle": "CEFR Skill Path",
       "type": "AppPage",
       "displayOnMenu": true,
-      "description": "Active language/dialect switcher, CEFR A1–C1 unit nodes (findSWR), daily XP & Streak / Streak Freeze header, *Placement Test* / *Jump Here* buttons, and Unit Grammar Guidebook drawer preview."
+      "description": "Active language/dialect switcher, CEFR A1–C1 unit nodes (findSWR), daily XP & Streak / Streak Freeze header, *Placement Test* / *Jump Here* buttons, and Unit Grammar Guidebook drawer preview.",
+      "enabled": true
     },
     {
       "name": "Stories, Script & Listening",
@@ -3446,7 +3447,8 @@
       "pageTitle": "Stories, Script & Listening",
       "type": "AppPage",
       "displayOnMenu": true,
-      "description": "Leveled CEFR short stories & native-speaker dialogues (0.75x–1.25x audio, tap-word dictionary -> *Add to SRS*), plus Script/Tone trainer tab for non-Latin languages and #activeFilterTagsBar with [Clear all]."
+      "description": "Leveled CEFR short stories & native-speaker dialogues (0.75x–1.25x audio, tap-word dictionary -> *Add to SRS*), plus Script/Tone trainer tab for non-Latin languages and #activeFilterTagsBar with [Clear all].",
+      "enabled": true
     },
     {
       "name": "AI Roleplay & Speaking",
@@ -3461,7 +3463,8 @@
       "pageTitle": "AI Roleplay & Speaking",
       "type": "AppPage",
       "displayOnMenu": true,
-      "description": "Scenario gallery (*Café Order*, *Train Ticket*, *Job Interview*, *Doctor Visit*) calibrated by CEFR band, push-to-talk / text conversation launcher, and past PrsLangConversationSession history table (findSWR) with #activeFilterTagsBar."
+      "description": "Scenario gallery (*Café Order*, *Train Ticket*, *Job Interview*, *Doctor Visit*) calibrated by CEFR band, push-to-talk / text conversation launcher, and past PrsLangConversationSession history table (findSWR) with #activeFilterTagsBar.",
+      "enabled": true
     },
     {
       "name": "Vocabulary & SRS Kanban",
@@ -3476,7 +3479,8 @@
       "pageTitle": "Vocabulary & SRS Kanban",
       "type": "AppPage",
       "displayOnMenu": true,
-      "description": "Due-today FSRS review counter + switchable <rapider-kanban> mastery board (NEW -> LEARNING -> REVIEW_DUE -> MASTERED -> SUSPENDED) and searchable lexeme table, #activeFilterTagsBar, clickable Term -> vocab-card-detail, icon+text Edit, and icon-only Delete."
+      "description": "Due-today FSRS review counter + switchable <rapider-kanban> mastery board (NEW -> LEARNING -> REVIEW_DUE -> MASTERED -> SUSPENDED) and searchable lexeme table, #activeFilterTagsBar, clickable Term -> vocab-card-detail, icon+text Edit, and icon-only Delete.",
+      "enabled": true
     },
     {
       "name": "Practice Hub & Mistakes",
@@ -3491,7 +3495,8 @@
       "pageTitle": "Practice Hub & Mistakes",
       "type": "AppPage",
       "displayOnMenu": true,
-      "description": "Categorized PrsLangMistakeEntry error ledger (VERB_TENSE, GRAMMAR_AGREEMENT, PRONUNCIATION, etc.), #activeFilterTagsBar, *Explain My Answer* rationale cards, and 1-click Clear 10 Mistakes drill launcher."
+      "description": "Categorized PrsLangMistakeEntry error ledger (VERB_TENSE, GRAMMAR_AGREEMENT, PRONUNCIATION, etc.), #activeFilterTagsBar, *Explain My Answer* rationale cards, and 1-click Clear 10 Mistakes drill launcher.",
+      "enabled": true
     },
     {
       "name": "Pronunciation & Reading Lab",
@@ -3506,7 +3511,8 @@
       "pageTitle": "Pronunciation & Reading Lab",
       "type": "AppPage",
       "displayOnMenu": true,
-      "description": "Read-aloud fluency passages & tricky-phoneme word list with push-to-talk accuracy % (Decimal128), WPM score, and 3-rep mispronounced word micro-drills."
+      "description": "Read-aloud fluency passages & tricky-phoneme word list with push-to-talk accuracy % (Decimal128), WPM score, and 3-rep mispronounced word micro-drills.",
+      "enabled": true
     },
     {
       "name": "CEFR Checkpoints & Score",
@@ -3521,7 +3527,8 @@
       "pageTitle": "CEFR Checkpoints & Score",
       "type": "AppPage",
       "displayOnMenu": true,
-      "description": "0–160 composite proficiency gauge (Reading / Listening / Writing / Speaking radar), PrsLangCheckpointAttempt exam launcher & history, and 1-click *Export CEFR Badge to Resume (#182)*."
+      "description": "0–160 composite proficiency gauge (Reading / Listening / Writing / Speaking radar), PrsLangCheckpointAttempt exam launcher & history, and 1-click *Export CEFR Badge to Resume (#182)*.",
+      "enabled": true
     },
     {
       "name": "Streaks, Goals & Calm Mode",
@@ -3536,7 +3543,8 @@
       "pageTitle": "Streaks, Goals & Calm Mode",
       "type": "AppPage",
       "displayOnMenu": true,
-      "description": "Timezone-aware streak calendar, Streak Freeze inventory, study minutes by skill modality across light/dark themes, daily goal selector, and Calm Mode (hide leaderboards/timers/hearts) toggle."
+      "description": "Timezone-aware streak calendar, Streak Freeze inventory, study minutes by skill modality across light/dark themes, daily goal selector, and Calm Mode (hide leaderboards/timers/hearts) toggle.",
+      "enabled": true
     },
     {
       "name": "Tutor Sharing & Privacy",
@@ -3551,7 +3559,8 @@
       "pageTitle": "Tutor Sharing & Privacy",
       "type": "AppPage",
       "displayOnMenu": true,
-      "description": "Ephemeral voice audio privacy switch (retainVoiceAudio = false default), active PrsLangTutorGrant permissions, TSV/Anki/Translate deck import, CSV/JSON/PDF export, and cascade vault erasure."
+      "description": "Ephemeral voice audio privacy switch (retainVoiceAudio = false default), active PrsLangTutorGrant permissions, TSV/Anki/Translate deck import, CSV/JSON/PDF export, and cascade vault erasure.",
+      "enabled": true
     },
     {
       "name": "Interactive Lesson & Checkpoint Runner",
@@ -3566,7 +3575,8 @@
       "pageTitle": "Interactive Lesson & Checkpoint Runner",
       "type": "AppPage",
       "displayOnMenu": false,
-      "description": "Distraction-free session view (#/lesson-runner?unitId=...) with multi-modal exercises, quiet-commute *Can't speak/listen* skip buttons, inline *Explain My Answer* drawer, pause-aware timer, and Back to path state restoration."
+      "description": "Distraction-free session view (#/lesson-runner?unitId=...) with multi-modal exercises, quiet-commute *Can't speak/listen* skip buttons, inline *Explain My Answer* drawer, pause-aware timer, and Back to path state restoration.",
+      "enabled": true
     },
     {
       "name": "Lexeme & SRS History Detail",
@@ -3581,7 +3591,8 @@
       "pageTitle": "Lexeme & SRS History Detail",
       "type": "AppPage",
       "displayOnMenu": false,
-      "description": "Detailed word/phrase inspector (#/vocab-card-detail?id=...) showing example sentences, audio, FSRS stability/difficulty (Decimal128), next review date, grammar notes, and Back to list state restoration."
+      "description": "Detailed word/phrase inspector (#/vocab-card-detail?id=...) showing example sentences, audio, FSRS stability/difficulty (Decimal128), next review date, grammar notes, and Back to list state restoration.",
+      "enabled": true
     },
     {
       "name": "Add Custom Card / Import Deck Drawer",
@@ -3596,7 +3607,8 @@
       "pageTitle": "Add Custom Card / Import Deck Drawer",
       "type": "AppPage",
       "displayOnMenu": false,
-      "description": "Sliding drawer to create/edit custom PrsLangVocabCard entries or stage TSV/Rapider Translate imports; resets button in finally and auto-closes via closePageDrawer()."
+      "description": "Sliding drawer to create/edit custom PrsLangVocabCard entries or stage TSV/Rapider Translate imports; resets button in finally and auto-closes via closePageDrawer().",
+      "enabled": true
     },
     {
       "name": "Invite Personal Tutor Drawer",
@@ -3611,7 +3623,8 @@
       "pageTitle": "Invite Personal Tutor Drawer",
       "type": "AppPage",
       "displayOnMenu": false,
-      "description": "Sliding drawer to grant a personal tutor (PrsLangTutorGrant, optional E.164 lookup via <rapider-phone-input> or email) scoped review access to selected writing/speaking submissions via Home WorkItem; calls closePageDrawer()."
+      "description": "Sliding drawer to grant a personal tutor (PrsLangTutorGrant, optional E.164 lookup via <rapider-phone-input> or email) scoped review access to selected writing/speaking submissions via Home WorkItem; calls closePageDrawer().",
+      "enabled": true
     }
   ],
   "workflows": [],
@@ -3813,5 +3826,224 @@
       "displayOnMenu": false,
       "description": "Sliding drawer to grant a personal tutor (PrsLangTutorGrant, optional E.164 lookup via <rapider-phone-input> or email) scoped review access to selected writing/speaking submissions via Home WorkItem; calls closePageDrawer()."
     }
-  ]
+  ],
+  "developBuild": {
+    "version": "develop",
+    "buildNumber": "1795549314576",
+    "commitSha": "1d2d3d1d6b93957121a6838e04dfcfac4c37bc60",
+    "commitMessage": "feat(design-preview): publish Stage 1 UI preview pages for live review (pre-Stage 2 QA)",
+    "commitDate": "2026-11-24T19:41:06Z",
+    "manifestSha": "651995c385ed5f749a5e6ca0098cf1fc25eb9245",
+    "pageShas": {
+      "index.html": "9c47e82dd425eb9d9c4b39d88ec5d5135f35f74d",
+      "pages/ai-roleplay/ai-roleplay.html": "2eab68433609b93b2e5a482b9500d9c49cdbd374",
+      "pages/checkpoints-scores/checkpoints-scores.html": "30d3d5949d7d422c7566e74e7eeb15fc7c0d4661",
+      "pages/learning-path/learning-path.html": "c3d8a525f353959de04d51320e74543081039cc8",
+      "pages/lesson-runner/lesson-runner.html": "b546476377262ff44ea93f27082ba494811d7093",
+      "pages/new-vocab-drawer/new-vocab-drawer.html": "abb5e23599ea85e3192773ecd12846992bafeedd",
+      "pages/practice-mistakes/practice-mistakes.html": "b62d770393cc13cfbc3018d4db5b0af40cc5be10",
+      "pages/pronunciation-lab/pronunciation-lab.html": "68ef05ffec58a0be8045ba36737f789ed2258251",
+      "pages/stories-immersion/stories-immersion.html": "3355662fdff5dc1a1bc5723ca045ffce5131f2f8",
+      "pages/streaks-analytics/streaks-analytics.html": "0a1a7641064c23bf9f110765cac051809da58c55",
+      "pages/tutor-and-privacy/tutor-and-privacy.html": "4d3a5fb151626bcd40d1ab0657f2b2e1311fc3dc",
+      "pages/tutor-share-drawer/tutor-share-drawer.html": "3f3f2300f5c5b434cfae1bc670f8e3d5177aa5a9",
+      "pages/vocab-card-detail/vocab-card-detail.html": "e560547e24a73d7e8c9e9d4e3dc12c031d2e9a7d",
+      "pages/vocabulary-srs/vocabulary-srs.html": "f5b204090e8b06c66d422535d47a861ecc621b83"
+    },
+    "assetShas": {
+      ".agents/rules/app-data-models.md": "4731dc7d8a4cb908c45a1ebe971a74eb114e3297",
+      ".agents/rules/app-definition.md": "1480d6698ec378dde143554cc934cd1a96ad8c0b",
+      ".agents/rules/app-metadata.md": "d6c0d01a60ad1946daa6431ef932d3c66663f49b",
+      ".agents/rules/app-page-html.md": "f675b409e483595535a4bfb8198ad6361fc0f349",
+      ".agents/rules/app-page.md": "f876707020cc2a2a389b6b5b01e47f8b71926537",
+      ".agents/rules/app-qa-workflow.md": "a57f9576066f2381d70e4da5d9621c6b4121a4fd",
+      ".agents/rules/app-sample-data.md": "085f5ea83197197c728372a60e9d7f4b076b883f",
+      ".agents/rules/qa-passes/pass-01-routing.md": "7eab6906c9304096779528cd4cd3891421d22b45",
+      ".agents/rules/qa-passes/pass-02-swr.md": "0f3523edc2e4dbefdeed771d2b60cc68fa653793",
+      ".agents/rules/qa-passes/pass-03-data-models.md": "29cd7b5858727e442a3a76c75b9130e781550ddc",
+      ".agents/rules/qa-passes/pass-04-modals.md": "d1ddacfb8019f37fc954f7ca3fdfd3b5562abbe2",
+      ".agents/rules/qa-passes/pass-05-drawers.md": "d228c52e6ccc8aafedfd060b9813c37989d6c272",
+      ".agents/rules/qa-passes/pass-06-responsive.md": "b70f1c866bb63b999ac30d3bddec9f48e229180f",
+      ".agents/rules/qa-passes/pass-07-themes.md": "3a251a8a24596ad792d8832117109d44434c662f",
+      ".agents/rules/qa-passes/pass-08-notifications.md": "dba3b8bda7fc51962875df0cd9c4371eb44360b2",
+      ".agents/rules/qa-passes/pass-09-payloads.md": "40cc4b8c4c7d20373c977d77898ab7c5885b157a",
+      ".agents/rules/qa-passes/pass-10-components.md": "69d11aba4824432be812ec20205ec974b2456bff",
+      ".agents/rules/qa-passes/pass-11-e2e-expectations.md": "0440f4464e79438b2185c654c2a40381c1a869fc",
+      ".agents/rules/qa-passes/pass-12-asset-externalization.md": "3d3884916d6332b1e8fc75ed34dfc1c02c7fd820",
+      ".agents/rules/qa-passes/pass-13-manifest-sync.md": "368fdb29dfde4bb65ce94f0db044f3392467c7e9",
+      ".agents/rules/qa-passes/pass-14-ui-states.md": "4ee89a8287806972922acee628b08c7b6fcd2838",
+      ".agents/rules/qa-passes/pass-15-security.md": "55c8ec9444c503e2451ecf3327b496d1a188a769",
+      ".agents/rules/qa-passes/pass-16-accessibility.md": "b6e692cb5787217c84a5b75db7c27595ef31757b",
+      ".agents/rules/qa-passes/pass-17-input-formatting.md": "87102dff8a1b81022229e264827510e3903d59ee",
+      ".agents/rules/qa-passes/pass-18-kanban-list-views.md": "1b6d0ccc18c3f7fb5cf8d163a58df30abb44b010",
+      ".agents/rules/qa-passes/pass-19-ui-best-practices.md": "e1f56c6e8569bac8c2be634e48febb2ae101b9e3",
+      ".agents/rules/qa-passes/pass-20-search-filters.md": "dd9b64cf122ac5b2594bf4847e0a0848e8f3dfc3",
+      ".agents/rules/qa-passes/pass-21-collapsible-suite-sidebar.md": "c1d7bbe00b914763768854db01b1208077070cf9",
+      ".agents/rules/qa-passes/pass-22-domain-fidelity-anti-clone.md": "1b3f04326b6b29dde7bab4e99ff36bb556d107ec",
+      ".agents/rules/suite-sidebar-navigation.md": "b2b03ae4b0927dc68c7b675b0792c8e9fa98e0c8",
+      ".agents/skills/rapider-design-guided-page-evolution/SKILL.md": "ce9a619ad06ad68306ccebc9e2f7605d226eb9f5",
+      ".agents/skills/rapider-design-guided-page-evolution/references/design-token-and-component-mapping.md": "c1a9db7d2e923237aac2200f82f31fa7aa6e8667",
+      ".agents/skills/rapider-modern-saas-page-craft/SKILL.md": "51d2ab20f74fe4c76282b49672b8828bccd841e2",
+      ".cursorrules": "21b52e50933ef5f3ef85802f76bdd971a8b2e25f",
+      ".windsurfrules": "21b52e50933ef5f3ef85802f76bdd971a8b2e25f",
+      "AGENTS.md": "1946ece7f4c571357d504a66e6549d59ff5ae5ec",
+      "README.md": "8458e2e3bbc35d69b683c48ed4866685b821fee3",
+      "agent_prompts.md": "6afa8f92079f0ba2b65b0067b76d20b7e6460275",
+      "app.build.json": "520381b92fe0eb82d3c9d58bbfa7e6078a619fdb",
+      "app.build.schema.json": "40e00b3bd74cd88076ce9c01f9a297720484f8cc",
+      "app.manifest.json": "651995c385ed5f749a5e6ca0098cf1fc25eb9245",
+      "assets/themes/rapider-design-system.css": "15b5659253050a3f26bd8c88d7c6095d98607ce9",
+      "assets/themes/rapider-tailwind-theme.css": "0a8822d897677ae06e6c8721e421d9b51ac05a41",
+      "assets/themes/theme-amber-gold.css": "b0492379a51be217da88eb734536f43a69b6b65b",
+      "assets/themes/theme-crimson-rose.css": "ec0f75893ba42c65e45e06e151560c93581f6adc",
+      "assets/themes/theme-default.css": "7133935dc6d476f2d02b40dee887d4dbe0096a39",
+      "assets/themes/theme-emerald-ledger.css": "116ce78ee1ca47803f5676c4051e07100c54b9df",
+      "assets/themes/theme-graphite-minimal.css": "505813063647fbbf21b9c046d45349e6ee30b99b",
+      "assets/themes/theme-nordic-cyan.css": "5d44b0bb1c69c77d33fc1a98adbf7d494e8b474a",
+      "assets/themes/theme-obsidian-compact.css": "eecb44185e6e651bae600bf248299b01ceca770e",
+      "assets/themes/theme-plum-berry.css": "b636487e05efebb3e68d34e336dbfb3ceffd5543",
+      "assets/themes/theme-sage-botanical.css": "ce8eee178b69c49bdb12e9e2007909d4e49bafc3",
+      "assets/themes/theme-sapphire-trust.css": "7af40925095db3efd0894638006219fc28398a87",
+      "assets/themes/theme-teal-horizon.css": "465ba6a6127f7295bbaaba0645f3e2785654a78f",
+      "assets/themes/theme-terracotta-warm.css": "aa912d34fcd6efa35f16bda47eac3c4ac6d12f86",
+      "assets/themes/themes.json": "bcf114076d3bb3bbdf67ce8ebefde15a00c1e400",
+      "data/sample-data.json": "426707c80ee9dc0a1bc99076edf2b6808cf27c48",
+      "index.html": "9c47e82dd425eb9d9c4b39d88ec5d5135f35f74d",
+      "pages/ai-roleplay/ai-roleplay.html": "2eab68433609b93b2e5a482b9500d9c49cdbd374",
+      "pages/checkpoints-scores/checkpoints-scores.html": "30d3d5949d7d422c7566e74e7eeb15fc7c0d4661",
+      "pages/learning-path/learning-path.html": "c3d8a525f353959de04d51320e74543081039cc8",
+      "pages/lesson-runner/lesson-runner.html": "b546476377262ff44ea93f27082ba494811d7093",
+      "pages/new-vocab-drawer/new-vocab-drawer.html": "abb5e23599ea85e3192773ecd12846992bafeedd",
+      "pages/practice-mistakes/practice-mistakes.html": "b62d770393cc13cfbc3018d4db5b0af40cc5be10",
+      "pages/pronunciation-lab/pronunciation-lab.html": "68ef05ffec58a0be8045ba36737f789ed2258251",
+      "pages/stories-immersion/stories-immersion.html": "3355662fdff5dc1a1bc5723ca045ffce5131f2f8",
+      "pages/streaks-analytics/streaks-analytics.html": "0a1a7641064c23bf9f110765cac051809da58c55",
+      "pages/tutor-and-privacy/tutor-and-privacy.html": "4d3a5fb151626bcd40d1ab0657f2b2e1311fc3dc",
+      "pages/tutor-share-drawer/tutor-share-drawer.html": "3f3f2300f5c5b434cfae1bc670f8e3d5177aa5a9",
+      "pages/vocab-card-detail/vocab-card-detail.html": "e560547e24a73d7e8c9e9d4e3dc12c031d2e9a7d",
+      "pages/vocabulary-srs/vocabulary-srs.html": "f5b204090e8b06c66d422535d47a861ecc621b83",
+      "rapider-idea-request.md": "81672264080ce41a48fb8296832b57abbf251811",
+      "rapider-sow.md": "81672264080ce41a48fb8296832b57abbf251811",
+      "run-sync.sh": "d56c51f081a4bfced00a2db8801a9613fb009e24",
+      "sample-data.json": "cd91188d409b2194cebd34a626c47b457208b0b6",
+      "update-ai-rules.sh": "1b1f313eb61a7b98e29e44b59d99f00e82a33b4d"
+    },
+    "manifestUrl": "https://rapider.nyc3.cdn.digitaloceanspaces.com/app/7fad7cf6-9327-4386-b2a0-a9930c9404f7/develop/manifest.json?b=1795549314576",
+    "rawManifestUrl": "https://rapider.nyc3.cdn.digitaloceanspaces.com/app/7fad7cf6-9327-4386-b2a0-a9930c9404f7/develop/manifest.json",
+    "updatedAt": "2026-11-24T19:41:58.613Z",
+    "pagesCount": 13
+  },
+  "githubRepo": {
+    "name": "rapider-app-language-learning"
+  },
+  "pipeline": {
+    "currentStage": "app-metadata-completed",
+    "statusLabel": "Architecture Manifested",
+    "currentStep": 6,
+    "totalSteps": 14,
+    "progressPercent": 42,
+    "message": "Synchronized from GitHub application manifest",
+    "version": null,
+    "updatedAt": "2026-11-02T09:50:31.101Z",
+    "milestones": [
+      {
+        "key": "submitted",
+        "label": "Idea Submitted",
+        "icon": "fas fa-lightbulb",
+        "status": "completed",
+        "description": "App concept and requirements registered."
+      },
+      {
+        "key": "approved",
+        "label": "Community Approved",
+        "icon": "fas fa-check-circle",
+        "status": "completed",
+        "description": "Idea reviewed, vetted, and approved by community/admins."
+      },
+      {
+        "key": "sow_plan",
+        "label": "SOW & Implementation Plan",
+        "icon": "fas fa-file-contract",
+        "status": "completed",
+        "description": "Requirements analyzed and architecture roadmap generated."
+      },
+      {
+        "key": "sow_approved",
+        "label": "SOW Community Approval",
+        "icon": "fas fa-user-check",
+        "status": "completed",
+        "description": "Human in the loop: Scope of work and architecture roadmap approved by community."
+      },
+      {
+        "key": "queued",
+        "label": "Queued for Build",
+        "icon": "fas fa-layer-group",
+        "status": "completed",
+        "description": "Waiting in line for autonomous agent harness pipeline."
+      },
+      {
+        "key": "manifest",
+        "label": "Architecture Manifested",
+        "icon": "fas fa-cubes",
+        "status": "completed",
+        "description": "GitHub repository and application manifest scaffolded."
+      },
+      {
+        "key": "data_models",
+        "label": "Data Schemas & API Models",
+        "icon": "fas fa-database",
+        "status": "pending",
+        "description": "Data schemas, API definitions, and entity relations generated."
+      },
+      {
+        "key": "backend_api",
+        "label": "Database & API Development",
+        "icon": "fas fa-network-wired",
+        "status": "pending",
+        "description": "Isolated database, OpenAPI endpoints, and mock records implemented."
+      },
+      {
+        "key": "frontend",
+        "label": "Frontend UI Built",
+        "icon": "fas fa-paint-brush",
+        "status": "pending",
+        "description": "Responsive HTML layouts, web components, and pages constructed."
+      },
+      {
+        "key": "workflows",
+        "label": "Workflows & Functions",
+        "icon": "fas fa-diagram-project",
+        "status": "pending",
+        "description": "Rapider workflows, lambda functions, AI step functions, and pub/sub events integrated."
+      },
+      {
+        "key": "testing",
+        "label": "End-to-End Testing",
+        "icon": "fas fa-vial-circle-check",
+        "status": "pending",
+        "description": "Automated test suite, scenario runs, and smoke tests verified."
+      },
+      {
+        "key": "qa_approved",
+        "label": "Release Community Approval",
+        "icon": "fas fa-user-shield",
+        "status": "pending",
+        "description": "Human in the loop: Test results, QA verification, and pre-release build approved by community."
+      },
+      {
+        "key": "versioning",
+        "label": "Version Released",
+        "icon": "fas fa-rocket",
+        "status": "pending",
+        "description": "Immutable release version tagged with locked changelog."
+      },
+      {
+        "key": "deployment",
+        "label": "Live Cloud Deployment",
+        "icon": "fas fa-cloud-upload-alt",
+        "status": "pending",
+        "description": "Application deployed to cloud and available for workspace install."
+      }
+    ]
+  }
 }
