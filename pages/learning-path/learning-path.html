@@ -5,592 +5,2725 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CEFR Skill Path — Rapider Language Learning</title>
   <script src="https://kit.fontawesome.com/5b23df26dc.js" crossorigin="anonymous" defer></script>
-  <script src="/assets/js/rapider-components.js" defer></script>
-  <link rel="stylesheet" href="/assets/themes/rapider-tailwind-theme.css">
-  <link rel="stylesheet" href="/assets/themes/crm-expenses-design.css">
   <style>
     :root {
+      --primary: #6854df;
+      --primary-hover: #5844cc;
+      --primary-soft: #f3f0ff;
+      --primary-soft-border: #dcd4fc;
+      --hero-bg: #252840;
+      --hero-surface: #313554;
+      --hero-muted: #b8bed4;
+      --canvas: #f5f6fa;
+      --card: #ffffff;
       --ink: #172137;
-      --muted: #67728a;
-      --line: #e9ecf3;
-      --bg: #f5f6fa;
-      --purple: #6854df;
-      --purple-soft: #f3f0ff;
-      --panel: #ffffff;
-      --dark: #1f243a;
-      --soft: #eeeaff;
-      --green: #16795b;
-      --amber: #b4690e;
-      --red: #b9384f;
+      --muted: #6e798f;
+      --border: #e9ecf3;
+      --border-strong: #d8deeb;
+      --success: #16795b;
+      --success-soft: #e7f6f0;
+      --warning: #b4690e;
+      --warning-soft: #fef4e6;
+      --info: #1d5fa7;
+      --info-soft: #e9f2fc;
+      --danger: #b9384f;
+      --danger-soft: #fdecef;
+      --neutral-soft: #f1f4f9;
       --radius: 14px;
+      --radius-sm: 9px;
+      --radius-tag: 5px;
     }
+
     * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; height: 100%; font: 14px/1.5 -apple-system, BlinkMacSystemFont, 'Segoe UI', Inter, sans-serif; background: var(--bg); color: var(--ink); }
-    a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font: inherit; }
-    .btn, button.btn {
-      cursor: pointer; border: 1px solid #dfe3ed; background: #ffffff; color: var(--ink);
-      padding: 8px 14px; border-radius: 9px; font-weight: 600; display: inline-flex;
-      align-items: center; justify-content: center; gap: 7px; font-size: 13px; min-height: 38px;
-      transition: all 0.15s ease;
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100vh;
+      font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+      background: var(--canvas);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
     }
-    .btn:hover { background: #f5f3ff; border-color: #cfc7f4; }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; color: inherit; }
+
+    .tabular { font-variant-numeric: tabular-nums; }
+
+    /* Buttons */
+    .btn {
+      cursor: pointer;
+      border: 1px solid var(--border-strong);
+      background: var(--card);
+      color: var(--ink);
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 13px;
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      transition: background 0.15s ease, border-color 0.15s ease, transform 0.12s ease;
+      white-space: nowrap;
+    }
+    .btn:hover {
+      background: #f8f7fd;
+      border-color: var(--primary-soft-border);
+    }
+    .btn:disabled { opacity: 0.55; cursor: not-allowed; }
+    .btn.small { padding: 6px 11px; min-height: 31px; font-size: 12px; border-radius: 7px; }
+    .btn.quiet { border-color: transparent; background: transparent; color: var(--muted); }
+    .btn.quiet:hover { background: var(--primary-soft); color: var(--primary); }
+    .btn.icon-only { padding: 6px 9px; min-height: 32px; }
+
     .btn.primary, button.primary, a.btn.primary {
-      background: var(--purple) !important; background-color: var(--purple) !important;
-      color: #ffffff !important; border-color: var(--purple) !important;
-      box-shadow: 0 3px 8px rgba(104, 84, 223, 0.22);
+      background: var(--primary) !important;
+      border-color: var(--primary) !important;
+      color: #ffffff !important;
     }
     .btn.primary:hover, button.primary:hover, a.btn.primary:hover {
-      background: #5844cc !important; color: #ffffff !important;
+      background: var(--primary-hover) !important;
+      border-color: var(--primary-hover) !important;
+      color: #ffffff !important;
     }
     .btn.danger, button.danger {
-      background: var(--red) !important; color: #ffffff !important; border-color: var(--red) !important;
+      background: var(--danger) !important;
+      border-color: var(--danger) !important;
+      color: #ffffff !important;
     }
-    .btn.small { padding: 5px 10px; min-height: 30px; font-size: 12px; border-radius: 7px; }
-    .btn.icon-only { padding: 6px 9px; min-height: 30px; color: var(--red); border-color: #f1d0d6; background: #fffafb; }
-    .btn.icon-only:hover { background: #fee2e2; }
 
-    .layout { display: grid; grid-template-columns: 236px minmax(0, 1fr); height: 100vh; overflow: hidden; }
+    /* Semantic Tags (5px crisp chips, no loud pills) */
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: var(--radius-tag);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: 0.15px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+    .tag-success { background: var(--success-soft); color: var(--success); }
+    .tag-warning { background: var(--warning-soft); color: var(--warning); }
+    .tag-info { background: var(--info-soft); color: var(--info); }
+    .tag-danger { background: var(--danger-soft); color: var(--danger); }
+    .tag-neutral { background: var(--neutral-soft); color: var(--muted); }
+
+    /* Shell & Sidebar */
+    .shell {
+      display: grid;
+      grid-template-columns: 224px minmax(0, 1fr);
+      min-height: 100vh;
+      width: 100%;
+    }
+    .shell.sidebar-collapsed {
+      grid-template-columns: 68px minmax(0, 1fr) !important;
+    }
+
     .sidebar {
-      background: #ffffff; border-right: 1px solid var(--line); padding: 22px 14px 16px;
-      height: 100vh; display: flex; flex-direction: column; overflow-y: auto; z-index: 30;
+      background: var(--card);
+      border-right: 1px solid var(--border);
+      padding: 18px 12px 16px;
+      display: flex;
+      flex-direction: column;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      z-index: 30;
     }
-    .brand-row { display: flex; align-items: center; justify-content: space-between; padding: 0 8px 18px; min-height: 34px; }
-    .brand-row .brand { display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; letter-spacing: -0.4px; color: var(--ink); flex: 1; min-width: 0; }
-    .suite-icon-container { width: 28px; height: 28px; border-radius: 8px; background: #eee9fb; color: var(--purple); display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
-    .suite-icon-container .suite-expand-icon { display: none !important; font-size: 14px; color: var(--purple); }
-    .sidebar-collapse-btn { background: transparent; border: 1px solid transparent; cursor: pointer; padding: 5px 7px; border-radius: 6px; color: var(--muted); display: inline-flex; align-items: center; justify-content: center; font-size: 12px; }
-    .sidebar-collapse-btn:hover { background: var(--soft); color: var(--purple); border-color: #cfc7f4; }
 
-    .appbox { padding: 11px 12px; background: #f6f4fc; border: 1px solid #ebe6f8; border-radius: 10px; margin: 0 0 16px; display: flex; gap: 10px; align-items: center; }
-    .appicon { width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; background: #e9e3ff; color: var(--purple); flex-shrink: 0; }
-    .appbox b { display: block; font-size: 13px; color: var(--ink); line-height: 1.25; }
-    .appbox small { color: var(--muted); font-size: 11px; display: block; }
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 0 4px 16px;
+      min-height: 36px;
+    }
+    .brand-row .brand {
+      background: transparent;
+      border: 0;
+      padding: 4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 15px;
+      font-weight: 750;
+      letter-spacing: -0.35px;
+      color: var(--ink);
+      flex: 1;
+      min-width: 0;
+      text-align: left;
+    }
+    .suite-icon-container {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+    .suite-icon-container .suite-expand-icon { display: none; font-size: 13px; }
+    .sidebar-collapse-btn {
+      background: transparent;
+      border: 1px solid transparent;
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      color: var(--muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .sidebar-collapse-btn:hover {
+      background: var(--primary-soft);
+      color: var(--primary);
+      border-color: var(--primary-soft-border);
+    }
+
+    .appbox {
+      padding: 10px 11px;
+      background: #f8f7fc;
+      border: 1px solid #ebe6fa;
+      border-radius: 10px;
+      margin: 0 0 14px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .appicon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      background: #ebe5ff;
+      color: var(--primary);
+      flex-shrink: 0;
+      font-size: 14px;
+    }
+    .appbox b { display: block; font-size: 12.5px; color: var(--ink); line-height: 1.25; }
+    .appbox small { display: block; font-size: 11px; color: var(--muted); }
 
     .nav { display: flex; flex-direction: column; gap: 2px; }
-    .navlabel { font-size: 10px; text-transform: uppercase; letter-spacing: 1.4px; font-weight: 700; color: #9ba3b2; margin: 16px 10px 6px; }
-    .nav a, .nav a:link, .nav a:visited {
-      display: flex; align-items: center; gap: 11px; padding: 9px 11px; font-size: 13px;
-      color: #67728a !important; border-radius: 8px; font-weight: 500;
+    .navlabel {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      font-weight: 700;
+      color: #939db2;
+      margin: 14px 10px 5px;
     }
-    .nav a:hover { background: #f8f7fc; color: #172137 !important; }
-    .nav a.active { background: #ede9fb !important; color: #6650ce !important; font-weight: 650; }
-    .nav a .icon { width: 18px; text-align: center; font-size: 14px; color: inherit; flex-shrink: 0; }
-
-    .side-bottom { margin-top: auto; padding-top: 18px; }
-    .profile-link { border-top: 1px solid var(--line); padding: 14px 6px 0; display: flex; align-items: center; gap: 10px; }
-    .avatar-badge { width: 34px; height: 34px; border-radius: 50%; background: #eee8fb; color: #6854df; display: inline-grid; place-items: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
-
-    /* Collapsed sidebar state */
-    .layout.sidebar-collapsed { grid-template-columns: 68px minmax(0, 1fr) !important; }
-    aside.sidebar-collapsed, .sidebar.sidebar-collapsed, aside[data-collapsed="true"] {
-      width: 68px !important; min-width: 68px !important; max-width: 68px !important; padding-left: 8px !important; padding-right: 8px !important;
+    .nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: var(--muted);
+      border-radius: 8px;
+      font-weight: 500;
+      transition: background 0.12s ease, color 0.12s ease;
     }
-    aside.collapsed .sidebar-label, aside[data-collapsed="true"] .sidebar-label, .sidebar-collapsed .sidebar-label,
-    .sidebar-collapsed .suite-title, .sidebar-collapsed .sidebar-collapse-btn, .sidebar-collapsed .navlabel,
-    .sidebar-collapsed .appbox > div:not(.appicon), .sidebar-collapsed .profile-link > div:not(.avatar-badge) {
+    .nav a:hover { background: #f7f6fc; color: var(--ink); }
+    .nav a.active {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 650;
+    }
+    .nav a .icon {
+      width: 17px;
+      text-align: center;
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+
+    .side-bottom {
+      margin-top: auto;
+      padding-top: 14px;
+    }
+    .profile-link {
+      border-top: 1px solid var(--border);
+      padding: 12px 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+    .avatar-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: inline-grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 750;
+      flex-shrink: 0;
+    }
+
+    /* Collapsed Sidebar */
+    .sidebar.sidebar-collapsed {
+      width: 68px !important;
+      min-width: 68px !important;
+      max-width: 68px !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+    .sidebar-collapsed .sidebar-label,
+    .sidebar-collapsed .suite-title,
+    .sidebar-collapsed .sidebar-collapse-btn,
+    .sidebar-collapsed .navlabel,
+    .sidebar-collapsed .appbox > div:not(.appicon),
+    .sidebar-collapsed .profile-link > div:not(.avatar-badge) {
       display: none !important;
     }
-    .sidebar-collapsed .brand-row { justify-content: center !important; padding: 0 0 16px 0 !important; }
-    .sidebar-collapsed .brand-row .brand { justify-content: center !important; flex: none !important; cursor: pointer; gap: 0 !important; }
-    .sidebar.sidebar-collapsed:hover .suite-icon-container .suite-icon { display: none !important; }
-    .sidebar.sidebar-collapsed:hover .suite-icon-container .suite-expand-icon { display: inline-block !important; }
-    .sidebar-collapsed .appbox, .sidebar-collapsed .nav a, .sidebar-collapsed .profile-link { justify-content: center !important; padding-left: 8px !important; padding-right: 8px !important; }
-
-    /* Main Content & Topbar */
-    .main-col { display: flex; flex-direction: column; height: 100vh; overflow: hidden; min-width: 0; }
-    .topbar {
-      height: 64px; flex-shrink: 0; border-bottom: 1px solid var(--line); background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: space-between;
-      padding: 0 28px; gap: 14px; position: sticky; top: 0; z-index: 25;
+    .sidebar-collapsed .brand-row { justify-content: center; padding: 0 0 14px; }
+    .sidebar-collapsed .brand-row .brand { justify-content: center; flex: none; gap: 0; }
+    .sidebar.sidebar-collapsed:hover .suite-icon-container .suite-icon { display: none; }
+    .sidebar.sidebar-collapsed:hover .suite-icon-container .suite-expand-icon { display: inline-block; }
+    .sidebar-collapsed .appbox,
+    .sidebar-collapsed .nav a,
+    .sidebar-collapsed .profile-link {
+      justify-content: center;
+      padding-left: 8px;
+      padding-right: 8px;
     }
-    .breadcrumbs { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .breadcrumbs strong { color: var(--ink); font-weight: 600; }
-    .page-scroll { flex: 1; overflow-y: auto; padding: 26px 30px 44px; }
-    .page-wrap { max-width: 1520px; margin: 0 auto; }
 
-    .eyebrow { font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--purple); font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 7px; }
-    .page-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 18px; margin-bottom: 22px; flex-wrap: wrap; }
-    .page-head h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.6px; margin: 0 0 6px; color: var(--ink); }
-    .page-head p { color: var(--muted); font-size: 13px; margin: 0; max-width: 780px; }
-
-    .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-bottom: 22px; }
-    .kpi-card { background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; display: flex; flex-direction: column; gap: 6px; }
-    .kpi-card .kicker { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; color: var(--muted); display: flex; align-items: center; justify-content: space-between; }
-    .kpi-card .val { font-size: 27px; font-weight: 750; letter-spacing: -0.8px; color: var(--ink); line-height: 1.15; }
-    .kpi-card .sub { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; margin-top: 2px; flex-wrap: wrap; }
-
-    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin-bottom: 20px; }
-    .panel { background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
-    .panel-head, .panel-header { padding: 16px 20px; border-bottom: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-    .panel-head h2, .panel-header h2 { font-size: 15px; font-weight: 700; margin: 0; color: var(--ink); }
-    .panel-head p, .panel-header p { font-size: 12px; color: var(--muted); margin: 2px 0 0; }
-    .panel-body { padding: 20px; }
-
-    .filter-bar { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 14px 20px; border-bottom: 1px solid var(--line); background: #fafbfe; }
-    .search-input, .form-input, .form-select, .form-textarea { flex: 1; min-width: 180px; padding: 8px 12px; border: 1px solid #dfe3ed; border-radius: 8px; font-size: 13px; background: #fff; color: var(--ink); width: 100%; }
-    .search-wrap .search-input { padding-left: 34px; }
-    .search-wrap { position: relative; flex: 1; min-width: 220px; }
-    .search-wrap i { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 12px; }
-    .select-filter { padding: 8px 12px; border: 1px solid #dfe3ed; border-radius: 8px; font-size: 13px; background: #fff; color: var(--ink); }
-    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .form-group { display: flex; flex-direction: column; gap: 6px; }
-    .form-group.full { grid-column: 1 / -1; }
-    .form-label { font-size: 12px; font-weight: 600; color: var(--ink); }
-    .form-textarea { min-height: 90px; resize: vertical; }
-
-    .active-tags-bar { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 10px 20px; background: #f6f4fc; border-bottom: 1px solid #ebe6f8; font-size: 12px; }
-    .filter-chip { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; background: #ffffff; border: 1px solid #d8d0f8; color: #5340b8; font-weight: 600; font-size: 11px; white-space: nowrap; }
-    .filter-chip button { border: 0; background: transparent; color: #6854df; cursor: pointer; padding: 0 2px; font-weight: 700; }
-
-    table.data-table { width: 100%; border-collapse: collapse; text-align: left; font-size: 13px; }
-    table.data-table th { padding: 11px 16px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--muted); background: #f8f9fc; border-bottom: 1px solid var(--line); white-space: nowrap; }
-    table.data-table td { padding: 13px 16px; border-bottom: 1px solid #eff1f6; vertical-align: middle; }
-    table.data-table tr:hover td { background: #fcfbff; }
-    .primary-link { font-weight: 700; color: var(--purple); text-decoration: none; }
-    .primary-link:hover { text-decoration: underline; }
-
-    .badge { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 999px; font-size: 11px; font-weight: 650; white-space: nowrap; flex-shrink: 0; }
-    .badge.green { background: #e6f6f0; color: #146c52; }
-    .badge.purple { background: #eee9fb; color: #5b45c4; }
-    .badge.amber { background: #fef3c7; color: #9a580a; }
-    .badge.red { background: #fee2e2; color: #991b1b; }
-    .badge.slate { background: #f1f5f9; color: #475569; }
-    .badge.blue { background: #e0f2fe; color: #0369a1; }
-
-    .floor-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px; }
-    .table-tile { border: 1px solid var(--line); border-radius: 12px; padding: 14px; background: #fff; display: flex; flex-direction: column; gap: 8px; }
-    .tile-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
-    .tile-num { font-weight: 700; font-size: 14px; }
-    .tile-meta { font-size: 11px; color: var(--muted); }
-
-    .kanban-board { display: grid; grid-template-columns: repeat(4, minmax(230px, 1fr)); gap: 14px; overflow-x: auto; }
-    .kanban-col { background: #f8f9fc; border: 1px solid var(--line); border-radius: 12px; padding: 12px; display: flex; flex-direction: column; gap: 10px; }
-    .kanban-col-head { display: flex; justify-content: space-between; align-items: center; font-size: 12px; font-weight: 700; color: var(--ink); padding-bottom: 6px; border-bottom: 1px solid var(--line); }
-    .kanban-card { background: #ffffff; border: 1px solid var(--line); border-radius: 10px; padding: 12px; font-size: 12px; box-shadow: 0 2px 5px rgba(15,23,42,0.03); }
-    .kanban-card p { margin: 6px 0; color: var(--muted); font-size: 12px; }
-    .card-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--line); font-size: 11px; color: var(--muted); }
-
-    .drawer-backdrop { display: flex; justify-content: center; padding: 10px 0; }
-    .drawer-card { background: #ffffff; border: 1px solid var(--line); border-radius: var(--radius); width: 100%; max-width: 820px; overflow: hidden; box-shadow: 0 12px 32px rgba(15,23,42,0.08); }
-    .drawer-head { padding: 18px 22px; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center; }
-    .drawer-body { padding: 22px; }
-    .drawer-foot { padding: 16px 22px; border-top: 1px solid var(--line); display: flex; justify-content: flex-end; gap: 10px; background: #fafbfe; }
-
-    .mobile-menu { display: none; background: transparent; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; cursor: pointer; }
+    .mobile-menu { display: none; }
     .shade { display: none; }
 
-    @media (max-width: 1024px) {
-      .kpi-grid, .grid-2, .form-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    /* Main Content */
+    .ds-main {
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
+      background: var(--canvas);
     }
-    @media (max-width: 768px) {
-      .layout { display: block; }
-      .sidebar { position: fixed; left: 0; top: 0; transform: translateX(-100%); width: 250px !important; transition: transform 0.2s ease; z-index: 60; }
-      body.navopen .sidebar { transform: translateX(0); }
-      body.navopen .shade { display: block; position: fixed; inset: 0; background: rgba(15,23,42,0.45); z-index: 55; }
-      .mobile-menu { display: inline-flex; align-items: center; justify-content: center; }
-      .kpi-grid, .grid-2, .form-grid { grid-template-columns: 1fr; }
+    .page {
+      width: 100%;
+      max-width: 1580px;
+      margin: 0 auto;
+      padding: 26px 32px 52px;
+      box-sizing: border-box;
     }
 
-    html.dark, body.dark { --ink: #f1f5f9; --muted: #94a3b8; --line: #263044; --bg: #0f172a; --panel: #1e293b; --purple-soft: #1e1b4b; background: #0f172a !important; color: #f1f5f9 !important; }
-    html.dark .sidebar, body.dark .sidebar, html.dark .topbar, body.dark .topbar, html.dark .panel, body.dark .panel, html.dark .kpi-card, body.dark .kpi-card, html.dark .table-tile, body.dark .table-tile, html.dark .kanban-card, body.dark .kanban-card, html.dark .drawer-card, body.dark .drawer-card { background: #1e293b !important; color: #f1f5f9 !important; border-color: #334155 !important; }
-    html.dark .appbox, body.dark .appbox, html.dark .filter-bar, body.dark .filter-bar, html.dark table.data-table th, body.dark table.data-table th, html.dark .kanban-col, body.dark .kanban-col, html.dark .drawer-foot, body.dark .drawer-foot { background: #0f172a !important; color: #cbd5e1 !important; border-color: #334155 !important; }
-    html.dark input, body.dark input, html.dark select, body.dark select, html.dark textarea, body.dark textarea { background: #0f172a !important; color: #f1f5f9 !important; border-color: #334155 !important; }
+    /* Editorial Page Header */
+    .page-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .head-left { min-width: 0; flex: 1; }
+    .head-title-row { display: flex; align-items: center; gap: 10px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      letter-spacing: 1.25px;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+    h1.page-title {
+      font-size: 29px;
+      font-weight: 750;
+      letter-spacing: -0.8px;
+      line-height: 1.15;
+      margin: 0 0 6px;
+      color: var(--ink);
+    }
+    .subtitle {
+      font-size: 13.5px;
+      color: var(--muted);
+      margin: 0;
+      max-width: 680px;
+    }
+    .head-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .lang-picker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--card);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius-sm);
+      padding: 0 10px;
+      min-height: 36px;
+    }
+    .lang-picker i { color: var(--primary); font-size: 13px; }
+    .lang-picker select {
+      border: 0;
+      background: transparent;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+      padding: 6px 2px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Executive Cockpit (.overview-top) */
+    .overview-top {
+      display: grid;
+      grid-template-columns: 1.65fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .hero-card {
+      background: var(--hero-bg);
+      color: #ffffff;
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+      color: var(--hero-muted);
+      margin-bottom: 8px;
+    }
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 2px 8px;
+      border-radius: 5px;
+      background: var(--hero-surface);
+      color: #e4e7f5;
+      font-size: 11px;
+      font-weight: 650;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .hero-score-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .hero-band {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.7px;
+      line-height: 1.1;
+      color: #ffffff;
+    }
+    .hero-score-sub {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--hero-muted);
+    }
+    .hero-unit-desc {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #dbe0f2;
+      line-height: 1.4;
+    }
+    .hero-ring-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+    }
+    .hero-progress-track {
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      overflow: hidden;
+      margin-top: 10px;
+    }
+    .hero-progress-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: #8b7bf5;
+      transition: width 0.25s ease;
+    }
+    .hero-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .hero-link {
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #c8c3fb;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-link:hover { color: #ffffff; text-decoration: underline; }
+
+    .metric-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .metric-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .metric-kicker {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+    .metric-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+    }
+    .metric-icon.warm { background: var(--warning-soft); color: var(--warning); }
+    .metric-value {
+      font-size: 27px;
+      font-weight: 750;
+      letter-spacing: -0.7px;
+      line-height: 1.15;
+      color: var(--ink);
+    }
+    .metric-value.primary-tone { color: var(--primary); }
+    .metric-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .metric-bar {
+      width: 100%;
+      height: 6px;
+      background: var(--neutral-soft);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .metric-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+      transition: width 0.25s ease;
+    }
+    .metric-foot {
+      padding-top: 10px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .text-link {
+      color: var(--primary);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .text-link:hover { text-decoration: underline; }
+
+    /* Action Ribbon & CEFR Band Switcher */
+    .action-ribbon {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .ribbon-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .ribbon-filters {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .band-pills {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px;
+      background: var(--canvas);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      flex-wrap: wrap;
+    }
+    .band-pill {
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .band-pill:hover { color: var(--ink); }
+    .band-pill.active {
+      background: var(--card);
+      color: var(--primary);
+      border: 1px solid var(--primary-soft-border);
+    }
+    .draft-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+    .draft-toggle input {
+      accent-color: var(--primary);
+      width: 14px;
+      height: 14px;
+      cursor: pointer;
+    }
+
+    /* Main Split Workspace: Serpentine Path + Sticky Guidebook Rail */
+    .path-workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1.45fr) 390px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .path-column {
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .resume-strip {
+      background: var(--primary-soft);
+      border: 1px solid var(--primary-soft-border);
+      border-radius: var(--radius);
+      padding: 13px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .resume-strip-info {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+    .resume-pulse {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--primary);
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      font-size: 13px;
+    }
+    .resume-strip-info strong { display: block; font-size: 13px; color: var(--ink); }
+    .resume-strip-info small { display: block; font-size: 12px; color: var(--muted); }
+
+    /* Band Section & Serpentine Nodes */
+    .band-section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px 22px;
+    }
+    .band-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .band-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .band-badge {
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--hero-bg);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 750;
+      letter-spacing: 0.3px;
+    }
+    .band-header h2 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .band-header p {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .serpentine-track {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0;
+    }
+
+    .path-connector {
+      width: 2px;
+      height: 22px;
+      background: repeating-linear-gradient(
+        to bottom,
+        var(--primary-soft-border) 0,
+        var(--primary-soft-border) 5px,
+        transparent 5px,
+        transparent 9px
+      );
+    }
+    .path-connector.done {
+      background: var(--success);
+      opacity: 0.45;
+    }
+
+    .unit-node {
+      width: 100%;
+      max-width: 610px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--card);
+      padding: 16px 18px;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+    .unit-node.offset-left { align-self: flex-start; }
+    .unit-node.offset-center { align-self: center; }
+    .unit-node.offset-right { align-self: flex-end; }
+    .unit-node.is-selected { border-color: var(--primary); background: #fcfbff; }
+    .unit-node.state-in-progress { border: 2px solid var(--primary); }
+    .unit-node.state-locked { background: #fafbfe; }
+
+    .unit-node-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+    .node-medallion {
+      width: 46px;
+      height: 46px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      font-weight: 750;
+    }
+    .node-medallion.completed { background: var(--success-soft); color: var(--success); border: 1px solid #bfe6d8; }
+    .node-medallion.in-progress { background: var(--primary); color: #ffffff; }
+    .node-medallion.unlocked { background: var(--primary-soft); color: var(--primary); border: 1px solid var(--primary-soft-border); }
+    .node-medallion.locked { background: var(--neutral-soft); color: var(--muted); border: 1px solid var(--border-strong); }
+
+    .unit-body { flex: 1; min-width: 0; }
+    .unit-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 5px;
+    }
+    .unit-tags { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .unit-title {
+      margin: 0 0 4px;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.25px;
+    }
+    .unit-goal {
+      margin: 0 0 11px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .lesson-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .lesson-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 9px;
+      border-radius: 6px;
+      font-size: 11.5px;
+      background: var(--canvas);
+      border: 1px solid var(--border);
+      color: var(--muted);
+    }
+    .lesson-chip.done {
+      background: var(--success-soft);
+      border-color: #c7eadd;
+      color: var(--success);
+    }
+    .lesson-chip.next {
+      background: var(--primary-soft);
+      border-color: var(--primary-soft-border);
+      color: var(--primary);
+      font-weight: 650;
+    }
+
+    .unit-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding-top: 11px;
+      border-top: 1px solid var(--border);
+    }
+    .unit-progress-mini {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .mini-track {
+      width: 90px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--neutral-soft);
+      overflow: hidden;
+    }
+    .mini-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 999px;
+    }
+    .mini-fill.done { background: var(--success); }
+
+    .unit-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Sticky Right Guidebook & Telemetry Rail */
+    .guidebook-rail {
+      position: sticky;
+      top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      min-width: 0;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .panel-head {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .panel-head h3 {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .panel-head p {
+      margin: 2px 0 0;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .panel-body { padding: 16px 18px; }
+
+    .markdown-guide {
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink);
+      background: #fafbfe;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 14px;
+      margin-bottom: 14px;
+    }
+    .markdown-guide h4 {
+      margin: 0 0 8px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .markdown-guide ul {
+      margin: 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .markdown-guide li { color: var(--ink); }
+    .markdown-guide code {
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 12px;
+    }
+
+    .story-callout {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 9px;
+      background: var(--canvas);
+      border: 1px solid var(--border);
+      margin-bottom: 14px;
+      font-size: 12.5px;
+    }
+
+    .milestone-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .milestone-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 12.5px;
+    }
+    .milestone-item:last-child { padding-bottom: 0; border-bottom: 0; }
+    .milestone-item strong { display: block; color: var(--ink); font-size: 12.5px; }
+    .milestone-item small { display: block; color: var(--muted); font-size: 11.5px; }
+
+    .privacy-callout {
+      background: #fafbfe;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      font-size: 12.5px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .privacy-callout strong {
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+    }
+
+    /* Empty State */
+    .empty-state {
+      background: var(--card);
+      border: 1px dashed var(--border-strong);
+      border-radius: var(--radius);
+      padding: 36px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .empty-state.hidden { display: none; }
+    .empty-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--primary-soft);
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+    }
+    .empty-state h3 { margin: 0; font-size: 16px; color: var(--ink); }
+    .empty-state p { margin: 0 0 6px; font-size: 13px; color: var(--muted); max-width: 460px; }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 24, 42, 0.52);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 120;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 560px;
+      box-shadow: 0 22px 48px rgba(15, 23, 42, 0.22);
+      overflow: hidden;
+    }
+    .modal-head {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .modal-head h3 { margin: 0; font-size: 16px; font-weight: 700; color: var(--ink); }
+    .modal-body { padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+    .modal-foot {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      background: #fafbfe;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+    .ai-prompt-box {
+      width: 100%;
+      min-height: 78px;
+      padding: 10px 12px;
+      border: 1px solid var(--border-strong);
+      border-radius: 9px;
+      resize: vertical;
+      background: var(--card);
+      color: var(--ink);
+    }
+    .ai-reply-box {
+      background: var(--primary-soft);
+      border: 1px solid var(--primary-soft-border);
+      border-radius: 10px;
+      padding: 13px 14px;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    @media (max-width: 1180px) {
+      .overview-top { grid-template-columns: 1fr 1fr; }
+      .hero-card { grid-column: 1 / -1; }
+      .path-workspace { grid-template-columns: 1fr; }
+      .guidebook-rail { position: static; }
+    }
+    @media (max-width: 768px) {
+      .shell { display: block !important; }
+      .sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        transform: translateX(-100%);
+        width: 248px !important;
+        transition: transform 0.2s ease;
+        z-index: 60;
+      }
+      body.navopen .sidebar { transform: translateX(0); }
+      body.navopen .shade {
+        display: block !important;
+        position: fixed;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.45);
+        z-index: 55;
+      }
+      .mobile-menu { display: inline-flex; }
+      .page { padding: 18px 16px 40px; }
+      .overview-top { grid-template-columns: 1fr; }
+      .unit-node.offset-left,
+      .unit-node.offset-right { align-self: center; }
+    }
+  </style>
+  <style data-stage1-host-fix>
+    html, body { margin: 0; width: 100%; min-height: 100vh; }
+    .shade, #sidebarOverlay, .sidebar-overlay { display: none !important; }
+    .frame { width: 100% !important; container-type: normal !important; }
+    .shell, .ext-shell, .ds-shell, .layout { width: 100% !important; }
+    [data-rapider-external-sidebar-parent="true"] { display: block !important; grid-template-columns: minmax(0, 1fr) !important; }
+    main, .ds-main, .main, .ext-main, [data-rapider-external-sidebar-main="true"] {
+      display: block !important; width: 100% !important; max-width: 100% !important; min-width: 0 !important; box-sizing: border-box !important;
+    }
+    main:has(> .topbar), main:has(> .page), main:has(> .ext-top), main:has(> .ext-page), .ds-main:has(> .topbar), .ds-main:has(> .page), .ext-main:has(> .ext-top), .ext-main:has(> .ext-page) { padding: 0 !important; margin: 0 !important; }
+    .topbar, .ext-top { width: 100% !important; box-sizing: border-box !important; }
+    .page, .ext-page, section.page, #content.page {
+      width: 100% !important; max-width: 1580px !important; margin-left: auto !important; margin-right: auto !important; box-sizing: border-box !important;
+    }
   </style>
 </head>
 <body>
-  <div class="shade" id="mobileShade"></div>
-  <div class="layout" id="appLayout">
-    <aside class="sidebar" id="appSidebar" aria-label="Rapider Language Learning navigation">
+  <div class="shell" id="appShell" style="display:grid;grid-template-columns:224px minmax(0,1fr);min-height:100vh;width:100%">
+    <aside class="sidebar" id="suiteSidebar" aria-label="Rapider Language Learning navigation">
       <div class="brand-row">
-        <a class="brand" href="#/learning-path" id="suiteBrandLink" title="Personal Suite">
+        <button type="button" class="brand" data-action="expand-sidebar" title="Personal Suite">
           <span class="suite-icon-container">
-            <i class="suite-icon fas fa-user-circle" aria-hidden="true"></i>
+            <i class="suite-icon fas fa-globe-americas" aria-hidden="true"></i>
             <i class="suite-expand-icon fas fa-chevron-right" aria-hidden="true"></i>
           </span>
           <span class="suite-title sidebar-label">Personal Suite</span>
-        </a>
-        <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" aria-label="Collapse sidebar" title="Collapse sidebar">
+        </button>
+        <button type="button" class="sidebar-collapse-btn" id="sidebarCollapseBtn" title="Collapse sidebar" aria-label="Collapse sidebar">
           <i class="fas fa-chevron-left" aria-hidden="true"></i>
         </button>
       </div>
 
       <a class="appbox" href="#/learning-path">
-        <div class="appicon"><i class="fas fa-user-circle" aria-hidden="true"></i></div>
+        <div class="appicon"><i class="fas fa-language" aria-hidden="true"></i></div>
         <div class="sidebar-label">
           <b>Language Learning</b>
-          <small>Rapider Personal Suite</small>
+          <small>Owner-Isolated · PRS</small>
         </div>
       </a>
 
       <nav class="nav" aria-label="Primary">
-      <div class="navlabel">Learn &amp; Path</div>
-        <a href="#/learning-path" class="nav-link active" data-route="learning-path" title="CEFR Skill Path">
-          <i class="fas fa-user-circle icon" aria-hidden="true"></i>
+        <div class="navlabel">Learn &amp; Path</div>
+        <a href="#/learning-path" class="active" data-route="learning-path" title="CEFR Skill Path">
+          <i class="fas fa-route icon" aria-hidden="true"></i>
           <span class="sidebar-label">CEFR Skill Path</span>
         </a>
-        <a href="#/stories-immersion" class="nav-link" data-route="stories-immersion" title="Stories, Script &amp; Listening">
-          <i class="fas fa-user-circle icon" aria-hidden="true"></i>
+        <a href="#/stories-immersion" data-route="stories-immersion" title="Stories, Script &amp; Listening">
+          <i class="fas fa-book-open icon" aria-hidden="true"></i>
           <span class="sidebar-label">Stories, Script &amp; Listening</span>
         </a>
-        <a href="#/ai-roleplay" class="nav-link" data-route="ai-roleplay" title="AI Roleplay &amp; Speaking">
-          <i class="fas fa-user-circle icon" aria-hidden="true"></i>
+        <a href="#/ai-roleplay" data-route="ai-roleplay" title="AI Roleplay &amp; Speaking">
+          <i class="fas fa-comments icon" aria-hidden="true"></i>
           <span class="sidebar-label">AI Roleplay &amp; Speaking</span>
         </a>
-      <div class="navlabel">Review &amp; Fluency</div>
-        <a href="#/vocabulary-srs" class="nav-link" data-route="vocabulary-srs" title="Vocabulary &amp; SRS Kanban">
-          <i class="fas fa-user-circle icon" aria-hidden="true"></i>
+
+        <div class="navlabel">Review &amp; Fluency</div>
+        <a href="#/vocabulary-srs" data-route="vocabulary-srs" title="Vocabulary &amp; SRS Kanban">
+          <i class="fas fa-layer-group icon" aria-hidden="true"></i>
           <span class="sidebar-label">Vocabulary &amp; SRS Kanban</span>
         </a>
-        <a href="#/practice-mistakes" class="nav-link" data-route="practice-mistakes" title="Practice Hub &amp; Mistakes">
-          <i class="fas fa-user-circle icon" aria-hidden="true"></i>
+        <a href="#/practice-mistakes" data-route="practice-mistakes" title="Practice Hub &amp; Mistakes">
+          <i class="fas fa-bullseye icon" aria-hidden="true"></i>
           <span class="sidebar-label">Practice Hub &amp; Mistakes</span>
         </a>
-        <a href="#/pronunciation-lab" class="nav-link" data-route="pronunciation-lab" title="Pronunciation &amp; Reading Lab">
-          <i class="fas fa-user-circle icon" aria-hidden="true"></i>
+        <a href="#/pronunciation-lab" data-route="pronunciation-lab" title="Pronunciation &amp; Reading Lab">
+          <i class="fas fa-microphone-lines icon" aria-hidden="true"></i>
           <span class="sidebar-label">Pronunciation &amp; Reading Lab</span>
         </a>
-      <div class="navlabel">Progress &amp; Governance</div>
-        <a href="#/checkpoints-scores" class="nav-link" data-route="checkpoints-scores" title="CEFR Checkpoints &amp; Score">
-          <i class="fas fa-user-circle icon" aria-hidden="true"></i>
+
+        <div class="navlabel">Progress &amp; Governance</div>
+        <a href="#/checkpoints-scores" data-route="checkpoints-scores" title="CEFR Checkpoints &amp; Score">
+          <i class="fas fa-award icon" aria-hidden="true"></i>
           <span class="sidebar-label">CEFR Checkpoints &amp; Score</span>
         </a>
-        <a href="#/streaks-analytics" class="nav-link" data-route="streaks-analytics" title="Streaks, Goals &amp; Calm Mode">
-          <i class="fas fa-user-circle icon" aria-hidden="true"></i>
+        <a href="#/streaks-analytics" data-route="streaks-analytics" title="Streaks, Goals &amp; Calm Mode">
+          <i class="fas fa-fire icon" aria-hidden="true"></i>
           <span class="sidebar-label">Streaks, Goals &amp; Calm Mode</span>
         </a>
-        <a href="#/tutor-and-privacy" class="nav-link" data-route="tutor-and-privacy" title="Tutor Sharing &amp; Privacy">
-          <i class="fas fa-user-circle icon" aria-hidden="true"></i>
+        <a href="#/tutor-and-privacy" data-route="tutor-and-privacy" title="Tutor Sharing &amp; Privacy">
+          <i class="fas fa-shield-halved icon" aria-hidden="true"></i>
           <span class="sidebar-label">Tutor Sharing &amp; Privacy</span>
         </a>
       </nav>
 
       <div class="side-bottom">
         <div class="profile-link">
-          <div class="avatar-badge">EV</div>
+          <div class="avatar-badge" id="sidebarAvatar">ML</div>
           <div class="sidebar-label">
-            <strong style="font-size:12px;display:block">Elena Vance</strong>
-            <small style="font-size:11px;color:var(--muted)">Invited Personal Tutor</small>
+            <strong style="font-size:12px;display:block;" id="sidebarOwnerName">Maya Lin</strong>
+            <small style="font-size:11px;color:var(--muted);">Personal Vault · 0 HR</small>
           </div>
         </div>
       </div>
     </aside>
 
-    <div class="main-col">
-      <header class="topbar h-16 sticky top-0 z-30 flex items-center justify-between px-6 border-b border-border-color bg-background/95 backdrop-blur">
-        <div class="flex items-center gap-3 min-w-0">
-          <button type="button" class="mobile-menu" id="mobileMenuBtn" aria-label="Open menu">
-            <i class="fas fa-bars" aria-hidden="true"></i>
-          </button>
-          <div class="breadcrumbs">
-            <span>Personal Suite</span>
-            <span>/</span>
-            <span>Language Learning</span>
-            <span>/</span>
-            <strong>CEFR Skill Path</strong>
+    <div class="shade" data-action="close-menu"></div>
+
+    <main class="ds-main" id="main-content" style="min-width:0;width:100%;box-sizing:border-box">
+      <div class="page" style="width:100%;box-sizing:border-box">
+        <!-- Editorial Header -->
+        <header class="page-head">
+          <div class="head-left">
+            <div class="eyebrow">
+              <i class="fas fa-compass" aria-hidden="true"></i>
+              <span>PERSONAL SUITE · LEARN &amp; PATH</span>
+            </div>
+            <div class="head-title-row">
+              <button type="button" class="btn icon-only quiet mobile-menu" data-action="menu" aria-label="Open navigation">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+              </button>
+              <h1 class="page-title">CEFR Skill Path</h1>
+            </div>
+            <p class="subtitle">Follow your CEFR A1–C1 unit progression, keep your timezone-safe streak intact, and inspect grammar guides for every milestone.</p>
           </div>
-        </div>
-        <div class="flex items-center gap-2">
-          <a href="#/tutor-share-drawer" class="btn small"><i class="fas fa-plus" aria-hidden="true"></i> + Quick Action</a>
-          <a href="#/new-vocab-drawer" class="btn primary small !text-white text-white" style="color: #ffffff !important;"><i class="fas fa-plus-circle" aria-hidden="true"></i> + New Lang Course Unit</a>
-          <button type="button" class="btn small" id="themeToggleBtn" aria-label="Toggle dark mode" title="Toggle theme">
-            <i class="fas fa-moon" aria-hidden="true"></i>
-          </button>
-        </div>
-      </header>
 
-      <main class="page-scroll flex-1 overflow-y-auto p-6 md:p-8 @container" id="main-content">
-        <div class="page-wrap">
-
-        <div class="eyebrow"><i class="fas fa-user-circle"></i> LEARN &amp; PATH &bull; RAPIDER LANGUAGE LEARNING</div>
-        <div class="page-head">
-          <div>
-            <h1>CEFR Skill Path</h1>
-            <p>Active language/dialect switcher, CEFR A1–C1 unit nodes (findSWR), daily XP &amp; Streak / Streak Freeze header, *Placement Test* / *Jump Here* buttons, and Unit Grammar Guidebook drawer preview.</p>
+          <div class="head-actions">
+            <label class="lang-picker" for="languageSwitcher">
+              <i class="fas fa-globe" aria-hidden="true"></i>
+              <select id="languageSwitcher" aria-label="Active language and dialect"></select>
+            </label>
+            <button type="button" class="btn" id="btnAskRapider" data-action="ai">
+              <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+              <span>Ask Rapider</span>
+            </button>
           </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap;">
-            <a href="#/stories-immersion" class="btn"><i class="fas fa-columns"></i> Open Stories, Script &amp; Listening</a>
-            <a href="#/new-vocab-drawer" class="btn primary !text-white text-white" style="color:#ffffff !important;"><i class="fas fa-plus-circle"></i> + New Lang Course Unit</a>
-          </div>
-        </div>
+        </header>
 
-        <div class="kpi-grid">
-          
-            <div class="kpi-card">
-              <div class="kicker"><span>LANG COURSE UNIT THROUGHPUT</span><i class="fas fa-bolt" style="color:var(--purple)"></i></div>
-              <div class="val" id="dashKpi_0_0">98.6%</div>
-              <div class="sub"><span>Live PrsLangCourseUnit operational velocity</span></div>
-            </div>
-          
-            <div class="kpi-card">
-              <div class="kicker"><span>CEFR BAND BENCHMARK</span><i class="fas fa-bolt" style="color:var(--purple)"></i></div>
-              <div class="val" id="dashKpi_0_1">+24.5%</div>
-              <div class="sub"><span>SOW target outcome verified</span></div>
-            </div>
-          
-            <div class="kpi-card">
-              <div class="kicker"><span>CROSS-SUITE SYNC HEALTH</span><i class="fas fa-bolt" style="color:var(--purple)"></i></div>
-              <div class="val" id="dashKpi_0_2">100% Synced</div>
-              <div class="sub"><span>A1 \</span></div>
-            </div>
-          
-            <div class="kpi-card">
-              <div class="kicker"><span>ACTIVE LANG COURSE UNIT QUEUE</span><i class="fas fa-bolt" style="color:var(--purple)"></i></div>
-              <div class="val" id="dashKpi_0_3">5 Active</div>
-              <div class="sub"><span>Click any item to open Lexeme &amp; SRS History Detail</span></div>
-            </div>
-          
-        </div>
-
-        <div class="grid-2">
-          <div class="panel">
-            <div class="panel-header">
+        <!-- Executive Learning Cockpit -->
+        <section class="overview-top" aria-label="Active learner status">
+          <article class="hero-card">
+            <div class="hero-top">
               <div>
-                <h2>Active Lang Course Unit Workspaces &amp; SOW Journey Pulse</h2>
-                <p>Click any tile to drill into Lexeme &amp; SRS History Detail (`#/vocab-card-detail?id=...`)</p>
+                <div class="hero-kicker">
+                  <span class="tabular" id="heroProfileCode">LLP-ES-MX</span>
+                  <span class="hero-pill" id="heroLangPill">es-MX · Spanish (Mexico)</span>
+                  <span class="hero-pill" id="heroVoicePill"><i class="fas fa-microphone-slash" aria-hidden="true"></i> Ephemeral Voice</span>
+                </div>
+                <div class="hero-score-row">
+                  <span class="hero-band" id="heroCefrBand">CEFR B1</span>
+                  <span class="hero-score-sub tabular" id="heroProficiencyScore">94.50 / 160</span>
+                </div>
+                <div class="hero-unit-desc" id="heroActiveUnitText">Loading active unit progression...</div>
+                <div class="hero-progress-track">
+                  <div class="hero-progress-fill" id="heroProgressFill" style="width:60%"></div>
+                </div>
               </div>
-              <span class="badge green">Live `findSWR`</span>
-            </div>
-            <div class="panel-body">
-              <div class="floor-grid" id="dashTiles_0"></div>
-            </div>
-          </div>
-
-          <div class="panel">
-            <div class="panel-header">
-              <div>
-                <h2>Canonical Domain Models &amp; Cross-Suite Contracts</h2>
-                <p>Enforced SOW Section 4 invariants across Rapider Language Learning</p>
+              <div class="hero-ring-wrap" aria-hidden="true">
+                <svg width="68" height="68" viewBox="0 0 68 68">
+                  <circle cx="34" cy="34" r="28" fill="none" stroke="rgba(255,255,255,0.14)" stroke-width="6"></circle>
+                  <circle id="heroScoreArc" cx="34" cy="34" r="28" fill="none" stroke="#9d8df7" stroke-width="6" stroke-linecap="round" stroke-dasharray="175.93" stroke-dashoffset="72" transform="rotate(-90 34 34)"></circle>
+                  <text id="heroRingPct" x="34" y="38" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="750" class="tabular">59%</text>
+                </svg>
+                <span style="font-size:10.5px;color:var(--hero-muted);">0–160 CEFR</span>
               </div>
             </div>
-            <div class="panel-body" style="display:flex;flex-direction:column;gap:10px;">
-              
-                <div style="padding:12px;border-radius:10px;border:1px solid var(--line);">
-                  <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <strong>`PrsLangCourseUnit` (Lang Course Unit)</strong>
-                    <span class="badge purple">DRAFT</span>
-                  </div>
-                  <div style="font-size:12px;color:var(--muted);margin-top:4px;">A2 \</div>
-                </div>
-              
-                <div style="padding:12px;border-radius:10px;border:1px solid var(--line);">
-                  <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <strong>`PrsLangLearnerProfile` (Lang Learner Profile)</strong>
-                    <span class="badge purple">DRAFT</span>
-                  </div>
-                  <div style="font-size:12px;color:var(--muted);margin-top:4px;">Streak evaluation strictly uses LocalDate in timezoneId; retainVoiceAudio defaults to false (ephemeral speech scoring).</div>
-                </div>
-              
-                <div style="padding:12px;border-radius:10px;border:1px solid var(--line);">
-                  <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <strong>`PrsLangLessonSession` (Lang Lesson Session)</strong>
-                    <span class="badge purple">DRAFT</span>
-                  </div>
-                  <div style="font-size:12px;color:var(--muted);margin-top:4px;">MISTAKE_DRILL \</div>
-                </div>
-              
-                <div style="padding:12px;border-radius:10px;border:1px solid var(--line);">
-                  <div style="display:flex;justify-content:space-between;align-items:center;">
-                    <strong>`PrsLangVocabCard` (Lang Vocab Card)</strong>
-                    <span class="badge purple">DRAFT</span>
-                  </div>
-                  <div style="font-size:12px;color:var(--muted);margin-top:4px;">REVIEW_DUE \</div>
-                </div>
-              
+            <div class="hero-footer">
+              <button type="button" class="btn primary !text-white text-white" id="btnContinueHero" style="color: #ffffff !important;">
+                <i class="fas fa-play" aria-hidden="true"></i>
+                <span id="heroContinueLabel">Continue Unit</span>
+              </button>
+              <a href="#/checkpoints-scores" class="hero-link">
+                <span>View CEFR Checkpoints &amp; Score</span>
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+              </a>
             </div>
-          </div>
-        </div>
+          </article>
 
-        <div class="panel">
-          <div class="panel-header">
+          <article class="metric-card">
             <div>
-              <h2>Priority Lang Course Unit Execution Ledger (`PrsLangCourseUnit`)</h2>
-              <p>Real-time telemetry and stage progression</p>
+              <div class="metric-head">
+                <span class="metric-kicker">Timezone-Safe Streak</span>
+                <span class="metric-icon warm"><i class="fas fa-fire" aria-hidden="true"></i></span>
+              </div>
+              <div class="metric-value tabular" id="metricStreakDays">145 days</div>
+              <div class="metric-meta">
+                <span class="tag tag-info" id="metricTimezoneTag">America/Chicago</span>
+                <span class="tag tag-success tabular" id="metricFreezeTag">2 Streak Freezes</span>
+              </div>
+              <div class="metric-meta" style="margin-top:8px;">
+                <span class="tabular" id="metricLongestStreak">Longest streak: 145 days</span>
+                <span>·</span>
+                <span class="tag tag-neutral" id="metricCalmTag">Calm Mode: Off</span>
+              </div>
+            </div>
+            <div class="metric-foot">
+              <span id="metricLastStudyDate" class="tabular">Last study: 2026-11-24</span>
+              <a href="#/streaks-analytics" class="text-link">Streak &amp; Calm Mode <i class="fas fa-chevron-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+
+          <article class="metric-card">
+            <div>
+              <div class="metric-head">
+                <span class="metric-kicker">Daily Goal &amp; XP Momentum</span>
+                <span class="metric-icon"><i class="fas fa-bolt" aria-hidden="true"></i></span>
+              </div>
+              <div class="metric-value primary-tone tabular" id="metricTodayXp">65 XP</div>
+              <div class="metric-meta">
+                <span class="tabular" id="metricGoalTarget">15 min/day target</span>
+                <span class="tag tag-neutral" id="metricCatalogCount">Catalog: —</span>
+              </div>
+              <div class="metric-bar">
+                <div class="metric-bar-fill" id="metricXpBar" style="width:100%"></div>
+              </div>
+            </div>
+            <div class="metric-foot">
+              <span id="metricQuietParity">Quiet-commute parity: 100%</span>
+              <a href="#/vocabulary-srs" class="text-link">Review SRS Deck <i class="fas fa-chevron-right" aria-hidden="true"></i></a>
+            </div>
+          </article>
+        </section>
+
+        <!-- Action Ribbon & Band Filters -->
+        <section class="action-ribbon" aria-label="Path actions and CEFR band filters">
+          <div class="ribbon-actions">
+            <button type="button" class="btn primary !text-white text-white" id="btnPlacementTest" style="color: #ffffff !important;">
+              <i class="fas fa-sliders" aria-hidden="true"></i>
+              <span>Take 5-Min Placement Test</span>
+            </button>
+            <button type="button" class="btn" id="btnJumpAhead">
+              <i class="fas fa-forward-fast" aria-hidden="true"></i>
+              <span>Jump Ahead Challenge</span>
+            </button>
+            <button type="button" class="btn" id="btnFocusGuidebook">
+              <i class="fas fa-book-bookmark" aria-hidden="true"></i>
+              <span>Unit Grammar Guidebook</span>
+            </button>
+          </div>
+
+          <div class="ribbon-filters">
+            <div class="band-pills" id="bandPills" role="group" aria-label="Filter units by CEFR band">
+              <button type="button" class="band-pill active" data-band="ALL">All Bands</button>
+              <button type="button" class="band-pill" data-band="PRE_A1">PRE_A1</button>
+              <button type="button" class="band-pill" data-band="A1">A1</button>
+              <button type="button" class="band-pill" data-band="A2">A2</button>
+              <button type="button" class="band-pill" data-band="B1">B1</button>
+              <button type="button" class="band-pill" data-band="B2">B2</button>
+              <button type="button" class="band-pill" data-band="C1">C1</button>
+            </div>
+            <label class="draft-toggle" for="toggleDraftUnits">
+              <input type="checkbox" id="toggleDraftUnits">
+              <span>Show curriculum drafts</span>
+            </label>
+          </div>
+        </section>
+
+        <!-- Split Workspace: Serpentine Path + Sticky Guidebook Rail -->
+        <section class="path-workspace">
+          <div class="path-column">
+            <div id="resumeSessionSlot"></div>
+            <div id="skillPathContainer"></div>
+
+            <div id="pathEmptyState" class="empty-state hidden">
+              <div class="empty-icon"><i class="fas fa-map-signs" aria-hidden="true"></i></div>
+              <h3>No published CEFR units match this view</h3>
+              <p>No published CEFR units available for this language band yet — try resetting filters or running Placement Test.</p>
+              <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+                <button type="button" class="btn" id="btnResetPathFilters">
+                  <i class="fas fa-rotate-left" aria-hidden="true"></i>
+                  <span>Reset Filters</span>
+                </button>
+                <button type="button" class="btn primary !text-white text-white" id="btnEmptyPlacement" style="color: #ffffff !important;">
+                  <i class="fas fa-sliders" aria-hidden="true"></i>
+                  <span>Take Placement Test</span>
+                </button>
+              </div>
             </div>
           </div>
-          <div style="overflow-x:auto;">
-            <table class="data-table">
-              <thead>
-                <tr>
-                  <th>Source Language Code</th>
-                  <th>Lang Course Unit Title</th>
-                  <th>Target Language Code</th>
-                  <th>Cefr Band</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody id="dashTable_0"></tbody>
-            </table>
-          </div>
-        </div>
-      
-        </div>
-      </main>
-    </div>
+
+          <aside class="guidebook-rail" id="guidebookRail" aria-label="Unit Grammar Guidebook and checkpoints">
+            <section class="panel" id="guidebookPanel">
+              <div class="panel-head">
+                <div>
+                  <span class="tag" id="guidebookCodeTag">LCU-ES-B1-13</span>
+                  <h3 style="margin-top:6px;" id="guidebookTitle">Unit Grammar Guidebook</h3>
+                  <p id="guidebookSubtitle">Select any unit node to inspect grammar notes</p>
+                </div>
+                <span class="tag tag-neutral tabular" id="guidebookBandTag">B1</span>
+              </div>
+              <div class="panel-body">
+                <div class="markdown-guide" id="guidebookMarkdownBody"></div>
+                <div id="guidebookStorySlot"></div>
+                <div style="display:flex;flex-direction:column;gap:8px;">
+                  <button type="button" class="btn primary !text-white text-white" id="btnGuidebookLaunch" style="width:100%;color: #ffffff !important;">
+                    <i class="fas fa-play" aria-hidden="true"></i>
+                    <span id="guidebookLaunchLabel">Open Unit in Lesson Runner</span>
+                  </button>
+                  <button type="button" class="btn" id="btnGuidebookAi" style="width:100%;">
+                    <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+                    <span>Explain Guidebook Rules with AI</span>
+                  </button>
+                </div>
+              </div>
+            </section>
+
+            <section class="panel" id="milestonesPanel">
+              <div class="panel-head">
+                <div>
+                  <h3>Recent Checkpoints &amp; Sessions</h3>
+                  <p id="milestonesSubtitle">Verified milestones for active language</p>
+                </div>
+                <a href="#/checkpoints-scores" class="text-link" style="font-size:12px;">All scores</a>
+              </div>
+              <div class="panel-body">
+                <div class="milestone-list" id="milestonesList"></div>
+              </div>
+            </section>
+
+            <section class="privacy-callout">
+              <strong><i class="fas fa-lock" style="color:var(--success);" aria-hidden="true"></i> Owner-Isolated Privacy</strong>
+              <span id="privacySummaryText">Ephemeral voice scoring active (<code>retainVoiceAudio = false</code>). Zero employer HR or corporate LRN visibility.</span>
+              <a href="#/tutor-and-privacy" class="text-link" style="font-size:12px;">Manage Tutor Grants &amp; Privacy <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
+            </section>
+          </aside>
+        </section>
+      </div>
+    </main>
   </div>
 
-  <!-- Confirmation Modal (Zero Native Dialog Standard) -->
-  <div id="rapiderConfirmModal" class="hidden" style="position:fixed;inset:0;background:rgba(15,23,42,0.5);z-index:100;display:none;align-items:center;justify-content:center;padding:16px;">
-    <div class="panel" style="max-width:420px;width:100%;padding:22px;box-shadow:0 20px 50px rgba(15,23,42,0.25);margin:0;">
-      <h3 id="rapiderConfirmTitle" style="margin:0 0 8px;font-size:17px;font-weight:700;">Confirm Action</h3>
-      <p id="rapiderConfirmMsg" style="margin:0 0 18px;font-size:13px;color:var(--muted);"></p>
-      <div style="display:flex;justify-content:flex-end;gap:10px;">
-        <button type="button" class="btn" id="rapiderConfirmCancelBtn">Cancel</button>
-        <button type="button" class="btn danger !text-white text-white" id="rapiderConfirmOkBtn" style="color:#ffffff !important;">Confirm Remove</button>
+  <!-- Placement / Jump-Ahead Challenge Modal -->
+  <div id="challengeModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="challengeModalTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="challengeModalTitle">Adaptive Placement Test</h3>
+        <button type="button" class="btn small quiet" id="btnCloseChallengeModal" aria-label="Close modal">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="challengeModalTags" style="display:flex;gap:8px;flex-wrap:wrap;"></div>
+        <p id="challengeModalDesc" style="margin:0;font-size:13.5px;color:var(--muted);line-height:1.55;"></p>
+        <div style="background:var(--canvas);border:1px solid var(--border);border-radius:10px;padding:12px 14px;font-size:12.5px;color:var(--ink);">
+          <strong style="display:block;margin-bottom:4px;">Quiet-Commute &amp; Privacy Guarantee</strong>
+          <span>Includes <em>"Can't listen/speak right now"</em> accessibility skips and ephemeral audio processing (<code>retainVoiceAudio = false</code>).</span>
+        </div>
+      </div>
+      <div class="modal-foot">
+        <button type="button" class="btn" id="btnCancelChallengeModal">Cancel</button>
+        <button type="button" class="btn primary !text-white text-white" id="btnStartChallengeRunner" style="color: #ffffff !important;">
+          <i class="fas fa-play" aria-hidden="true"></i>
+          <span>Launch Session</span>
+        </button>
       </div>
     </div>
   </div>
-  <!-- Empty State Fallback Template (Pass 14) -->
-  <div id="emptyStateContainer" class="empty-state hidden" style="display:none;">No records found</div>
 
-  <script>
-    window.esc = function(s) {
-      return String(s == null ? '' : s)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;');
-    };
-    window.toast = function(message, type) {
-      if (window.rapiderApi && typeof window.rapiderApi.showNotification === 'function') {
-        window.rapiderApi.showNotification({ type: type || 'success', message: message });
-        return;
-      }
-      var el = document.createElement('div');
-      el.style.cssText = 'position:fixed;bottom:22px;right:22px;background:#1f243a;color:#fff;padding:11px 18px;border-radius:10px;font-size:13px;font-weight:600;z-index:150;box-shadow:0 10px 25px rgba(0,0,0,0.2);';
-      el.textContent = message;
-      document.body.appendChild(el);
-      setTimeout(function() { el.remove(); }, 2800);
-    };
-    window.showConfirmModal = function(title, message, onConfirm) {
-      var modal = document.getElementById('rapiderConfirmModal');
-      document.getElementById('rapiderConfirmTitle').textContent = title || 'Confirm Cancellation';
-      document.getElementById('rapiderConfirmMsg').textContent = message || 'Are you sure you want to proceed?';
-      modal.classList.remove('hidden');
-      modal.style.display = 'flex';
-      var okBtn = document.getElementById('rapiderConfirmOkBtn');
-      var cancelBtn = document.getElementById('rapiderConfirmCancelBtn');
-      var close = function() { modal.classList.add('hidden'); modal.style.display = 'none'; };
-      cancelBtn.onclick = close;
-      okBtn.onclick = async function() {
-        okBtn.disabled = true;
-        try { await onConfirm(); } finally { okBtn.disabled = false; close(); }
-      };
-    };
-    window.closePageDrawer = function(returnRoute) {
-      if (window.rapiderApi && typeof window.rapiderApi.closePageDrawer === 'function') {
-        window.rapiderApi.closePageDrawer();
-      } else {
-        window.location.hash = '#/' + (returnRoute || 'learning-path');
-      }
-    };
-    window.getQueryParam = function(name) {
-      var hash = window.location.hash || '';
-      var qIdx = hash.indexOf('?');
-      if (qIdx !== -1) {
-        var params = new URLSearchParams(hash.slice(qIdx + 1));
-        if (params.get(name)) return params.get(name);
-      }
-      var searchParams = new URLSearchParams(window.location.search || '');
-      return searchParams.get(name);
-    };
+  <!-- Ask Rapider Language Coach Modal -->
+  <div id="aiCoachModal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="aiCoachTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 id="aiCoachTitle"><i class="fas fa-wand-magic-sparkles" style="color:var(--primary);margin-right:7px;" aria-hidden="true"></i>Ask Rapider Language Coach</h3>
+        <button type="button" class="btn small quiet" id="btnCloseAiModal" aria-label="Close modal">
+          <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      <form id="aiCoachForm">
+        <div class="modal-body">
+          <div style="font-size:12px;color:var(--muted);" id="aiContextBanner">Grounded in your active CEFR unit guidebook &amp; streak state.</div>
+          <textarea id="aiPromptInput" class="ai-prompt-box" aria-label="Ask Rapider prompt"></textarea>
+          <div id="aiReplyBox" class="ai-reply-box"></div>
+        </div>
+        <div class="modal-foot">
+          <button type="button" class="btn" id="btnCloseAiFooter">Close</button>
+          <button type="submit" class="btn primary !text-white text-white" id="btnSendAiPrompt" style="color: #ffffff !important;">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            <span>Get Grounded Advice</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
 
-    (function initShell() {
-      var layout = document.getElementById('appLayout');
-      var sidebar = document.getElementById('appSidebar');
-      var collapseBtn = document.getElementById('sidebarCollapseBtn');
-      var brandLink = document.getElementById('suiteBrandLink');
-      var mobileBtn = document.getElementById('mobileMenuBtn');
-      var shade = document.getElementById('mobileShade');
-      var themeBtn = document.getElementById('themeToggleBtn');
+  <script data-collapsible-sidebar>
+    (function initCollapsibleSidebar() {
+      var shell = document.getElementById("appShell");
+      var sidebar = document.getElementById("suiteSidebar");
+      if (!shell || !sidebar) return;
 
-      function applyCollapsed(isCollapsed) {
-        if (isCollapsed) {
-          layout.classList.add('sidebar-collapsed');
-          sidebar.classList.add('sidebar-collapsed');
-          sidebar.setAttribute('data-collapsed', 'true');
+      function setCollapsed(collapsed) {
+        if (collapsed) {
+          shell.classList.add("sidebar-collapsed");
+          sidebar.classList.add("sidebar-collapsed");
+          sidebar.setAttribute("data-collapsed", "true");
         } else {
-          layout.classList.remove('sidebar-collapsed');
-          sidebar.classList.remove('sidebar-collapsed');
-          sidebar.setAttribute('data-collapsed', 'false');
+          shell.classList.remove("sidebar-collapsed");
+          sidebar.classList.remove("sidebar-collapsed");
+          sidebar.setAttribute("data-collapsed", "false");
         }
-        try { localStorage.setItem('rapider_sidebar_collapsed', isCollapsed ? 'true' : 'false'); } catch (_) {}
+        try {
+          localStorage.setItem("rapider_sidebar_collapsed", collapsed ? "true" : "false");
+        } catch (_) {}
       }
 
       try {
-        if (localStorage.getItem('rapider_sidebar_collapsed') === 'true') applyCollapsed(true);
+        if (localStorage.getItem("rapider_sidebar_collapsed") === "true") {
+          setCollapsed(true);
+        }
       } catch (_) {}
 
-      if (collapseBtn) {
-        collapseBtn.addEventListener('click', function(e) {
+      window.addEventListener("click", function (e) {
+        var expandTrigger = e.target && e.target.closest ? e.target.closest('[data-action="expand-sidebar"]') : null;
+        if (expandTrigger && sidebar.classList.contains("sidebar-collapsed")) {
           e.preventDefault();
           e.stopPropagation();
-          applyCollapsed(!sidebar.classList.contains('sidebar-collapsed'));
+          setCollapsed(false);
+          return;
+        }
+        var collapseBtn = e.target && e.target.closest ? e.target.closest("#sidebarCollapseBtn") : null;
+        if (collapseBtn) {
+          e.preventDefault();
+          e.stopPropagation();
+          setCollapsed(!sidebar.classList.contains("sidebar-collapsed"));
+          return;
+        }
+        var menuBtn = e.target && e.target.closest ? e.target.closest('[data-action="menu"]') : null;
+        if (menuBtn) {
+          e.preventDefault();
+          document.body.classList.toggle("navopen");
+          return;
+        }
+        var closeMenu = e.target && e.target.closest ? e.target.closest('[data-action="close-menu"]') : null;
+        if (closeMenu) {
+          document.body.classList.remove("navopen");
+        }
+      }, true);
+    })();
+  </script>
+
+  <script>
+    (function () {
+      "use strict";
+
+      function esc(val) {
+        return String(val == null ? "" : val)
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+      window.esc = esc;
+
+      function toast(message, type) {
+        if (window.rapiderApi && typeof window.rapiderApi.showNotification === "function") {
+          window.rapiderApi.showNotification({ type: type || "info", message: message });
+          return;
+        }
+        var note = document.createElement("div");
+        note.style.cssText = "position:fixed;bottom:20px;right:20px;background:#252840;color:#ffffff;padding:10px 16px;border-radius:9px;font-size:13px;font-weight:600;z-index:200;box-shadow:0 10px 26px rgba(15,23,42,0.24);";
+        note.textContent = message;
+        document.body.appendChild(note);
+        setTimeout(function () { note.remove(); }, 2800);
+      }
+      window.toast = toast;
+
+      /* Preview hydration aligned with sample-data.json when running outside Rapider host */
+      var PREVIEW_SNAPSHOT = {
+        profiles: [
+          {
+            id: "llp-es-mx",
+            recordCode: "LLP-ES-MX",
+            title: "Spanish (Mexico) — CEFR B1 Path",
+            ownerName: "Maya Lin",
+            activeTargetLanguage: "es-MX",
+            sourceLanguage: "en",
+            currentCefrBand: "B1",
+            proficiencyScore160: 94.5,
+            dailyGoalMinutes: 15,
+            timezoneId: "America/Chicago",
+            currentStreakDays: 145,
+            longestStreakDays: 145,
+            lastStudyLocalDate: "2026-11-24",
+            streakFreezesAvailable: 2,
+            calmModeEnabled: false,
+            retainVoiceAudio: false,
+            primaryAttrValue: "es-MX (Spanish — Mexico)",
+            status: "ACTIVE"
+          },
+          {
+            id: "llp-ja-jp",
+            recordCode: "LLP-JA-JP",
+            title: "Japanese (Tokyo) — CEFR A1 Script & Transit",
+            ownerName: "Maya Lin",
+            activeTargetLanguage: "ja-JP",
+            sourceLanguage: "en",
+            currentCefrBand: "A1",
+            proficiencyScore160: 28,
+            dailyGoalMinutes: 10,
+            timezoneId: "Asia/Tokyo",
+            currentStreakDays: 18,
+            longestStreakDays: 24,
+            lastStudyLocalDate: "2026-11-24",
+            streakFreezesAvailable: 1,
+            calmModeEnabled: true,
+            retainVoiceAudio: false,
+            primaryAttrValue: "ja-JP (Japanese — Standard)",
+            status: "ACTIVE"
+          },
+          {
+            id: "llp-de-de",
+            recordCode: "LLP-DE-DE",
+            title: "German (Standard) — CEFR B1 Workplace",
+            ownerName: "Maya Lin",
+            activeTargetLanguage: "de-DE",
+            sourceLanguage: "en",
+            currentCefrBand: "B1",
+            proficiencyScore160: 84,
+            dailyGoalMinutes: 15,
+            timezoneId: "America/Chicago",
+            currentStreakDays: 12,
+            longestStreakDays: 41,
+            lastStudyLocalDate: "2026-11-23",
+            streakFreezesAvailable: 2,
+            calmModeEnabled: false,
+            retainVoiceAudio: false,
+            primaryAttrValue: "de-DE (German — Standard)",
+            status: "ACTIVE"
+          },
+          {
+            id: "llp-fr-fr",
+            recordCode: "LLP-FR-FR",
+            title: "French (Paris) — CEFR A2 Refresh",
+            ownerName: "Maya Lin",
+            activeTargetLanguage: "fr-FR",
+            sourceLanguage: "en",
+            currentCefrBand: "A2",
+            proficiencyScore160: 56.5,
+            dailyGoalMinutes: 10,
+            timezoneId: "America/Chicago",
+            currentStreakDays: 4,
+            longestStreakDays: 19,
+            lastStudyLocalDate: "2026-11-22",
+            streakFreezesAvailable: 1,
+            calmModeEnabled: true,
+            retainVoiceAudio: false,
+            primaryAttrValue: "fr-FR (French — France)",
+            status: "PAUSED"
+          }
+        ],
+        units: [
+          {
+            id: "lcu-es-a1-01",
+            recordCode: "LCU-ES-A1-01",
+            title: "Unit 1: First Greetings & Café Ordering",
+            targetLanguageCode: "es-MX",
+            cefrBand: "A1",
+            unitOrder: 1,
+            totalLessons: 5,
+            completedLessons: 5,
+            xpReward: 40,
+            unlockState: "COMPLETED",
+            publishStatus: "GLOBAL_PUBLISHED",
+            communicativeGoal: "Greet baristas politely, order coffee and pastries, and ask for the check in Mexico City.",
+            grammarGuideMarkdown: "### Polite Requests with *Quisiera* vs. *Quiero*\n- Use **Quisiera un café con leche, por favor** for polite café service.\n- Gendered articles: **el** café (masculine), **la** cuenta (feminine).",
+            lessonBlueprintsJson: [
+              { lessonIndex: 1, title: "Morning Greetings", skillFocus: "SPEAKING", durationMinutes: 4 },
+              { lessonIndex: 2, title: "Ordering Drinks", skillFocus: "LISTENING", durationMinutes: 5 },
+              { lessonIndex: 3, title: "Numbers & Pesos", skillFocus: "READING", durationMinutes: 4 },
+              { lessonIndex: 4, title: "Asking for the Bill", skillFocus: "WRITING", durationMinutes: 5 },
+              { lessonIndex: 5, title: "Café Review Dialogue", skillFocus: "MIXED", durationMinutes: 5 }
+            ],
+            storyPassagesJson: [
+              { storyCode: "STR-ES-A1-01", title: "Café de Olla en Coyoacán", cefrBand: "A1", durationSec: 95, wordCount: 118 }
+            ]
+          },
+          {
+            id: "lcu-es-a2-08",
+            recordCode: "LCU-ES-A2-08",
+            title: "Unit 8: Travel, Rail Tickets & Directions",
+            targetLanguageCode: "es-MX",
+            cefrBand: "A2",
+            unitOrder: 8,
+            totalLessons: 5,
+            completedLessons: 5,
+            xpReward: 50,
+            unlockState: "COMPLETED",
+            publishStatus: "GLOBAL_PUBLISHED",
+            communicativeGoal: "Purchase round-trip rail tickets, ask for platform changes, and follow street directions.",
+            grammarGuideMarkdown: "### Preterite Basics for Completed Trips\n- **Tomé el tren** (I took the train) vs. **¿Dónde queda el andén 4?** (Where is platform 4?).",
+            lessonBlueprintsJson: [
+              { lessonIndex: 1, title: "At the Ticket Counter", skillFocus: "LISTENING", durationMinutes: 5 },
+              { lessonIndex: 2, title: "Platform Announcements", skillFocus: "LISTENING", durationMinutes: 5 },
+              { lessonIndex: 3, title: "Giving Directions", skillFocus: "SPEAKING", durationMinutes: 5 },
+              { lessonIndex: 4, title: "Schedule Changes", skillFocus: "READING", durationMinutes: 4 },
+              { lessonIndex: 5, title: "Station Roleplay Prep", skillFocus: "MIXED", durationMinutes: 6 }
+            ],
+            storyPassagesJson: [
+              { storyCode: "STR-ES-A2-08", title: "El Último Autobús a Puebla", cefrBand: "A2", durationSec: 135, wordCount: 185 }
+            ]
+          },
+          {
+            id: "lcu-es-b1-13",
+            recordCode: "LCU-ES-B1-13",
+            title: "Unit 13: Por vs. Para & Storytelling Past Tenses",
+            targetLanguageCode: "es-MX",
+            cefrBand: "B1",
+            unitOrder: 13,
+            totalLessons: 5,
+            completedLessons: 3,
+            xpReward: 60,
+            unlockState: "IN_PROGRESS",
+            publishStatus: "GLOBAL_PUBLISHED",
+            communicativeGoal: "Narrate past travel itineraries accurately using preterite vs. imperfect and distinguish por (duration/route) from para (destination/deadline).",
+            grammarGuideMarkdown: "### *Por* vs. *Para* for Duration, Route & Deadlines\n- **Duration & Approximate Time:** Use **por** or **durante** (*Viajé por Madrid durante dos semanas*), never *para*.\n- **Deadlines & Destinations:** Use **para** (*El informe es para el viernes*; *Salimos para Sevilla*).\n- **Preterite vs. Imperfect:** Use preterite for bounded events (*llegué*) and imperfect for background context (*llovía de madrugada*).",
+            lessonBlueprintsJson: [
+              { lessonIndex: 1, title: "Duration with Por & Durante", skillFocus: "WRITING", durationMinutes: 5 },
+              { lessonIndex: 2, title: "Deadlines & Purpose with Para", skillFocus: "READING", durationMinutes: 5 },
+              { lessonIndex: 3, title: "Setting the Scene (Imperfect)", skillFocus: "LISTENING", durationMinutes: 6 },
+              { lessonIndex: 4, title: "Overnight Train Dialogue", skillFocus: "SPEAKING", durationMinutes: 5 },
+              { lessonIndex: 5, title: "Unit 13 Mastery Checkpoint", skillFocus: "MIXED", durationMinutes: 7 }
+            ],
+            storyPassagesJson: [
+              { storyCode: "STR-ES-B1-13", title: "Un Tren Nocturno a Sevilla", cefrBand: "B1", durationSec: 190, wordCount: 280 }
+            ]
+          },
+          {
+            id: "lcu-es-b1-14",
+            recordCode: "LCU-ES-B1-14",
+            title: "Unit 14: Subjunctive Mood for Advice & Opinions",
+            targetLanguageCode: "es-MX",
+            cefrBand: "B1",
+            unitOrder: 14,
+            totalLessons: 5,
+            completedLessons: 0,
+            xpReward: 65,
+            unlockState: "UNLOCKED",
+            publishStatus: "GLOBAL_PUBLISHED",
+            communicativeGoal: "Express recommendations, hopes, and polite doubts in everyday conversations using present subjunctive triggers.",
+            grammarGuideMarkdown: "### Present Subjunctive Triggers\n- After **Espero que...**, **Te recomiendo que...**, or **Es mejor que...**, switch vowel endings (`-ar -> -e`, `-er/-ir -> -a`).\n- Example: *Espero que **tengas** buen viaje* (not *tienes*).",
+            lessonBlueprintsJson: [
+              { lessonIndex: 1, title: "Hopes & Wishes", skillFocus: "READING", durationMinutes: 5 },
+              { lessonIndex: 2, title: "Giving Tactful Advice", skillFocus: "SPEAKING", durationMinutes: 6 },
+              { lessonIndex: 3, title: "Irregular Subjunctive Stems", skillFocus: "WRITING", durationMinutes: 6 }
+            ],
+            storyPassagesJson: [
+              { storyCode: "STR-ES-B1-14", title: "Consejos Antes de la Mudanza", cefrBand: "B1", durationSec: 175, wordCount: 245 }
+            ]
+          },
+          {
+            id: "lcu-es-b2-19",
+            recordCode: "LCU-ES-B2-19",
+            title: "Unit 19: Negotiating Housing & Workplace Debates",
+            targetLanguageCode: "es-MX",
+            cefrBand: "B2",
+            unitOrder: 19,
+            totalLessons: 6,
+            completedLessons: 0,
+            xpReward: 80,
+            unlockState: "LOCKED_JUMP_AVAILABLE",
+            publishStatus: "GLOBAL_PUBLISHED",
+            communicativeGoal: "Negotiate lease clauses, express nuanced concessions with *a pesar de*, and lead structured project retrospectives.",
+            grammarGuideMarkdown: "### Concessive Clauses (*Aunque* / *A pesar de que*)\n- Indicative states known facts (*Aunque llueve, salimos*); subjunctive frames hypotheticals (*Aunque llueva mañana, iremos*).",
+            lessonBlueprintsJson: [
+              { lessonIndex: 1, title: "Lease Terms & Deposits", skillFocus: "READING", durationMinutes: 6 },
+              { lessonIndex: 2, title: "Nuanced Concessions", skillFocus: "WRITING", durationMinutes: 6 }
+            ],
+            storyPassagesJson: [
+              { storyCode: "STR-ES-B2-19", title: "La Reunión del Barrio", cefrBand: "B2", durationSec: 230, wordCount: 340 }
+            ]
+          },
+          {
+            id: "lcu-ja-prea1-01",
+            recordCode: "LCU-JA-PREA1-01",
+            title: "Unit 1: Hiragana Vowels, K-Row & Pitch Accent",
+            targetLanguageCode: "ja-JP",
+            cefrBand: "PRE_A1",
+            unitOrder: 1,
+            totalLessons: 4,
+            completedLessons: 4,
+            xpReward: 35,
+            unlockState: "COMPLETED",
+            publishStatus: "GLOBAL_PUBLISHED",
+            communicativeGoal: "Recognize, trace, and distinguish the first 15 Hiragana kana and identify Tokyo high-low pitch drops.",
+            grammarGuideMarkdown: "### Hiragana Stroke Order & Long Vowels\n- Write horizontal strokes left-to-right before vertical intersections.\n- Long vowels change meaning: **おばさん** (*obasan*, aunt) vs. **おばあさん** (*obaasan*, grandmother).",
+            lessonBlueprintsJson: [
+              { lessonIndex: 1, title: "A-I-U-E-O Vowels", skillFocus: "READING", durationMinutes: 4 },
+              { lessonIndex: 2, title: "Ka-Ki-Ku-Ke-Ko", skillFocus: "WRITING", durationMinutes: 4 }
+            ],
+            storyPassagesJson: []
+          },
+          {
+            id: "lcu-ja-a1-04",
+            recordCode: "LCU-JA-A1-04",
+            title: "Unit 4: Katakana Loanwords & Tokyo Station Transit",
+            targetLanguageCode: "ja-JP",
+            cefrBand: "A1",
+            unitOrder: 4,
+            totalLessons: 5,
+            completedLessons: 2,
+            xpReward: 45,
+            unlockState: "IN_PROGRESS",
+            publishStatus: "GLOBAL_PUBLISHED",
+            communicativeGoal: "Read Katakana station signage, ask about train transfers (乗り換え), and confirm platform numbers.",
+            grammarGuideMarkdown: "### Polite Transit Questions\n- **〜はどこですか？** (*...wa doko desu ka?*) — Where is ...?\n- **乗り換え (のりかえ / norikae)** means transfer between train lines.",
+            lessonBlueprintsJson: [
+              { lessonIndex: 1, title: "Katakana Transit Words", skillFocus: "READING", durationMinutes: 5 },
+              { lessonIndex: 2, title: "Asking the Station Attendant", skillFocus: "SPEAKING", durationMinutes: 5 }
+            ],
+            storyPassagesJson: [
+              { storyCode: "STR-JA-A1-04", title: "新宿駅の乗り換え (Shinjuku Platform 7)", cefrBand: "A1", durationSec: 120, wordCount: 140 }
+            ]
+          },
+          {
+            id: "lcu-de-b1-11",
+            recordCode: "LCU-DE-B1-11",
+            title: "Unit 11: Nebensätze (Subordinate Clauses) & Work Emails",
+            targetLanguageCode: "de-DE",
+            cefrBand: "B1",
+            unitOrder: 11,
+            totalLessons: 5,
+            completedLessons: 4,
+            xpReward: 60,
+            unlockState: "IN_PROGRESS",
+            publishStatus: "DRAFT",
+            communicativeGoal: "Structure subordinate clauses with *weil*, *obwohl*, and *dass* sending conjugated verbs to clause-final position.",
+            grammarGuideMarkdown: "### Verb-Final Word Order in *Nebensätze*\n- Subordinating conjunctions (**weil**, **obwohl**, **dass**) push the conjugated verb to the very end: *...obwohl ich heute wenig Zeit **habe***.",
+            lessonBlueprintsJson: [
+              { lessonIndex: 1, title: "Clause Connectors", skillFocus: "WRITING", durationMinutes: 5 },
+              { lessonIndex: 2, title: "Polite Project Updates", skillFocus: "READING", durationMinutes: 5 }
+            ],
+            storyPassagesJson: [
+              { storyCode: "STR-DE-B1-11", title: "Projektbesprechung in Berlin", cefrBand: "B1", durationSec: 185, wordCount: 260 }
+            ]
+          }
+        ],
+        sessions: [
+          {
+            id: "lls-101",
+            recordCode: "LLS-2026-101",
+            title: "Unit 13 Lesson 3 — Storytelling Past Tenses",
+            profileId: "llp-es-mx",
+            unitId: "lcu-es-b1-13",
+            sessionType: "PATH_LESSON",
+            startedAt: "2026-11-24T08:15:00Z",
+            completedAt: "2026-11-24T08:21:10Z",
+            activeDurationSeconds: 370,
+            accuracyPercent: 88.5,
+            xpEarned: 25,
+            status: "COMPLETED"
+          },
+          {
+            id: "lls-102",
+            recordCode: "LLS-2026-102",
+            title: "Read-Aloud Fluency — B1 Dialogue Drill",
+            profileId: "llp-es-mx",
+            unitId: "lcu-es-b1-13",
+            sessionType: "PRONUNCIATION",
+            startedAt: "2026-11-24T08:25:00Z",
+            completedAt: "2026-11-24T08:29:15Z",
+            activeDurationSeconds: 255,
+            accuracyPercent: 89.5,
+            xpEarned: 20,
+            status: "COMPLETED"
+          },
+          {
+            id: "lls-106",
+            recordCode: "LLS-2026-106",
+            title: "Japanese Unit 4 — Katakana Transit Drill",
+            profileId: "llp-ja-jp",
+            unitId: "lcu-ja-a1-04",
+            sessionType: "PATH_LESSON",
+            startedAt: "2026-11-24T07:50:00Z",
+            completedAt: "2026-11-24T07:55:10Z",
+            activeDurationSeconds: 310,
+            accuracyPercent: 86,
+            xpEarned: 20,
+            status: "COMPLETED"
+          },
+          {
+            id: "lls-107",
+            recordCode: "LLS-2026-107",
+            title: "Unit 13 Lesson 4 — Overnight Train Dialogue",
+            profileId: "llp-es-mx",
+            unitId: "lcu-es-b1-13",
+            sessionType: "PATH_LESSON",
+            startedAt: "2026-11-24T12:55:00Z",
+            completedAt: null,
+            activeDurationSeconds: 145,
+            accuracyPercent: 80,
+            xpEarned: 0,
+            status: "IN_PROGRESS"
+          }
+        ],
+        checkpoints: [
+          {
+            id: "lca-003",
+            recordCode: "LCA-2026-003",
+            title: "Spanish CEFR B2 Mastery Checkpoint — Passed",
+            profileId: "llp-es-mx",
+            examType: "CEFR_BAND_CHECKPOINT",
+            targetCefrBand: "B2",
+            compositeScore160: 124.5,
+            passed: true,
+            completedAt: "2026-11-21T16:45:00Z",
+            status: "PASSED"
+          },
+          {
+            id: "lca-002",
+            recordCode: "LCA-2026-002",
+            title: "Spanish B1 Unit Jump-Ahead Challenge — Passed",
+            profileId: "llp-es-mx",
+            examType: "UNIT_CHALLENGE",
+            targetCefrBand: "B1",
+            compositeScore160: 94.5,
+            passed: true,
+            completedAt: "2026-10-12T18:10:00Z",
+            status: "PASSED"
+          },
+          {
+            id: "lca-001",
+            recordCode: "LCA-2026-001",
+            title: "Spanish Adaptive Placement Test — CEFR A2 Placed",
+            profileId: "llp-es-mx",
+            examType: "PLACEMENT_TEST",
+            targetCefrBand: "A2",
+            compositeScore160: 54,
+            passed: true,
+            completedAt: "2026-07-02T14:20:00Z",
+            status: "PASSED"
+          },
+          {
+            id: "lca-004",
+            recordCode: "LCA-2026-004",
+            title: "German CEFR B1 Checkpoint — Exported to Resume (#182)",
+            profileId: "llp-de-de",
+            examType: "CEFR_BAND_CHECKPOINT",
+            targetCefrBand: "B1",
+            compositeScore160: 84,
+            passed: true,
+            completedAt: "2026-09-18T11:30:00Z",
+            status: "PASSED"
+          },
+          {
+            id: "lca-005",
+            recordCode: "LCA-2026-005",
+            title: "Japanese CEFR A2 Checkpoint — Retake Suggested",
+            profileId: "llp-ja-jp",
+            examType: "CEFR_BAND_CHECKPOINT",
+            targetCefrBand: "A2",
+            compositeScore160: 41.5,
+            passed: false,
+            completedAt: "2026-11-10T09:15:00Z",
+            status: "BELOW_THRESHOLD"
+          }
+        ]
+      };
+
+      var BAND_ORDER = ["PRE_A1", "A1", "A2", "B1", "B2", "C1"];
+      var BAND_TITLES = {
+        PRE_A1: "Foundations & Script",
+        A1: "Breakthrough · Everyday Basics",
+        A2: "Waystage · Travel & Routine",
+        B1: "Threshold · Storytelling & Opinions",
+        B2: "Vantage · Complex Debates & Housing",
+        C1: "Effective Operational Proficiency"
+      };
+
+      var state = {
+        profiles: [],
+        units: [],
+        sessions: [],
+        checkpoints: [],
+        catalogTotalCount: 0,
+        activeLang: "es-MX",
+        selectedBand: "ALL",
+        showDrafts: false,
+        selectedUnitId: null,
+        pendingChallengeUrl: null
+      };
+
+      function filterNonDeleted(list) {
+        return (Array.isArray(list) ? list : []).filter(function (item) {
+          return item && item.isDeleted !== true;
         });
       }
-      if (brandLink) {
-        brandLink.addEventListener('click', function(e) {
-          if (sidebar.classList.contains('sidebar-collapsed')) {
-            e.preventDefault();
-            e.stopPropagation();
-            applyCollapsed(false);
+
+      function navigateToRoute(route, entityId, queryAfterId) {
+        var cleanRoute = String(route || "learning-path").replace(/^#?\//, "");
+        var suffix = queryAfterId ? ("?" + queryAfterId) : "";
+        if (window.rapiderApi && typeof window.rapiderApi.navigate === "function") {
+          var segs = entityId ? [cleanRoute, String(entityId)] : [cleanRoute];
+          window.rapiderApi.navigate(segs);
+          return;
+        }
+        var targetHash = "#/" + encodeURIComponent(cleanRoute) + (entityId ? "/" + encodeURIComponent(String(entityId)) : "") + suffix;
+        window.location.hash = targetHash;
+      }
+
+      function getActiveProfile() {
+        var found = state.profiles.find(function (p) {
+          return p.activeTargetLanguage === state.activeLang;
+        });
+        return found || state.profiles[0] || PREVIEW_SNAPSHOT.profiles[0];
+      }
+
+      function getActiveLanguageUnits(includeDraftOverride) {
+        var profile = getActiveProfile();
+        var lang = profile ? profile.activeTargetLanguage : state.activeLang;
+        var allowDrafts = typeof includeDraftOverride === "boolean" ? includeDraftOverride : state.showDrafts;
+        return state.units
+          .filter(function (u) {
+            if (u.targetLanguageCode !== lang) return false;
+            var pub = u.publishStatus || u.status || "GLOBAL_PUBLISHED";
+            if (!allowDrafts && pub !== "GLOBAL_PUBLISHED") return false;
+            if (state.selectedBand !== "ALL" && u.cefrBand !== state.selectedBand) return false;
+            return true;
+          })
+          .sort(function (a, b) {
+            return (Number(a.unitOrder) || 0) - (Number(b.unitOrder) || 0);
+          });
+      }
+
+      function renderMarkdownGuide(mdText) {
+        var raw = String(mdText || "").trim();
+        if (!raw) {
+          return "<h4>Grammar Guide</h4><p style=\"margin:0;color:var(--muted);\">No grammar notes published for this unit yet.</p>";
+        }
+        var lines = raw.split(/\r?\n/);
+        var htmlParts = [];
+        var inList = false;
+
+        function formatInline(str) {
+          var safe = esc(str);
+          safe = safe.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+          safe = safe.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+          safe = safe.replace(/`([^`]+)`/g, "<code>$1</code>");
+          return safe;
+        }
+
+        lines.forEach(function (line) {
+          var trimmed = line.trim();
+          if (!trimmed) return;
+          if (/^#{1,4}\s+/.test(trimmed)) {
+            if (inList) { htmlParts.push("</ul>"); inList = false; }
+            htmlParts.push("<h4>" + formatInline(trimmed.replace(/^#{1,4}\s+/, "")) + "</h4>");
+          } else if (/^[-*]\s+/.test(trimmed)) {
+            if (!inList) { htmlParts.push("<ul>"); inList = true; }
+            htmlParts.push("<li>" + formatInline(trimmed.replace(/^[-*]\s+/, "")) + "</li>");
+          } else {
+            if (inList) { htmlParts.push("</ul>"); inList = false; }
+            htmlParts.push("<p style=\"margin:0 0 6px;\">" + formatInline(trimmed) + "</p>");
+          }
+        });
+        if (inList) htmlParts.push("</ul>");
+        return htmlParts.join("");
+      }
+
+      function renderLanguageSwitcher() {
+        var sel = document.getElementById("languageSwitcher");
+        if (!sel) return;
+        sel.innerHTML = state.profiles.map(function (p) {
+          var label = p.primaryAttrValue || p.activeTargetLanguage;
+          var badge = p.status === "PAUSED" ? " (Paused)" : "";
+          var selected = p.activeTargetLanguage === state.activeLang ? " selected" : "";
+          return "<option value=\"" + esc(p.activeTargetLanguage) + "\"" + selected + ">" + esc(label + " · " + (p.currentCefrBand || "A1") + badge) + "</option>";
+        }).join("");
+      }
+
+      function renderCockpit() {
+        var profile = getActiveProfile();
+        if (!profile) return;
+
+        var langUnits = state.units
+          .filter(function (u) { return u.targetLanguageCode === profile.activeTargetLanguage; })
+          .sort(function (a, b) { return (Number(a.unitOrder) || 0) - (Number(b.unitOrder) || 0); });
+
+        var activeUnit =
+          langUnits.find(function (u) { return u.unlockState === "IN_PROGRESS"; }) ||
+          langUnits.find(function (u) { return u.unlockState === "UNLOCKED"; }) ||
+          langUnits[0] ||
+          null;
+
+        var score160 = Number(profile.proficiencyScore160 || 0);
+        var pct160 = Math.max(0, Math.min(100, Math.round((score160 / 160) * 100)));
+        var circ = 2 * Math.PI * 28;
+        var dashOffset = (circ * (1 - pct160 / 100)).toFixed(2);
+
+        document.getElementById("heroProfileCode").textContent = profile.recordCode || "LLP";
+        document.getElementById("heroLangPill").textContent = profile.primaryAttrValue || profile.activeTargetLanguage;
+        document.getElementById("heroVoicePill").innerHTML = profile.retainVoiceAudio
+          ? '<i class="fas fa-microphone" aria-hidden="true"></i> Opt-In Audio'
+          : '<i class="fas fa-microphone-slash" aria-hidden="true"></i> Ephemeral Voice';
+        document.getElementById("heroCefrBand").textContent = "CEFR " + (profile.currentCefrBand || "A1");
+        document.getElementById("heroProficiencyScore").textContent = score160.toFixed(2) + " / 160";
+        document.getElementById("heroRingPct").textContent = pct160 + "%";
+        document.getElementById("heroScoreArc").setAttribute("stroke-dashoffset", dashOffset);
+
+        var heroContinueBtn = document.getElementById("btnContinueHero");
+        if (activeUnit) {
+          var done = Number(activeUnit.completedLessons || 0);
+          var tot = Math.max(1, Number(activeUnit.totalLessons || 1));
+          var unitPct = Math.round((done / tot) * 100);
+          document.getElementById("heroActiveUnitText").textContent =
+            activeUnit.title + " · " + done + " / " + tot + " lessons (" + unitPct + "%)";
+          document.getElementById("heroProgressFill").style.width = unitPct + "%";
+          var nextLesson = Math.min(tot, done + 1);
+          document.getElementById("heroContinueLabel").textContent =
+            activeUnit.unlockState === "COMPLETED"
+              ? "Review Unit " + (activeUnit.unitOrder || "")
+              : "Continue Unit " + (activeUnit.unitOrder || "") + " · Lesson " + nextLesson;
+          heroContinueBtn.dataset.unitId = activeUnit.id;
+        } else {
+          document.getElementById("heroActiveUnitText").textContent =
+            "No published units yet for " + profile.activeTargetLanguage + " — run Placement Test to calibrate.";
+          document.getElementById("heroProgressFill").style.width = "0%";
+          document.getElementById("heroContinueLabel").textContent = "Take Placement Test";
+          heroContinueBtn.dataset.unitId = "";
+        }
+
+        /* Metric 2: Streak & Calm Mode */
+        document.getElementById("metricStreakDays").textContent = (profile.currentStreakDays || 0) + " days";
+        document.getElementById("metricTimezoneTag").textContent = profile.timezoneId || "UTC";
+        var freezes = Number(profile.streakFreezesAvailable || 0);
+        document.getElementById("metricFreezeTag").textContent = freezes + (freezes === 1 ? " Streak Freeze" : " Streak Freezes");
+        document.getElementById("metricLongestStreak").textContent = "Longest: " + (profile.longestStreakDays || 0) + "d";
+        var calmTag = document.getElementById("metricCalmTag");
+        calmTag.textContent = profile.calmModeEnabled ? "Calm Mode: On" : "Calm Mode: Off";
+        calmTag.className = profile.calmModeEnabled ? "tag tag-success" : "tag tag-neutral";
+        document.getElementById("metricLastStudyDate").textContent = "Last study: " + (profile.lastStudyLocalDate || "—");
+
+        /* Metric 3: Daily XP & Goal */
+        var todayPrefix = "2026-11-24";
+        var todayCompleted = state.sessions.filter(function (s) {
+          return s.status === "COMPLETED" && String(s.startedAt || "").indexOf(todayPrefix) === 0;
+        });
+        var todayXpTotal = todayCompleted.reduce(function (acc, s) { return acc + (Number(s.xpEarned) || 0); }, 0);
+        var profileTodayXp = todayCompleted
+          .filter(function (s) { return s.profileId === profile.id; })
+          .reduce(function (acc, s) { return acc + (Number(s.xpEarned) || 0); }, 0);
+
+        var shownXp = todayXpTotal > 0 ? todayXpTotal : profileTodayXp;
+        document.getElementById("metricTodayXp").textContent = shownXp + " XP";
+        document.getElementById("metricGoalTarget").textContent =
+          (profile.dailyGoalMinutes || 15) + " min/day · " + profileTodayXp + " XP in " + profile.activeTargetLanguage;
+        document.getElementById("metricCatalogCount").textContent = "Catalog: " + state.catalogTotalCount + " units";
+        var goalPct = Math.min(100, Math.round((shownXp / 50) * 100));
+        document.getElementById("metricXpBar").style.width = Math.max(12, goalPct) + "%";
+
+        document.getElementById("privacySummaryText").innerHTML = profile.retainVoiceAudio
+          ? "Opt-in voice storage enabled for tutor review. You can switch back to ephemeral scoring anytime."
+          : "Ephemeral voice scoring active (<code>retainVoiceAudio = false</code>). Zero employer HR or corporate LRN visibility.";
+      }
+
+      function renderResumeStrip() {
+        var slot = document.getElementById("resumeSessionSlot");
+        if (!slot) return;
+        var profile = getActiveProfile();
+        var activeSession = state.sessions.find(function (s) {
+          return s.profileId === profile.id && s.status === "IN_PROGRESS";
+        });
+        if (!activeSession) {
+          slot.innerHTML = "";
+          return;
+        }
+        var mins = Math.floor((Number(activeSession.activeDurationSeconds) || 0) / 60);
+        var secs = (Number(activeSession.activeDurationSeconds) || 0) % 60;
+        var unitObj = state.units.find(function (u) { return u.id === activeSession.unitId; });
+        var unitTargetId = (unitObj && unitObj.id) || activeSession.unitId || "";
+
+        slot.innerHTML =
+          '<div class="resume-strip">' +
+            '<div class="resume-strip-info">' +
+              '<div class="resume-pulse"><i class="fas fa-pause" aria-hidden="true"></i></div>' +
+              '<div>' +
+                '<strong>Paused Session: ' + esc(activeSession.title) + '</strong>' +
+                '<small class="tabular">' + esc(activeSession.recordCode) + ' · ' + mins + 'm ' + secs + 's elapsed · ' + Number(activeSession.accuracyPercent || 0).toFixed(0) + '% current accuracy</small>' +
+              '</div>' +
+            '</div>' +
+            '<button type="button" class="btn primary small !text-white text-white" data-resume-unit="' + esc(unitTargetId) + '" style="color: #ffffff !important;">' +
+              '<i class="fas fa-play" aria-hidden="true"></i><span>Resume Lesson</span>' +
+            '</button>' +
+          '</div>';
+      }
+
+      function renderSerpentinePath() {
+        var container = document.getElementById("skillPathContainer");
+        var emptyEl = document.getElementById("pathEmptyState");
+        var units = getActiveLanguageUnits();
+
+        if (!units.length) {
+          container.innerHTML = "";
+          emptyEl.classList.remove("hidden");
+          return;
+        }
+        emptyEl.classList.add("hidden");
+
+        if (!state.selectedUnitId || !units.some(function (u) { return u.id === state.selectedUnitId; })) {
+          var preferred = units.find(function (u) { return u.unlockState === "IN_PROGRESS"; }) || units[0];
+          state.selectedUnitId = preferred ? preferred.id : null;
+        }
+
+        var grouped = {};
+        BAND_ORDER.forEach(function (b) { grouped[b] = []; });
+        units.forEach(function (u) {
+          var b = grouped[u.cefrBand] ? u.cefrBand : "A1";
+          grouped[b].push(u);
+        });
+
+        var offsets = ["offset-left", "offset-center", "offset-right", "offset-center"];
+        var html = [];
+
+        BAND_ORDER.forEach(function (band) {
+          var bandUnits = grouped[band];
+          if (!bandUnits || !bandUnits.length) return;
+
+          var completedInBand = bandUnits.filter(function (u) { return u.unlockState === "COMPLETED"; }).length;
+          html.push('<section class="band-section" aria-label="CEFR ' + esc(band) + ' Units">');
+          html.push(
+            '<div class="band-header">' +
+              '<div class="band-title-wrap">' +
+                '<span class="band-badge">' + esc(band) + '</span>' +
+                '<div>' +
+                  '<h2>' + esc(BAND_TITLES[band] || band) + '</h2>' +
+                  '<p class="tabular">' + completedInBand + ' of ' + bandUnits.length + ' unit(s) completed</p>' +
+                '</div>' +
+              '</div>' +
+              '<span class="tag tag-neutral tabular">' + bandUnits.length + (bandUnits.length === 1 ? ' Unit' : ' Units') + '</span>' +
+            '</div>'
+          );
+
+          html.push('<div class="serpentine-track">');
+          bandUnits.forEach(function (unit, idx) {
+            if (idx > 0) {
+              var prevDone = bandUnits[idx - 1].unlockState === "COMPLETED";
+              html.push('<div class="path-connector' + (prevDone ? ' done' : '') + '" aria-hidden="true"></div>');
+            }
+
+            var uState = unit.unlockState || "UNLOCKED";
+            var done = Number(unit.completedLessons || 0);
+            var tot = Math.max(1, Number(unit.totalLessons || 1));
+            var pct = Math.round((done / tot) * 100);
+            var isSelected = unit.id === state.selectedUnitId;
+            var isDraft = (unit.publishStatus || unit.status) === "DRAFT";
+
+            var nodeCls = "unit-node " + offsets[idx % offsets.length];
+            if (uState === "IN_PROGRESS") nodeCls += " state-in-progress";
+            if (uState === "LOCKED_JUMP_AVAILABLE") nodeCls += " state-locked";
+            if (isSelected) nodeCls += " is-selected";
+
+            var medCls = "node-medallion ";
+            var medIcon = "fa-play";
+            var statusTag = '<span class="tag tag-info">Unlocked</span>';
+            var ctaText = "Start Unit";
+            var ctaMode = "";
+
+            if (uState === "COMPLETED") {
+              medCls += "completed";
+              medIcon = "fa-check";
+              statusTag = '<span class="tag tag-success">Completed</span>';
+              ctaText = "Review Unit";
+              ctaMode = "mode=review";
+            } else if (uState === "IN_PROGRESS") {
+              medCls += "in-progress";
+              medIcon = "fa-bolt";
+              statusTag = '<span class="tag">In Progress</span>';
+              ctaText = "Continue (" + done + "/" + tot + ")";
+            } else if (uState === "LOCKED_JUMP_AVAILABLE") {
+              medCls += "locked";
+              medIcon = "fa-forward-fast";
+              statusTag = '<span class="tag tag-warning">Jump Ahead Ready</span>';
+              ctaText = "Jump Here";
+              ctaMode = "mode=jump";
+            } else {
+              medCls += "unlocked";
+            }
+
+            var blueprints = Array.isArray(unit.lessonBlueprintsJson) ? unit.lessonBlueprintsJson : [];
+            var blueprintHtml = blueprints.map(function (lb) {
+              var lIdx = Number(lb.lessonIndex || 1);
+              var chipCls = "lesson-chip";
+              if (lIdx <= done) chipCls += " done";
+              else if (lIdx === done + 1 && uState === "IN_PROGRESS") chipCls += " next";
+              return '<span class="' + chipCls + '">' +
+                '<span class="tabular">L' + lIdx + ':</span> ' + esc(lb.title) +
+                ' <span style="opacity:0.75;">(' + esc(lb.skillFocus || "MIXED") + ')</span>' +
+              '</span>';
+            }).join("");
+
+            var stories = Array.isArray(unit.storyPassagesJson) ? unit.storyPassagesJson : [];
+            var storyBadge = stories.length
+              ? '<a href="#/stories-immersion" class="tag tag-neutral" title="Open paired immersion story"><i class="fas fa-book-open" aria-hidden="true"></i> ' + esc(stories[0].title) + '</a>'
+              : "";
+
+            html.push('<article class="' + nodeCls + '" data-unit-card="' + esc(unit.id) + '">');
+            html.push(
+              '<div class="unit-node-top">' +
+                '<div class="' + medCls + '" aria-hidden="true"><i class="fas ' + medIcon + '"></i></div>' +
+                '<div class="unit-body">' +
+                  '<div class="unit-meta-row">' +
+                    '<div class="unit-tags">' +
+                      '<span class="tag tag-neutral tabular">' + esc(unit.recordCode || "UNIT") + '</span>' +
+                      statusTag +
+                      (isDraft ? '<span class="tag tag-warning">DRAFT</span>' : '') +
+                      '<span class="tag tag-neutral tabular">+' + (unit.xpReward || 40) + ' XP</span>' +
+                    '</div>' +
+                  '</div>' +
+                  '<h3 class="unit-title">' + esc(unit.title) + '</h3>' +
+                  '<p class="unit-goal">' + esc(unit.communicativeGoal) + '</p>' +
+                  (blueprintHtml ? '<div class="lesson-chips">' + blueprintHtml + '</div>' : '') +
+                  '<div class="unit-foot">' +
+                    '<div class="unit-progress-mini">' +
+                      '<div class="mini-track"><div class="mini-fill' + (uState === "COMPLETED" ? ' done' : '') + '" style="width:' + pct + '%"></div></div>' +
+                      '<span class="tabular">' + done + ' / ' + tot + ' lessons</span>' +
+                      storyBadge +
+                    '</div>' +
+                    '<div class="unit-actions">' +
+                      '<button type="button" class="btn small" data-guidebook-unit="' + esc(unit.id) + '">' +
+                        '<i class="fas fa-book-bookmark" aria-hidden="true"></i><span>Guidebook</span>' +
+                      '</button>' +
+                      '<button type="button" class="btn small primary !text-white text-white" data-launch-unit="' + esc(unit.id) + '" data-launch-mode="' + esc(ctaMode) + '" style="color: #ffffff !important;">' +
+                        '<i class="fas fa-play" aria-hidden="true"></i><span>' + esc(ctaText) + '</span>' +
+                      '</button>' +
+                    '</div>' +
+                  '</div>' +
+                '</div>' +
+              '</div>'
+            );
+            html.push('</article>');
+          });
+          html.push('</div></section>');
+        });
+
+        container.innerHTML = html.join("");
+      }
+
+      function renderGuidebookRail() {
+        var units = getActiveLanguageUnits(true);
+        var unit = units.find(function (u) { return u.id === state.selectedUnitId; }) || units[0] || null;
+        var codeEl = document.getElementById("guidebookCodeTag");
+        var titleEl = document.getElementById("guidebookTitle");
+        var subEl = document.getElementById("guidebookSubtitle");
+        var bandEl = document.getElementById("guidebookBandTag");
+        var bodyEl = document.getElementById("guidebookMarkdownBody");
+        var storySlot = document.getElementById("guidebookStorySlot");
+        var launchBtn = document.getElementById("btnGuidebookLaunch");
+        var launchLabel = document.getElementById("guidebookLaunchLabel");
+
+        if (!unit) {
+          codeEl.textContent = "GUIDEBOOK";
+          titleEl.textContent = "Unit Grammar Guidebook";
+          subEl.textContent = "No published units selected for this language";
+          bandEl.textContent = "—";
+          bodyEl.innerHTML = "<p style=\"margin:0;color:var(--muted);\">Switch language or launch the Placement Test to populate unit grammar guides.</p>";
+          storySlot.innerHTML = "";
+          launchBtn.disabled = true;
+          return;
+        }
+
+        launchBtn.disabled = false;
+        launchBtn.dataset.unitId = unit.id;
+        codeEl.textContent = unit.recordCode || "UNIT";
+        titleEl.textContent = unit.title || "Unit Grammar Guidebook";
+        subEl.textContent = (unit.completedLessons || 0) + " of " + (unit.totalLessons || 5) + " lessons completed · +" + (unit.xpReward || 40) + " XP";
+        bandEl.textContent = unit.cefrBand || "A1";
+        bodyEl.innerHTML = renderMarkdownGuide(unit.grammarGuideMarkdown);
+        launchLabel.textContent = "Open " + (unit.recordCode || "Unit") + " in Lesson Runner";
+
+        var stories = Array.isArray(unit.storyPassagesJson) ? unit.storyPassagesJson : [];
+        if (stories.length) {
+          var st = stories[0];
+          storySlot.innerHTML =
+            '<div class="story-callout">' +
+              '<div>' +
+                '<strong style="display:block;color:var(--ink);">Paired Story: ' + esc(st.title) + '</strong>' +
+                '<small style="color:var(--muted);" class="tabular">' + esc(st.storyCode) + ' · ' + (st.wordCount || 150) + ' words</small>' +
+              '</div>' +
+              '<a href="#/stories-immersion" class="btn small">Read</a>' +
+            '</div>';
+        } else {
+          storySlot.innerHTML = "";
+        }
+
+        /* Render Milestones & Checkpoints */
+        var profile = getActiveProfile();
+        var listEl = document.getElementById("milestonesList");
+        document.getElementById("milestonesSubtitle").textContent = "Activity for " + (profile.recordCode || profile.activeTargetLanguage);
+
+        var checkpoints = state.checkpoints.filter(function (c) { return c.profileId === profile.id; });
+        var sessions = state.sessions.filter(function (s) { return s.profileId === profile.id; }).slice(0, 3);
+        var itemsHtml = [];
+
+        checkpoints.forEach(function (cp) {
+          var passTag = cp.passed
+            ? '<span class="tag tag-success tabular">' + Number(cp.compositeScore160 || 0).toFixed(1) + '/160</span>'
+            : '<span class="tag tag-warning tabular">' + Number(cp.compositeScore160 || 0).toFixed(1) + '/160</span>';
+          itemsHtml.push(
+            '<div class="milestone-item">' +
+              '<div>' +
+                '<strong>' + esc(cp.title) + '</strong>' +
+                '<small class="tabular">' + esc(cp.recordCode) + ' · ' + esc(cp.examType) + '</small>' +
+              '</div>' +
+              passTag +
+            '</div>'
+          );
+        });
+
+        sessions.forEach(function (ss) {
+          var tagCls = ss.status === "COMPLETED" ? "tag-neutral" : "tag-info";
+          var rightLabel = ss.status === "COMPLETED" ? ("+" + (ss.xpEarned || 0) + " XP") : "In Progress";
+          itemsHtml.push(
+            '<div class="milestone-item">' +
+              '<div>' +
+                '<strong>' + esc(ss.title) + '</strong>' +
+                '<small class="tabular">' + esc(ss.recordCode) + ' · ' + Number(ss.accuracyPercent || 0).toFixed(0) + '% accuracy</small>' +
+              '</div>' +
+              '<span class="tag ' + tagCls + ' tabular">' + esc(rightLabel) + '</span>' +
+            '</div>'
+          );
+        });
+
+        listEl.innerHTML = itemsHtml.length
+          ? itemsHtml.join("")
+          : '<p style="margin:0;font-size:12.5px;color:var(--muted);">No checkpoints or lesson sessions logged yet for this dialect.</p>';
+      }
+
+      function renderAll() {
+        renderLanguageSwitcher();
+        renderCockpit();
+        renderResumeStrip();
+        renderSerpentinePath();
+        renderGuidebookRail();
+      }
+
+      function openChallengeModal(mode) {
+        var profile = getActiveProfile();
+        var langUnits = state.units
+          .filter(function (u) { return u.targetLanguageCode === profile.activeTargetLanguage; })
+          .sort(function (a, b) { return (Number(a.unitOrder) || 0) - (Number(b.unitOrder) || 0); });
+
+        var modal = document.getElementById("challengeModal");
+        var titleEl = document.getElementById("challengeModalTitle");
+        var tagsEl = document.getElementById("challengeModalTags");
+        var descEl = document.getElementById("challengeModalDesc");
+        var startBtn = document.getElementById("btnStartChallengeRunner");
+
+        if (mode === "jump") {
+          var jumpUnit = langUnits.find(function (u) { return u.unlockState === "LOCKED_JUMP_AVAILABLE"; }) || langUnits[langUnits.length - 1];
+          titleEl.textContent = "Jump Ahead Unit Challenge";
+          tagsEl.innerHTML =
+            '<span class="tag tag-warning">' + esc(jumpUnit ? jumpUnit.recordCode : "CHALLENGE") + '</span>' +
+            '<span class="tag tag-neutral">' + esc(profile.activeTargetLanguage) + '</span>';
+          descEl.textContent = jumpUnit
+            ? "Pass a focused mastery check on \"" + jumpUnit.title + "\" to unlock " + jumpUnit.cefrBand + " immediately and earn +" + (jumpUnit.xpReward || 60) + " XP."
+            : "Test out of intermediate units for " + profile.activeTargetLanguage + " to skip straight to higher CEFR bands.";
+          state.pendingChallengeUrl = { route: "lesson-runner", id: jumpUnit ? jumpUnit.id : "placement-" + profile.activeTargetLanguage, query: "mode=jump" };
+          startBtn.textContent = "Start Jump Challenge";
+        } else {
+          var placeUnit = langUnits[0];
+          titleEl.textContent = "5-Minute Adaptive Placement Test";
+          tagsEl.innerHTML =
+            '<span class="tag">' + esc(profile.activeTargetLanguage) + '</span>' +
+            '<span class="tag tag-info">Current: ' + esc(profile.currentCefrBand || "A1") + '</span>';
+          descEl.textContent = "Calibrate your 0–160 CEFR proficiency score across Reading, Listening, and Grammar in under 5 minutes. Passing unlocks prerequisite units automatically.";
+          state.pendingChallengeUrl = { route: "lesson-runner", id: placeUnit ? placeUnit.id : "placement-" + profile.activeTargetLanguage, query: "mode=placement" };
+          startBtn.textContent = "Begin Placement Test";
+        }
+
+        modal.classList.add("open");
+      }
+
+      function closeChallengeModal() {
+        document.getElementById("challengeModal").classList.remove("open");
+      }
+
+      function buildAiCoachingReply(promptText) {
+        var profile = getActiveProfile();
+        var units = getActiveLanguageUnits(true);
+        var unit = units.find(function (u) { return u.id === state.selectedUnitId; }) || units[0];
+        var unitSummary = unit
+          ? (unit.recordCode + " (" + unit.title + ") is at " + (unit.completedLessons || 0) + "/" + (unit.totalLessons || 5) + " lessons")
+          : ("No active unit selected in " + profile.activeTargetLanguage);
+
+        var guideTip = unit && unit.grammarGuideMarkdown
+          ? unit.grammarGuideMarkdown.split("\n").slice(0, 3).join(" ").replace(/[#*`]/g, "")
+          : "Focus on core sentence structure and high-frequency connectors.";
+
+        return "<strong>Grounded Coach Summary (" + esc(profile.recordCode) + " · CEFR " + esc(profile.currentCefrBand) + "):</strong><br>" +
+          "1. <strong>Progress:</strong> " + esc(unitSummary) + " with a " + (profile.currentStreakDays || 0) + "-day streak in " + esc(profile.timezoneId) + ".<br>" +
+          "2. <strong>Guidebook Key Rule:</strong> " + esc(guideTip) + "<br>" +
+          "3. <strong>Recommended Next 10-Min Session:</strong> Finish the next lesson in " + esc(unit ? unit.recordCode : profile.activeTargetLanguage) + " and clear 3 due FSRS cards on Vocabulary &amp; SRS." +
+          (promptText ? "<br><small style=\"color:var(--muted);\">Query logged: \"" + esc(promptText) + "\"</small>" : "");
+      }
+
+      function openAiCoachModal() {
+        var profile = getActiveProfile();
+        var units = getActiveLanguageUnits(true);
+        var unit = units.find(function (u) { return u.id === state.selectedUnitId; }) || units[0];
+        var defaultPrompt = unit
+          ? ("Summarize my " + unit.recordCode + " (" + profile.activeTargetLanguage + ") progress, review the guidebook rules, and recommend my next 10-minute session.")
+          : ("Recommend my next 10-minute CEFR study session for " + profile.activeTargetLanguage + ".");
+
+        document.getElementById("aiContextBanner").textContent =
+          "Active context: " + profile.recordCode + " (" + profile.activeTargetLanguage + " · " + profile.currentCefrBand + ")";
+        document.getElementById("aiPromptInput").value = defaultPrompt;
+        document.getElementById("aiReplyBox").innerHTML = buildAiCoachingReply(defaultPrompt);
+        document.getElementById("aiCoachModal").classList.add("open");
+      }
+
+      function closeAiCoachModal() {
+        document.getElementById("aiCoachModal").classList.remove("open");
+      }
+
+      async function loadData() {
+        var profiles = [];
+        var units = [];
+        var sessions = [];
+        var checkpoints = [];
+        var catalogCount = 0;
+
+        if (window.rapiderApi && typeof window.rapiderApi.findSWR === "function") {
+          try {
+            var results = await Promise.all([
+              window.rapiderApi.findSWR("PrsLangLearnerProfile", { order: ["updatedAt DESC"] }),
+              window.rapiderApi.findSWR("PrsLangCourseUnit", { order: ["unitOrder ASC"] }),
+              window.rapiderApi.findSWR("PrsLangLessonSession", { order: ["startedAt DESC"] }),
+              window.rapiderApi.findSWR("PrsLangCheckpointAttempt", { order: ["completedAt DESC"] }),
+              typeof window.rapiderApi.countSWR === "function"
+                ? window.rapiderApi.countSWR("PrsLangCourseUnit", {})
+                : Promise.resolve(0)
+            ]);
+            profiles = filterNonDeleted(results[0]);
+            units = filterNonDeleted(results[1]);
+            sessions = filterNonDeleted(results[2]);
+            checkpoints = filterNonDeleted(results[3]);
+            catalogCount = Number(results[4] || 0);
+          } catch (err) {
+            console.warn("SWR load fallback:", err);
+          }
+        }
+
+        state.profiles = profiles.length ? profiles : PREVIEW_SNAPSHOT.profiles.slice();
+        state.units = units.length ? units : PREVIEW_SNAPSHOT.units.slice();
+        state.sessions = sessions.length ? sessions : PREVIEW_SNAPSHOT.sessions.slice();
+        state.checkpoints = checkpoints.length ? checkpoints : PREVIEW_SNAPSHOT.checkpoints.slice();
+        state.catalogTotalCount = catalogCount > 0 ? catalogCount : state.units.length;
+
+        if (!state.profiles.some(function (p) { return p.activeTargetLanguage === state.activeLang; })) {
+          state.activeLang = state.profiles[0] ? state.profiles[0].activeTargetLanguage : "es-MX";
+        }
+        renderAll();
+      }
+
+      function bindEvents() {
+        document.getElementById("languageSwitcher").addEventListener("change", function (e) {
+          state.activeLang = e.target.value;
+          state.selectedBand = "ALL";
+          state.selectedUnitId = null;
+          /* Auto-show draft curriculum units if the selected dialect only has drafts (e.g. de-DE) */
+          var publishedCount = state.units.filter(function (u) {
+            return u.targetLanguageCode === state.activeLang && (u.publishStatus || u.status) === "GLOBAL_PUBLISHED";
+          }).length;
+          var hasAnyForLang = state.units.some(function (u) { return u.targetLanguageCode === state.activeLang; });
+          if (hasAnyForLang && publishedCount === 0) {
+            state.showDrafts = true;
+            document.getElementById("toggleDraftUnits").checked = true;
+          }
+          document.querySelectorAll("#bandPills .band-pill").forEach(function (btn) {
+            btn.classList.toggle("active", btn.dataset.band === "ALL");
+          });
+          renderAll();
+        });
+
+        document.getElementById("bandPills").addEventListener("click", function (e) {
+          var pill = e.target.closest(".band-pill");
+          if (!pill) return;
+          state.selectedBand = pill.dataset.band || "ALL";
+          document.querySelectorAll("#bandPills .band-pill").forEach(function (btn) {
+            btn.classList.toggle("active", btn === pill);
+          });
+          renderSerpentinePath();
+          renderGuidebookRail();
+        });
+
+        document.getElementById("toggleDraftUnits").addEventListener("change", function (e) {
+          state.showDrafts = Boolean(e.target.checked);
+          renderSerpentinePath();
+          renderGuidebookRail();
+        });
+
+        document.getElementById("skillPathContainer").addEventListener("click", function (e) {
+          var guideBtn = e.target.closest("[data-guidebook-unit]");
+          if (guideBtn) {
+            state.selectedUnitId = guideBtn.dataset.guidebookUnit;
+            renderSerpentinePath();
+            renderGuidebookRail();
+            document.getElementById("guidebookPanel").scrollIntoView({ behavior: "smooth", block: "nearest" });
+            return;
+          }
+          var launchBtn = e.target.closest("[data-launch-unit]");
+          if (launchBtn) {
+            navigateToRoute("lesson-runner", launchBtn.dataset.launchUnit, launchBtn.dataset.launchMode || "");
+          }
+        });
+
+        document.getElementById("resumeSessionSlot").addEventListener("click", function (e) {
+          var resumeBtn = e.target.closest("[data-resume-unit]");
+          if (resumeBtn) {
+            navigateToRoute("lesson-runner", resumeBtn.dataset.resumeUnit, "");
+          }
+        });
+
+        document.getElementById("btnContinueHero").addEventListener("click", function (e) {
+          var uid = e.currentTarget.dataset.unitId;
+          if (uid) {
+            navigateToRoute("lesson-runner", uid, "");
+          } else {
+            openChallengeModal("placement");
+          }
+        });
+
+        document.getElementById("btnGuidebookLaunch").addEventListener("click", function (e) {
+          var uid = e.currentTarget.dataset.unitId;
+          if (uid) navigateToRoute("lesson-runner", uid, "");
+        });
+
+        document.getElementById("btnFocusGuidebook").addEventListener("click", function () {
+          document.getElementById("guidebookPanel").scrollIntoView({ behavior: "smooth", block: "start" });
+          toast("Viewing Unit Grammar Guidebook", "info");
+        });
+
+        document.getElementById("btnPlacementTest").addEventListener("click", function () { openChallengeModal("placement"); });
+        document.getElementById("btnEmptyPlacement").addEventListener("click", function () { openChallengeModal("placement"); });
+        document.getElementById("btnJumpAhead").addEventListener("click", function () { openChallengeModal("jump"); });
+
+        document.getElementById("btnResetPathFilters").addEventListener("click", function () {
+          state.selectedBand = "ALL";
+          state.showDrafts = true;
+          document.getElementById("toggleDraftUnits").checked = true;
+          document.querySelectorAll("#bandPills .band-pill").forEach(function (btn) {
+            btn.classList.toggle("active", btn.dataset.band === "ALL");
+          });
+          renderSerpentinePath();
+          renderGuidebookRail();
+        });
+
+        /* Challenge Modal Listeners */
+        document.getElementById("btnCloseChallengeModal").addEventListener("click", closeChallengeModal);
+        document.getElementById("btnCancelChallengeModal").addEventListener("click", closeChallengeModal);
+        document.getElementById("challengeModal").addEventListener("click", function (e) {
+          if (e.target === e.currentTarget) closeChallengeModal();
+        });
+        document.getElementById("btnStartChallengeRunner").addEventListener("click", function () {
+          var target = state.pendingChallengeUrl;
+          closeChallengeModal();
+          if (target) navigateToRoute(target.route, target.id, target.query);
+        });
+
+        /* Ask Rapider AI Modal Listeners */
+        document.getElementById("btnAskRapider").addEventListener("click", openAiCoachModal);
+        document.getElementById("btnGuidebookAi").addEventListener("click", openAiCoachModal);
+        document.getElementById("btnCloseAiModal").addEventListener("click", closeAiCoachModal);
+        document.getElementById("btnCloseAiFooter").addEventListener("click", closeAiCoachModal);
+        document.getElementById("aiCoachModal").addEventListener("click", function (e) {
+          if (e.target === e.currentTarget) closeAiCoachModal();
+        });
+
+        document.getElementById("aiCoachForm").addEventListener("submit", async function (e) {
+          e.preventDefault();
+          var btn = document.getElementById("btnSendAiPrompt");
+          var origHtml = btn.innerHTML;
+          var promptVal = document.getElementById("aiPromptInput").value.trim();
+          var profile = getActiveProfile();
+          var unit = getActiveLanguageUnits(true).find(function (u) { return u.id === state.selectedUnitId; });
+
+          btn.disabled = true;
+          btn.innerHTML = '<i class="fas fa-spinner fa-spin" aria-hidden="true"></i><span>Thinking...</span>';
+          try {
+            if (window.rapiderApi && typeof window.rapiderApi.broadcast === "function") {
+              window.rapiderApi.broadcast("RAPIDER_AI_ASSISTANT_QUERY", {
+                appSlug: "language-learning",
+                route: "learning-path",
+                profileCode: profile ? profile.recordCode : null,
+                unitCode: unit ? unit.recordCode : null,
+                prompt: promptVal
+              });
+            }
+            document.getElementById("aiReplyBox").innerHTML = buildAiCoachingReply(promptVal);
+            toast("Grounded study guidance updated", "success");
+          } finally {
+            btn.disabled = false;
+            btn.innerHTML = origHtml;
+          }
+        });
+
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") {
+            closeChallengeModal();
+            closeAiCoachModal();
           }
         });
       }
-      if (mobileBtn) {
-        mobileBtn.addEventListener('click', function() { document.body.classList.toggle('navopen'); });
-      }
-      if (shade) {
-        shade.addEventListener('click', function() { document.body.classList.remove('navopen'); });
-      }
-      if (themeBtn) {
-        themeBtn.addEventListener('click', function() {
-          document.documentElement.classList.toggle('dark');
-          document.body.classList.toggle('dark');
-        });
-      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        bindEvents();
+        loadData();
+      });
     })();
-
-    window.SEED_DATA = {"PrsLangCourseUnit":[{"id":"00000000-0180-0001-0000-000000000001","recordCode":"LCU-2026-101","title":"Viajé por Madrid para dos semanas (Lang Course Unit)","name":"Viajé por Madrid para dos semanas (Lang Course Unit)","modelTitle":"Lang Course Unit","ownerName":"Elena Rostova (Principal Lead)","primaryAttrLabel":"Source Language Code","primaryAttrValue":"Source Language Code: LCU-2026-101","secondaryAttrLabel":"Target Language Code","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Cefr Band","metricValue":"92.0% (125.00 units)","operationalSummary":"Enrolling in *Spanish (es-MX)* on #/learning-path, the learner takes the 5-minute Placement Test, scoring","invariantRule":"A2 \\","crossSuiteRef":"A1 \\","updatedAt":"2026-05-10 09:15","contactPhone":"+14155550110","status":"DRAFT","moderationStage":"DRAFT","version":1,"isDeleted":false,"sourceLanguageCode":"Source Language Code — LCU-2026-101","targetLanguageCode":"Target Language Code — LCU-2026-101","cefrBand":"Cefr Band — LCU-2026-101"},{"id":"00000000-0180-0001-0000-000000000002","recordCode":"LCU-2026-102","title":"REVIEW_DUE (Lang Course Unit)","name":"REVIEW_DUE (Lang Course Unit)","modelTitle":"Lang Course Unit","ownerName":"Marcus Vance (Senior Operations)","primaryAttrLabel":"Source Language Code","primaryAttrValue":"Source Language Code: LCU-2026-102","secondaryAttrLabel":"Target Language Code","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Cefr Band","metricValue":"93.1% (172.50 units)","operationalSummary":"On #/vocabulary-srs, #activeFilterTagsBar filters by Stage: \"REVIEW_DUE\" (Stage: \"REVIEW_DUE\" ✕ [Clear al","invariantRule":"A2 \\","crossSuiteRef":"A1 \\","updatedAt":"2026-05-11 11:15","contactPhone":"+14155550111","status":"IN_REVIEW","moderationStage":"IN_REVIEW","version":2,"isDeleted":false,"sourceLanguageCode":"Source Language Code — LCU-2026-102","targetLanguageCode":"Target Language Code — LCU-2026-102","cefrBand":"Cefr Band — LCU-2026-102"},{"id":"00000000-0180-0001-0000-000000000003","recordCode":"LCU-2026-103","title":"Language Learning Lang Course Unit — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","name":"Language Learning Lang Course Unit — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","modelTitle":"Lang Course Unit","ownerName":"Sophia Laurent (Director)","primaryAttrLabel":"Source Language Code","primaryAttrValue":"Source Language Code: LCU-2026-103","secondaryAttrLabel":"Target Language Code","secondaryAttrValue":"Language Learning Tier 3","metricLabel":"Cefr Band","metricValue":"94.2% (220.00 units)","operationalSummary":"In #/pronunciation-lab, the learner reads a B1 dialogue aloud using push-to-talk. Speech is scored epheme","invariantRule":"A2 \\","crossSuiteRef":"A1 \\","updatedAt":"2026-05-12 13:15","contactPhone":"+14155550112","status":"APPROVED","moderationStage":"APPROVED","version":3,"isDeleted":false,"sourceLanguageCode":"Source Language Code — LCU-2026-103","targetLanguageCode":"Target Language Code — LCU-2026-103","cefrBand":"Cefr Band — LCU-2026-103"},{"id":"00000000-0180-0001-0000-000000000004","recordCode":"LCU-2026-104","title":"Language Learning Lang Course Unit — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","name":"Language Learning Lang Course Unit — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","modelTitle":"Lang Course Unit","ownerName":"Liam Chen (Systems Architect)","primaryAttrLabel":"Source Language Code","primaryAttrValue":"Source Language Code: LCU-2026-104","secondaryAttrLabel":"Target Language Code","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Cefr Band","metricValue":"95.3% (267.50 units)","operationalSummary":"Toggling Calm Mode on #/streaks-analytics hides competitive leaderboards, timers, and heart penalties imm","invariantRule":"A2 \\","crossSuiteRef":"A1 \\","updatedAt":"2026-05-13 15:15","contactPhone":"+14155550113","status":"ACTIVE","moderationStage":"ACTIVE","version":4,"isDeleted":false,"sourceLanguageCode":"Source Language Code — LCU-2026-104","targetLanguageCode":"Target Language Code — LCU-2026-104","cefrBand":"Cefr Band — LCU-2026-104"},{"id":"00000000-0180-0001-0000-000000000005","recordCode":"LCU-2026-105","title":"Language Learning Lang Course Unit — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","name":"Language Learning Lang Course Unit — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","modelTitle":"Lang Course Unit","ownerName":"Amira Al-Mansoor (Compliance Lead)","primaryAttrLabel":"Source Language Code","primaryAttrValue":"Source Language Code: LCU-2026-105","secondaryAttrLabel":"Target Language Code","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Cefr Band","metricValue":"96.4% (315.00 units)","operationalSummary":"Passing the CEFR B2 Checkpoint (compositeScore160 = 124.50) stamps an immutable PrsLangCheckpointAttempt.","invariantRule":"A2 \\","crossSuiteRef":"A1 \\","updatedAt":"2026-05-14 17:15","contactPhone":"+14155550114","status":"DRAFT","moderationStage":"DRAFT","version":5,"isDeleted":false,"sourceLanguageCode":"Source Language Code — LCU-2026-105","targetLanguageCode":"Target Language Code — LCU-2026-105","cefrBand":"Cefr Band — LCU-2026-105"}],"PrsLangLearnerProfile":[{"id":"00000000-0180-0002-0000-000000000001","recordCode":"LLP-2026-201","title":"REVIEW_DUE (Lang Learner Profile)","name":"REVIEW_DUE (Lang Learner Profile)","modelTitle":"Lang Learner Profile","ownerName":"Marcus Vance (Senior Operations)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LLP-2026-201","secondaryAttrLabel":"Active Target Language","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Source Language","metricValue":"92.1% (250.00 units)","operationalSummary":"On #/vocabulary-srs, #activeFilterTagsBar filters by Stage: \"REVIEW_DUE\" (Stage: \"REVIEW_DUE\" ✕ [Clear al","invariantRule":"Streak evaluation strictly uses LocalDate in timezoneId; retainVoiceAudio defaults to false (ephemeral speech scoring).","crossSuiteRef":"1:N per (ownerUserRef, activeTargetLanguage)","updatedAt":"2026-05-10 09:15","contactPhone":"+14155550115","status":"DRAFT","moderationStage":"DRAFT","version":1,"isDeleted":false,"ownerUserRef":"Owner User Ref — LLP-2026-201","activeTargetLanguage":"Active Target Language — LLP-2026-201","sourceLanguage":"Source Language — LLP-2026-201","currentCefrBand":"Current Cefr Band — LLP-2026-201","proficiencyScore160":"250.00","dailyGoalMinutes":"Daily Goal Minutes — LLP-2026-201","timezoneId":"Timezone — LLP-2026-201","currentStreakDays":"Current Streak Days — LLP-2026-201","longestStreakDays":"Longest Streak Days — LLP-2026-201","lastStudyLocalDate":"Last Study Local Date — LLP-2026-201","streakFreezesAvailable":"Streak Freezes Available — LLP-2026-201","calmModeEnabled":true,"retainVoiceAudio":"Retain Voice Audio — LLP-2026-201"},{"id":"00000000-0180-0002-0000-000000000002","recordCode":"LLP-2026-202","title":"Language Learning Lang Learner Profile — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","name":"Language Learning Lang Learner Profile — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","modelTitle":"Lang Learner Profile","ownerName":"Sophia Laurent (Director)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LLP-2026-202","secondaryAttrLabel":"Active Target Language","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Source Language","metricValue":"93.2% (297.50 units)","operationalSummary":"In #/pronunciation-lab, the learner reads a B1 dialogue aloud using push-to-talk. Speech is scored epheme","invariantRule":"Streak evaluation strictly uses LocalDate in timezoneId; retainVoiceAudio defaults to false (ephemeral speech scoring).","crossSuiteRef":"1:N per (ownerUserRef, activeTargetLanguage)","updatedAt":"2026-05-11 11:15","contactPhone":"+14155550116","status":"IN_REVIEW","moderationStage":"IN_REVIEW","version":2,"isDeleted":false,"ownerUserRef":"Owner User Ref — LLP-2026-202","activeTargetLanguage":"Active Target Language — LLP-2026-202","sourceLanguage":"Source Language — LLP-2026-202","currentCefrBand":"Current Cefr Band — LLP-2026-202","proficiencyScore160":"297.50","dailyGoalMinutes":"Daily Goal Minutes — LLP-2026-202","timezoneId":"Timezone — LLP-2026-202","currentStreakDays":"Current Streak Days — LLP-2026-202","longestStreakDays":"Longest Streak Days — LLP-2026-202","lastStudyLocalDate":"Last Study Local Date — LLP-2026-202","streakFreezesAvailable":"Streak Freezes Available — LLP-2026-202","calmModeEnabled":false,"retainVoiceAudio":"Retain Voice Audio — LLP-2026-202"},{"id":"00000000-0180-0002-0000-000000000003","recordCode":"LLP-2026-203","title":"Language Learning Lang Learner Profile — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","name":"Language Learning Lang Learner Profile — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","modelTitle":"Lang Learner Profile","ownerName":"Liam Chen (Systems Architect)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LLP-2026-203","secondaryAttrLabel":"Active Target Language","secondaryAttrValue":"Language Learning Tier 3","metricLabel":"Source Language","metricValue":"94.3% (345.00 units)","operationalSummary":"Toggling Calm Mode on #/streaks-analytics hides competitive leaderboards, timers, and heart penalties imm","invariantRule":"Streak evaluation strictly uses LocalDate in timezoneId; retainVoiceAudio defaults to false (ephemeral speech scoring).","crossSuiteRef":"1:N per (ownerUserRef, activeTargetLanguage)","updatedAt":"2026-05-12 13:15","contactPhone":"+14155550117","status":"APPROVED","moderationStage":"APPROVED","version":3,"isDeleted":false,"ownerUserRef":"Owner User Ref — LLP-2026-203","activeTargetLanguage":"Active Target Language — LLP-2026-203","sourceLanguage":"Source Language — LLP-2026-203","currentCefrBand":"Current Cefr Band — LLP-2026-203","proficiencyScore160":"345.00","dailyGoalMinutes":"Daily Goal Minutes — LLP-2026-203","timezoneId":"Timezone — LLP-2026-203","currentStreakDays":"Current Streak Days — LLP-2026-203","longestStreakDays":"Longest Streak Days — LLP-2026-203","lastStudyLocalDate":"Last Study Local Date — LLP-2026-203","streakFreezesAvailable":"Streak Freezes Available — LLP-2026-203","calmModeEnabled":true,"retainVoiceAudio":"Retain Voice Audio — LLP-2026-203"},{"id":"00000000-0180-0002-0000-000000000004","recordCode":"LLP-2026-204","title":"Language Learning Lang Learner Profile — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","name":"Language Learning Lang Learner Profile — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","modelTitle":"Lang Learner Profile","ownerName":"Amira Al-Mansoor (Compliance Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LLP-2026-204","secondaryAttrLabel":"Active Target Language","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Source Language","metricValue":"95.4% (392.50 units)","operationalSummary":"Passing the CEFR B2 Checkpoint (compositeScore160 = 124.50) stamps an immutable PrsLangCheckpointAttempt.","invariantRule":"Streak evaluation strictly uses LocalDate in timezoneId; retainVoiceAudio defaults to false (ephemeral speech scoring).","crossSuiteRef":"1:N per (ownerUserRef, activeTargetLanguage)","updatedAt":"2026-05-13 15:15","contactPhone":"+14155550118","status":"ACTIVE","moderationStage":"ACTIVE","version":4,"isDeleted":false,"ownerUserRef":"Owner User Ref — LLP-2026-204","activeTargetLanguage":"Active Target Language — LLP-2026-204","sourceLanguage":"Source Language — LLP-2026-204","currentCefrBand":"Current Cefr Band — LLP-2026-204","proficiencyScore160":"392.50","dailyGoalMinutes":"Daily Goal Minutes — LLP-2026-204","timezoneId":"Timezone — LLP-2026-204","currentStreakDays":"Current Streak Days — LLP-2026-204","longestStreakDays":"Longest Streak Days — LLP-2026-204","lastStudyLocalDate":"Last Study Local Date — LLP-2026-204","streakFreezesAvailable":"Streak Freezes Available — LLP-2026-204","calmModeEnabled":false,"retainVoiceAudio":"Retain Voice Audio — LLP-2026-204"},{"id":"00000000-0180-0002-0000-000000000005","recordCode":"LLP-2026-205","title":"Viajé por Madrid para dos semanas (Lang Learner Profile)","name":"Viajé por Madrid para dos semanas (Lang Learner Profile)","modelTitle":"Lang Learner Profile","ownerName":"Noah Kowalski (Specialist)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LLP-2026-205","secondaryAttrLabel":"Active Target Language","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Source Language","metricValue":"96.5% (440.00 units)","operationalSummary":"Enrolling in *Spanish (es-MX)* on #/learning-path, the learner takes the 5-minute Placement Test, scoring","invariantRule":"Streak evaluation strictly uses LocalDate in timezoneId; retainVoiceAudio defaults to false (ephemeral speech scoring).","crossSuiteRef":"1:N per (ownerUserRef, activeTargetLanguage)","updatedAt":"2026-05-14 17:15","contactPhone":"+14155550119","status":"DRAFT","moderationStage":"DRAFT","version":5,"isDeleted":false,"ownerUserRef":"Owner User Ref — LLP-2026-205","activeTargetLanguage":"Active Target Language — LLP-2026-205","sourceLanguage":"Source Language — LLP-2026-205","currentCefrBand":"Current Cefr Band — LLP-2026-205","proficiencyScore160":"440.00","dailyGoalMinutes":"Daily Goal Minutes — LLP-2026-205","timezoneId":"Timezone — LLP-2026-205","currentStreakDays":"Current Streak Days — LLP-2026-205","longestStreakDays":"Longest Streak Days — LLP-2026-205","lastStudyLocalDate":"Last Study Local Date — LLP-2026-205","streakFreezesAvailable":"Streak Freezes Available — LLP-2026-205","calmModeEnabled":true,"retainVoiceAudio":"Retain Voice Audio — LLP-2026-205"}],"PrsLangLessonSession":[{"id":"00000000-0180-0003-0000-000000000001","recordCode":"LLS-2026-301","title":"Language Learning Lang Lesson Session — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","name":"Language Learning Lang Lesson Session — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","modelTitle":"Lang Lesson Session","ownerName":"Sophia Laurent (Director)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LLS-2026-301","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Unit","metricValue":"92.2% (375.00 units)","operationalSummary":"In #/pronunciation-lab, the learner reads a B1 dialogue aloud using push-to-talk. Speech is scored epheme","invariantRule":"MISTAKE_DRILL \\","crossSuiteRef":"SRS_REVIEW \\","updatedAt":"2026-05-10 09:15","contactPhone":"+14155550120","status":"DRAFT","moderationStage":"DRAFT","version":1,"isDeleted":false,"ownerUserRef":"Owner User Ref — LLS-2026-301","profileId":"Profile — LLS-2026-301","unitId":"Unit — LLS-2026-301","sessionType":"Session Type — LLS-2026-301"},{"id":"00000000-0180-0003-0000-000000000002","recordCode":"LLS-2026-302","title":"Language Learning Lang Lesson Session — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","name":"Language Learning Lang Lesson Session — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","modelTitle":"Lang Lesson Session","ownerName":"Liam Chen (Systems Architect)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LLS-2026-302","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Unit","metricValue":"93.3% (422.50 units)","operationalSummary":"Toggling Calm Mode on #/streaks-analytics hides competitive leaderboards, timers, and heart penalties imm","invariantRule":"MISTAKE_DRILL \\","crossSuiteRef":"SRS_REVIEW \\","updatedAt":"2026-05-11 11:15","contactPhone":"+14155550121","status":"IN_REVIEW","moderationStage":"IN_REVIEW","version":2,"isDeleted":false,"ownerUserRef":"Owner User Ref — LLS-2026-302","profileId":"Profile — LLS-2026-302","unitId":"Unit — LLS-2026-302","sessionType":"Session Type — LLS-2026-302"},{"id":"00000000-0180-0003-0000-000000000003","recordCode":"LLS-2026-303","title":"Language Learning Lang Lesson Session — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","name":"Language Learning Lang Lesson Session — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","modelTitle":"Lang Lesson Session","ownerName":"Amira Al-Mansoor (Compliance Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LLS-2026-303","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 3","metricLabel":"Unit","metricValue":"94.4% (470.00 units)","operationalSummary":"Passing the CEFR B2 Checkpoint (compositeScore160 = 124.50) stamps an immutable PrsLangCheckpointAttempt.","invariantRule":"MISTAKE_DRILL \\","crossSuiteRef":"SRS_REVIEW \\","updatedAt":"2026-05-12 13:15","contactPhone":"+14155550122","status":"APPROVED","moderationStage":"APPROVED","version":3,"isDeleted":false,"ownerUserRef":"Owner User Ref — LLS-2026-303","profileId":"Profile — LLS-2026-303","unitId":"Unit — LLS-2026-303","sessionType":"Session Type — LLS-2026-303"},{"id":"00000000-0180-0003-0000-000000000004","recordCode":"LLS-2026-304","title":"durante / por dos semanas (Lang Lesson Session)","name":"durante / por dos semanas (Lang Lesson Session)","modelTitle":"Lang Lesson Session","ownerName":"Noah Kowalski (Specialist)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LLS-2026-304","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Unit","metricValue":"95.5% (517.50 units)","operationalSummary":"Enrolling in *Spanish (es-MX)* on #/learning-path, the learner takes the 5-minute Placement Test, scoring","invariantRule":"MISTAKE_DRILL \\","crossSuiteRef":"SRS_REVIEW \\","updatedAt":"2026-05-13 15:15","contactPhone":"+14155550123","status":"ACTIVE","moderationStage":"ACTIVE","version":4,"isDeleted":false,"ownerUserRef":"Owner User Ref — LLS-2026-304","profileId":"Profile — LLS-2026-304","unitId":"Unit — LLS-2026-304","sessionType":"Session Type — LLS-2026-304"},{"id":"00000000-0180-0003-0000-000000000005","recordCode":"LLS-2026-305","title":"REVIEW_DUE (Lang Lesson Session)","name":"REVIEW_DUE (Lang Lesson Session)","modelTitle":"Lang Lesson Session","ownerName":"Elena Rostova (Principal Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LLS-2026-305","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Unit","metricValue":"96.6% (565.00 units)","operationalSummary":"On #/vocabulary-srs, #activeFilterTagsBar filters by Stage: \"REVIEW_DUE\" (Stage: \"REVIEW_DUE\" ✕ [Clear al","invariantRule":"MISTAKE_DRILL \\","crossSuiteRef":"SRS_REVIEW \\","updatedAt":"2026-05-14 17:15","contactPhone":"+14155550124","status":"DRAFT","moderationStage":"DRAFT","version":5,"isDeleted":false,"ownerUserRef":"Owner User Ref — LLS-2026-305","profileId":"Profile — LLS-2026-305","unitId":"Unit — LLS-2026-305","sessionType":"Session Type — LLS-2026-305"}],"PrsLangVocabCard":[{"id":"00000000-0180-0004-0000-000000000001","recordCode":"LVC-2026-401","title":"Language Learning Lang Vocab Card — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","name":"Language Learning Lang Vocab Card — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","modelTitle":"Lang Vocab Card","ownerName":"Liam Chen (Systems Architect)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LVC-2026-401","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Target Term","metricValue":"92.3% (500.00 units)","operationalSummary":"Toggling Calm Mode on #/streaks-analytics hides competitive leaderboards, timers, and heart penalties imm","invariantRule":"REVIEW_DUE \\","crossSuiteRef":"LEARNING \\","updatedAt":"2026-05-10 09:15","contactPhone":"+14155550125","status":"DRAFT","moderationStage":"DRAFT","version":1,"isDeleted":false,"ownerUserRef":"Owner User Ref — LVC-2026-401","profileId":"Profile — LVC-2026-401","targetTerm":"Target Term — LVC-2026-401","romanization":"Romanization — LVC-2026-401","translation":"Translation — LVC-2026-401","exampleSentence":"Example Sentence — LVC-2026-401","partOfSpeech":"Part Of Speech — LVC-2026-401","deckTag":"Deck Tag — LVC-2026-401","masteryStage":"Mastery Stage — LVC-2026-401"},{"id":"00000000-0180-0004-0000-000000000002","recordCode":"LVC-2026-402","title":"Language Learning Lang Vocab Card — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","name":"Language Learning Lang Vocab Card — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","modelTitle":"Lang Vocab Card","ownerName":"Amira Al-Mansoor (Compliance Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LVC-2026-402","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Target Term","metricValue":"93.4% (547.50 units)","operationalSummary":"Passing the CEFR B2 Checkpoint (compositeScore160 = 124.50) stamps an immutable PrsLangCheckpointAttempt.","invariantRule":"REVIEW_DUE \\","crossSuiteRef":"LEARNING \\","updatedAt":"2026-05-11 11:15","contactPhone":"+14155550126","status":"IN_REVIEW","moderationStage":"IN_REVIEW","version":2,"isDeleted":false,"ownerUserRef":"Owner User Ref — LVC-2026-402","profileId":"Profile — LVC-2026-402","targetTerm":"Target Term — LVC-2026-402","romanization":"Romanization — LVC-2026-402","translation":"Translation — LVC-2026-402","exampleSentence":"Example Sentence — LVC-2026-402","partOfSpeech":"Part Of Speech — LVC-2026-402","deckTag":"Deck Tag — LVC-2026-402","masteryStage":"Mastery Stage — LVC-2026-402"},{"id":"00000000-0180-0004-0000-000000000003","recordCode":"LVC-2026-403","title":"Viajé por Madrid para dos semanas (Lang Vocab Card)","name":"Viajé por Madrid para dos semanas (Lang Vocab Card)","modelTitle":"Lang Vocab Card","ownerName":"Noah Kowalski (Specialist)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LVC-2026-403","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 3","metricLabel":"Target Term","metricValue":"94.5% (595.00 units)","operationalSummary":"Enrolling in *Spanish (es-MX)* on #/learning-path, the learner takes the 5-minute Placement Test, scoring","invariantRule":"REVIEW_DUE \\","crossSuiteRef":"LEARNING \\","updatedAt":"2026-05-12 13:15","contactPhone":"+14155550127","status":"APPROVED","moderationStage":"APPROVED","version":3,"isDeleted":false,"ownerUserRef":"Owner User Ref — LVC-2026-403","profileId":"Profile — LVC-2026-403","targetTerm":"Target Term — LVC-2026-403","romanization":"Romanization — LVC-2026-403","translation":"Translation — LVC-2026-403","exampleSentence":"Example Sentence — LVC-2026-403","partOfSpeech":"Part Of Speech — LVC-2026-403","deckTag":"Deck Tag — LVC-2026-403","masteryStage":"Mastery Stage — LVC-2026-403"},{"id":"00000000-0180-0004-0000-000000000004","recordCode":"LVC-2026-404","title":"REVIEW_DUE (Lang Vocab Card)","name":"REVIEW_DUE (Lang Vocab Card)","modelTitle":"Lang Vocab Card","ownerName":"Elena Rostova (Principal Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LVC-2026-404","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Target Term","metricValue":"95.6% (642.50 units)","operationalSummary":"On #/vocabulary-srs, #activeFilterTagsBar filters by Stage: \"REVIEW_DUE\" (Stage: \"REVIEW_DUE\" ✕ [Clear al","invariantRule":"REVIEW_DUE \\","crossSuiteRef":"LEARNING \\","updatedAt":"2026-05-13 15:15","contactPhone":"+14155550128","status":"ACTIVE","moderationStage":"ACTIVE","version":4,"isDeleted":false,"ownerUserRef":"Owner User Ref — LVC-2026-404","profileId":"Profile — LVC-2026-404","targetTerm":"Target Term — LVC-2026-404","romanization":"Romanization — LVC-2026-404","translation":"Translation — LVC-2026-404","exampleSentence":"Example Sentence — LVC-2026-404","partOfSpeech":"Part Of Speech — LVC-2026-404","deckTag":"Deck Tag — LVC-2026-404","masteryStage":"Mastery Stage — LVC-2026-404"},{"id":"00000000-0180-0004-0000-000000000005","recordCode":"LVC-2026-405","title":"Language Learning Lang Vocab Card — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","name":"Language Learning Lang Vocab Card — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","modelTitle":"Lang Vocab Card","ownerName":"Marcus Vance (Senior Operations)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LVC-2026-405","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Target Term","metricValue":"96.7% (690.00 units)","operationalSummary":"In #/pronunciation-lab, the learner reads a B1 dialogue aloud using push-to-talk. Speech is scored epheme","invariantRule":"REVIEW_DUE \\","crossSuiteRef":"LEARNING \\","updatedAt":"2026-05-14 17:15","contactPhone":"+14155550129","status":"DRAFT","moderationStage":"DRAFT","version":5,"isDeleted":false,"ownerUserRef":"Owner User Ref — LVC-2026-405","profileId":"Profile — LVC-2026-405","targetTerm":"Target Term — LVC-2026-405","romanization":"Romanization — LVC-2026-405","translation":"Translation — LVC-2026-405","exampleSentence":"Example Sentence — LVC-2026-405","partOfSpeech":"Part Of Speech — LVC-2026-405","deckTag":"Deck Tag — LVC-2026-405","masteryStage":"Mastery Stage — LVC-2026-405"}],"PrsLangMistakeEntry":[{"id":"00000000-0180-0005-0000-000000000001","recordCode":"LME-2026-501","title":"Language Learning Lang Mistake Entry — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","name":"Language Learning Lang Mistake Entry — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","modelTitle":"Lang Mistake Entry","ownerName":"Amira Al-Mansoor (Compliance Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LME-2026-501","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Unit","metricValue":"92.4% (625.00 units)","operationalSummary":"Passing the CEFR B2 Checkpoint (compositeScore160 = 124.50) stamps an immutable PrsLangCheckpointAttempt.","invariantRule":"WORD_ORDER \\","crossSuiteRef":"VERB_TENSE \\","updatedAt":"2026-05-10 09:15","contactPhone":"+14155550130","status":"DRAFT","moderationStage":"DRAFT","version":1,"isDeleted":false,"ownerUserRef":"Owner User Ref — LME-2026-501","profileId":"Profile — LME-2026-501","unitId":"Unit — LME-2026-501","errorCategory":"Error Category — LME-2026-501"},{"id":"00000000-0180-0005-0000-000000000002","recordCode":"LME-2026-502","title":"durante / por dos semanas (Lang Mistake Entry)","name":"durante / por dos semanas (Lang Mistake Entry)","modelTitle":"Lang Mistake Entry","ownerName":"Noah Kowalski (Specialist)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LME-2026-502","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Unit","metricValue":"93.5% (672.50 units)","operationalSummary":"Enrolling in *Spanish (es-MX)* on #/learning-path, the learner takes the 5-minute Placement Test, scoring","invariantRule":"WORD_ORDER \\","crossSuiteRef":"VERB_TENSE \\","updatedAt":"2026-05-11 11:15","contactPhone":"+14155550131","status":"IN_REVIEW","moderationStage":"IN_REVIEW","version":2,"isDeleted":false,"ownerUserRef":"Owner User Ref — LME-2026-502","profileId":"Profile — LME-2026-502","unitId":"Unit — LME-2026-502","errorCategory":"Error Category — LME-2026-502"},{"id":"00000000-0180-0005-0000-000000000003","recordCode":"LME-2026-503","title":"madrugada (Lang Mistake Entry)","name":"madrugada (Lang Mistake Entry)","modelTitle":"Lang Mistake Entry","ownerName":"Elena Rostova (Principal Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LME-2026-503","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 3","metricLabel":"Unit","metricValue":"94.6% (720.00 units)","operationalSummary":"On #/vocabulary-srs, #activeFilterTagsBar filters by Stage: \"REVIEW_DUE\" (Stage: \"REVIEW_DUE\" ✕ [Clear al","invariantRule":"WORD_ORDER \\","crossSuiteRef":"VERB_TENSE \\","updatedAt":"2026-05-12 13:15","contactPhone":"+14155550132","status":"APPROVED","moderationStage":"APPROVED","version":3,"isDeleted":false,"ownerUserRef":"Owner User Ref — LME-2026-503","profileId":"Profile — LME-2026-503","unitId":"Unit — LME-2026-503","errorCategory":"Error Category — LME-2026-503"},{"id":"00000000-0180-0005-0000-000000000004","recordCode":"LME-2026-504","title":"Language Learning Lang Mistake Entry — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","name":"Language Learning Lang Mistake Entry — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","modelTitle":"Lang Mistake Entry","ownerName":"Marcus Vance (Senior Operations)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LME-2026-504","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Unit","metricValue":"95.7% (767.50 units)","operationalSummary":"In #/pronunciation-lab, the learner reads a B1 dialogue aloud using push-to-talk. Speech is scored epheme","invariantRule":"WORD_ORDER \\","crossSuiteRef":"VERB_TENSE \\","updatedAt":"2026-05-13 15:15","contactPhone":"+14155550133","status":"ACTIVE","moderationStage":"ACTIVE","version":4,"isDeleted":false,"ownerUserRef":"Owner User Ref — LME-2026-504","profileId":"Profile — LME-2026-504","unitId":"Unit — LME-2026-504","errorCategory":"Error Category — LME-2026-504"},{"id":"00000000-0180-0005-0000-000000000005","recordCode":"LME-2026-505","title":"Language Learning Lang Mistake Entry — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","name":"Language Learning Lang Mistake Entry — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","modelTitle":"Lang Mistake Entry","ownerName":"Sophia Laurent (Director)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LME-2026-505","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Unit","metricValue":"96.8% (815.00 units)","operationalSummary":"Toggling Calm Mode on #/streaks-analytics hides competitive leaderboards, timers, and heart penalties imm","invariantRule":"WORD_ORDER \\","crossSuiteRef":"VERB_TENSE \\","updatedAt":"2026-05-14 17:15","contactPhone":"+14155550134","status":"DRAFT","moderationStage":"DRAFT","version":5,"isDeleted":false,"ownerUserRef":"Owner User Ref — LME-2026-505","profileId":"Profile — LME-2026-505","unitId":"Unit — LME-2026-505","errorCategory":"Error Category — LME-2026-505"}],"PrsLangConversationSession":[{"id":"00000000-0180-0006-0000-000000000001","recordCode":"LCS-2026-601","title":"Viajé por Madrid para dos semanas (Lang Conversation Session)","name":"Viajé por Madrid para dos semanas (Lang Conversation Session)","modelTitle":"Lang Conversation Session","ownerName":"Noah Kowalski (Specialist)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LCS-2026-601","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Scenario Key","metricValue":"92.5% (750.00 units)","operationalSummary":"Enrolling in *Spanish (es-MX)* on #/learning-path, the learner takes the 5-minute Placement Test, scoring","invariantRule":"Optional tutor review via PrsLangTutorGrant + projectChannelMessage","crossSuiteRef":"PUSH_TO_TALK_VOICE), turnsJson (Embedded {speaker, text, upgradedPhrasing?, phon","updatedAt":"2026-05-10 09:15","contactPhone":"+14155550135","status":"DRAFT","moderationStage":"DRAFT","version":1,"isDeleted":false,"ownerUserRef":"Owner User Ref — LCS-2026-601","profileId":"Profile — LCS-2026-601","scenarioKey":"Scenario Key — LCS-2026-601","cefrBand":"Cefr Band — LCS-2026-601","modality":"Modality — LCS-2026-601"},{"id":"00000000-0180-0006-0000-000000000002","recordCode":"LCS-2026-602","title":"REVIEW_DUE (Lang Conversation Session)","name":"REVIEW_DUE (Lang Conversation Session)","modelTitle":"Lang Conversation Session","ownerName":"Elena Rostova (Principal Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LCS-2026-602","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Scenario Key","metricValue":"93.6% (797.50 units)","operationalSummary":"On #/vocabulary-srs, #activeFilterTagsBar filters by Stage: \"REVIEW_DUE\" (Stage: \"REVIEW_DUE\" ✕ [Clear al","invariantRule":"Optional tutor review via PrsLangTutorGrant + projectChannelMessage","crossSuiteRef":"PUSH_TO_TALK_VOICE), turnsJson (Embedded {speaker, text, upgradedPhrasing?, phon","updatedAt":"2026-05-11 11:15","contactPhone":"+14155550136","status":"IN_REVIEW","moderationStage":"IN_REVIEW","version":2,"isDeleted":false,"ownerUserRef":"Owner User Ref — LCS-2026-602","profileId":"Profile — LCS-2026-602","scenarioKey":"Scenario Key — LCS-2026-602","cefrBand":"Cefr Band — LCS-2026-602","modality":"Modality — LCS-2026-602"},{"id":"00000000-0180-0006-0000-000000000003","recordCode":"LCS-2026-603","title":"Language Learning Lang Conversation Session — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","name":"Language Learning Lang Conversation Session — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","modelTitle":"Lang Conversation Session","ownerName":"Marcus Vance (Senior Operations)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LCS-2026-603","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 3","metricLabel":"Scenario Key","metricValue":"94.7% (845.00 units)","operationalSummary":"In #/pronunciation-lab, the learner reads a B1 dialogue aloud using push-to-talk. Speech is scored epheme","invariantRule":"Optional tutor review via PrsLangTutorGrant + projectChannelMessage","crossSuiteRef":"PUSH_TO_TALK_VOICE), turnsJson (Embedded {speaker, text, upgradedPhrasing?, phon","updatedAt":"2026-05-12 13:15","contactPhone":"+14155550137","status":"APPROVED","moderationStage":"APPROVED","version":3,"isDeleted":false,"ownerUserRef":"Owner User Ref — LCS-2026-603","profileId":"Profile — LCS-2026-603","scenarioKey":"Scenario Key — LCS-2026-603","cefrBand":"Cefr Band — LCS-2026-603","modality":"Modality — LCS-2026-603"},{"id":"00000000-0180-0006-0000-000000000004","recordCode":"LCS-2026-604","title":"Language Learning Lang Conversation Session — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","name":"Language Learning Lang Conversation Session — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","modelTitle":"Lang Conversation Session","ownerName":"Sophia Laurent (Director)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LCS-2026-604","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Scenario Key","metricValue":"95.8% (892.50 units)","operationalSummary":"Toggling Calm Mode on #/streaks-analytics hides competitive leaderboards, timers, and heart penalties imm","invariantRule":"Optional tutor review via PrsLangTutorGrant + projectChannelMessage","crossSuiteRef":"PUSH_TO_TALK_VOICE), turnsJson (Embedded {speaker, text, upgradedPhrasing?, phon","updatedAt":"2026-05-13 15:15","contactPhone":"+14155550138","status":"ACTIVE","moderationStage":"ACTIVE","version":4,"isDeleted":false,"ownerUserRef":"Owner User Ref — LCS-2026-604","profileId":"Profile — LCS-2026-604","scenarioKey":"Scenario Key — LCS-2026-604","cefrBand":"Cefr Band — LCS-2026-604","modality":"Modality — LCS-2026-604"},{"id":"00000000-0180-0006-0000-000000000005","recordCode":"LCS-2026-605","title":"Language Learning Lang Conversation Session — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","name":"Language Learning Lang Conversation Session — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","modelTitle":"Lang Conversation Session","ownerName":"Liam Chen (Systems Architect)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LCS-2026-605","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Scenario Key","metricValue":"96.0% (940.00 units)","operationalSummary":"Passing the CEFR B2 Checkpoint (compositeScore160 = 124.50) stamps an immutable PrsLangCheckpointAttempt.","invariantRule":"Optional tutor review via PrsLangTutorGrant + projectChannelMessage","crossSuiteRef":"PUSH_TO_TALK_VOICE), turnsJson (Embedded {speaker, text, upgradedPhrasing?, phon","updatedAt":"2026-05-14 17:15","contactPhone":"+14155550139","status":"DRAFT","moderationStage":"DRAFT","version":5,"isDeleted":false,"ownerUserRef":"Owner User Ref — LCS-2026-605","profileId":"Profile — LCS-2026-605","scenarioKey":"Scenario Key — LCS-2026-605","cefrBand":"Cefr Band — LCS-2026-605","modality":"Modality — LCS-2026-605"}],"PrsLangCheckpointAttempt":[{"id":"00000000-0180-0007-0000-000000000001","recordCode":"LCA-2026-701","title":"REVIEW_DUE (Lang Checkpoint Attempt)","name":"REVIEW_DUE (Lang Checkpoint Attempt)","modelTitle":"Lang Checkpoint Attempt","ownerName":"Elena Rostova (Principal Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LCA-2026-701","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Exam Type","metricValue":"92.6% (875.00 units)","operationalSummary":"On #/vocabulary-srs, #activeFilterTagsBar filters by Stage: \"REVIEW_DUE\" (Stage: \"REVIEW_DUE\" ✕ [Clear al","invariantRule":"CEFR_BAND_CHECKPOINT), targetCefrBand (A1 \\","crossSuiteRef":"UNIT_CHALLENGE \\","updatedAt":"2026-05-10 09:15","contactPhone":"+14155550140","status":"DRAFT","moderationStage":"DRAFT","version":1,"isDeleted":false,"ownerUserRef":"Owner User Ref — LCA-2026-701","profileId":"Profile — LCA-2026-701","examType":"Exam Type — LCA-2026-701"},{"id":"00000000-0180-0007-0000-000000000002","recordCode":"LCA-2026-702","title":"Language Learning Lang Checkpoint Attempt — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","name":"Language Learning Lang Checkpoint Attempt — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","modelTitle":"Lang Checkpoint Attempt","ownerName":"Marcus Vance (Senior Operations)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LCA-2026-702","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Exam Type","metricValue":"93.7% (922.50 units)","operationalSummary":"In #/pronunciation-lab, the learner reads a B1 dialogue aloud using push-to-talk. Speech is scored epheme","invariantRule":"CEFR_BAND_CHECKPOINT), targetCefrBand (A1 \\","crossSuiteRef":"UNIT_CHALLENGE \\","updatedAt":"2026-05-11 11:15","contactPhone":"+14155550141","status":"IN_REVIEW","moderationStage":"IN_REVIEW","version":2,"isDeleted":false,"ownerUserRef":"Owner User Ref — LCA-2026-702","profileId":"Profile — LCA-2026-702","examType":"Exam Type — LCA-2026-702"},{"id":"00000000-0180-0007-0000-000000000003","recordCode":"LCA-2026-703","title":"Language Learning Lang Checkpoint Attempt — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","name":"Language Learning Lang Checkpoint Attempt — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","modelTitle":"Lang Checkpoint Attempt","ownerName":"Sophia Laurent (Director)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LCA-2026-703","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 3","metricLabel":"Exam Type","metricValue":"94.8% (970.00 units)","operationalSummary":"Toggling Calm Mode on #/streaks-analytics hides competitive leaderboards, timers, and heart penalties imm","invariantRule":"CEFR_BAND_CHECKPOINT), targetCefrBand (A1 \\","crossSuiteRef":"UNIT_CHALLENGE \\","updatedAt":"2026-05-12 13:15","contactPhone":"+14155550142","status":"APPROVED","moderationStage":"APPROVED","version":3,"isDeleted":false,"ownerUserRef":"Owner User Ref — LCA-2026-703","profileId":"Profile — LCA-2026-703","examType":"Exam Type — LCA-2026-703"},{"id":"00000000-0180-0007-0000-000000000004","recordCode":"LCA-2026-704","title":"Language Learning Lang Checkpoint Attempt — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","name":"Language Learning Lang Checkpoint Attempt — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","modelTitle":"Lang Checkpoint Attempt","ownerName":"Liam Chen (Systems Architect)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LCA-2026-704","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Exam Type","metricValue":"95.0% (1017.50 units)","operationalSummary":"Passing the CEFR B2 Checkpoint (compositeScore160 = 124.50) stamps an immutable PrsLangCheckpointAttempt.","invariantRule":"CEFR_BAND_CHECKPOINT), targetCefrBand (A1 \\","crossSuiteRef":"UNIT_CHALLENGE \\","updatedAt":"2026-05-13 15:15","contactPhone":"+14155550143","status":"ACTIVE","moderationStage":"ACTIVE","version":4,"isDeleted":false,"ownerUserRef":"Owner User Ref — LCA-2026-704","profileId":"Profile — LCA-2026-704","examType":"Exam Type — LCA-2026-704"},{"id":"00000000-0180-0007-0000-000000000005","recordCode":"LCA-2026-705","title":"Viajé por Madrid para dos semanas (Lang Checkpoint Attempt)","name":"Viajé por Madrid para dos semanas (Lang Checkpoint Attempt)","modelTitle":"Lang Checkpoint Attempt","ownerName":"Amira Al-Mansoor (Compliance Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LCA-2026-705","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Exam Type","metricValue":"96.1% (1065.00 units)","operationalSummary":"Enrolling in *Spanish (es-MX)* on #/learning-path, the learner takes the 5-minute Placement Test, scoring","invariantRule":"CEFR_BAND_CHECKPOINT), targetCefrBand (A1 \\","crossSuiteRef":"UNIT_CHALLENGE \\","updatedAt":"2026-05-14 17:15","contactPhone":"+14155550144","status":"DRAFT","moderationStage":"DRAFT","version":5,"isDeleted":false,"ownerUserRef":"Owner User Ref — LCA-2026-705","profileId":"Profile — LCA-2026-705","examType":"Exam Type — LCA-2026-705"}],"PrsLangTutorGrant":[{"id":"00000000-0180-0008-0000-000000000001","recordCode":"LTG-2026-801","title":"Language Learning Lang Tutor Grant — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","name":"Language Learning Lang Tutor Grant — Ephemeral Pronunciation Drill & Push-to-Talk AI Roleplay (pronunciation-lab & ai-roleplay)","modelTitle":"Lang Tutor Grant","ownerName":"Marcus Vance (Senior Operations)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LTG-2026-801","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Tutor User Ref","metricValue":"92.7% (1000.00 units)","operationalSummary":"In #/pronunciation-lab, the learner reads a B1 dialogue aloud using push-to-talk. Speech is scored epheme","invariantRule":"REVOKED), workItemRef (UUID?), revokedAt (DateTime?), version (Int)","crossSuiteRef":"ACTIVE \\","updatedAt":"2026-05-10 09:15","contactPhone":"+14155550145","status":"DRAFT","moderationStage":"DRAFT","version":1,"isDeleted":false,"ownerUserRef":"Owner User Ref — LTG-2026-801","profileId":"Profile — LTG-2026-801","tutorUserRef":"Tutor User Ref — LTG-2026-801","tutorPhoneE164":"Tutor Phone E164 — LTG-2026-801","sharedSessionIds":"Shared Session Ids — LTG-2026-801","grantStatus":"Grant Status — LTG-2026-801"},{"id":"00000000-0180-0008-0000-000000000002","recordCode":"LTG-2026-802","title":"Language Learning Lang Tutor Grant — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","name":"Language Learning Lang Tutor Grant — Calm Mode, Timezone Travel Streak Safety & Tutor Feedback (streaks-analytics & tutor-share-drawer)","modelTitle":"Lang Tutor Grant","ownerName":"Sophia Laurent (Director)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LTG-2026-802","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Tutor User Ref","metricValue":"93.8% (1047.50 units)","operationalSummary":"Toggling Calm Mode on #/streaks-analytics hides competitive leaderboards, timers, and heart penalties imm","invariantRule":"REVOKED), workItemRef (UUID?), revokedAt (DateTime?), version (Int)","crossSuiteRef":"ACTIVE \\","updatedAt":"2026-05-11 11:15","contactPhone":"+14155550146","status":"IN_REVIEW","moderationStage":"IN_REVIEW","version":2,"isDeleted":false,"ownerUserRef":"Owner User Ref — LTG-2026-802","profileId":"Profile — LTG-2026-802","tutorUserRef":"Tutor User Ref — LTG-2026-802","tutorPhoneE164":"Tutor Phone E164 — LTG-2026-802","sharedSessionIds":"Shared Session Ids — LTG-2026-802","grantStatus":"Grant Status — LTG-2026-802"},{"id":"00000000-0180-0008-0000-000000000003","recordCode":"LTG-2026-803","title":"Language Learning Lang Tutor Grant — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","name":"Language Learning Lang Tutor Grant — CEFR B2 Checkpoint & Optional Export to #182 Resume & CV Building (checkpoints-scores -> #182)","modelTitle":"Lang Tutor Grant","ownerName":"Liam Chen (Systems Architect)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LTG-2026-803","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 3","metricLabel":"Tutor User Ref","metricValue":"94.0% (1095.00 units)","operationalSummary":"Passing the CEFR B2 Checkpoint (compositeScore160 = 124.50) stamps an immutable PrsLangCheckpointAttempt.","invariantRule":"REVOKED), workItemRef (UUID?), revokedAt (DateTime?), version (Int)","crossSuiteRef":"ACTIVE \\","updatedAt":"2026-05-12 13:15","contactPhone":"+14155550147","status":"APPROVED","moderationStage":"APPROVED","version":3,"isDeleted":false,"ownerUserRef":"Owner User Ref — LTG-2026-803","profileId":"Profile — LTG-2026-803","tutorUserRef":"Tutor User Ref — LTG-2026-803","tutorPhoneE164":"Tutor Phone E164 — LTG-2026-803","sharedSessionIds":"Shared Session Ids — LTG-2026-803","grantStatus":"Grant Status — LTG-2026-803"},{"id":"00000000-0180-0008-0000-000000000004","recordCode":"LTG-2026-804","title":"durante / por dos semanas (Lang Tutor Grant)","name":"durante / por dos semanas (Lang Tutor Grant)","modelTitle":"Lang Tutor Grant","ownerName":"Amira Al-Mansoor (Compliance Lead)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LTG-2026-804","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 1","metricLabel":"Tutor User Ref","metricValue":"95.1% (1142.50 units)","operationalSummary":"Enrolling in *Spanish (es-MX)* on #/learning-path, the learner takes the 5-minute Placement Test, scoring","invariantRule":"REVOKED), workItemRef (UUID?), revokedAt (DateTime?), version (Int)","crossSuiteRef":"ACTIVE \\","updatedAt":"2026-05-13 15:15","contactPhone":"+14155550148","status":"ACTIVE","moderationStage":"ACTIVE","version":4,"isDeleted":false,"ownerUserRef":"Owner User Ref — LTG-2026-804","profileId":"Profile — LTG-2026-804","tutorUserRef":"Tutor User Ref — LTG-2026-804","tutorPhoneE164":"Tutor Phone E164 — LTG-2026-804","sharedSessionIds":"Shared Session Ids — LTG-2026-804","grantStatus":"Grant Status — LTG-2026-804"},{"id":"00000000-0180-0008-0000-000000000005","recordCode":"LTG-2026-805","title":"REVIEW_DUE (Lang Tutor Grant)","name":"REVIEW_DUE (Lang Tutor Grant)","modelTitle":"Lang Tutor Grant","ownerName":"Noah Kowalski (Specialist)","primaryAttrLabel":"Owner User Ref","primaryAttrValue":"Owner User Ref: LTG-2026-805","secondaryAttrLabel":"Profile","secondaryAttrValue":"Language Learning Tier 2","metricLabel":"Tutor User Ref","metricValue":"96.2% (1190.00 units)","operationalSummary":"On #/vocabulary-srs, #activeFilterTagsBar filters by Stage: \"REVIEW_DUE\" (Stage: \"REVIEW_DUE\" ✕ [Clear al","invariantRule":"REVOKED), workItemRef (UUID?), revokedAt (DateTime?), version (Int)","crossSuiteRef":"ACTIVE \\","updatedAt":"2026-05-14 17:15","contactPhone":"+14155550149","status":"DRAFT","moderationStage":"DRAFT","version":5,"isDeleted":false,"ownerUserRef":"Owner User Ref — LTG-2026-805","profileId":"Profile — LTG-2026-805","tutorUserRef":"Tutor User Ref — LTG-2026-805","tutorPhoneE164":"Tutor Phone E164 — LTG-2026-805","sharedSessionIds":"Shared Session Ids — LTG-2026-805","grantStatus":"Grant Status — LTG-2026-805"}]};
-
-    window.loadEntitySWR = async function(entityName, onUpdate) {
-      var fallback = (window.SEED_DATA && window.SEED_DATA[entityName]) ? window.SEED_DATA[entityName].slice() : [];
-      try {
-        if (window.rapiderApi && typeof window.rapiderApi.findSWR === 'function') {
-          var res = await window.rapiderApi.findSWR(entityName, {}, function(fresh) {
-            if (Array.isArray(fresh) && fresh.length > 0) {
-              onUpdate(fresh.filter(function(r) { return r && r.isDeleted !== true; }));
-            }
-          });
-          var arr = Array.isArray(res) ? res : (res && Array.isArray(res.data) ? res.data : []);
-          var clean = arr.filter(function(r) { return r && r.isDeleted !== true; });
-          onUpdate(clean.length > 0 ? clean : fallback);
-          return;
-        }
-      } catch (_) {}
-      onUpdate(fallback);
-    };
-
-
-        window.loadEntitySWR('PrsLangCourseUnit', function(rows) {
-          document.getElementById('dashTiles_0').innerHTML = rows.slice(0, 4).map(function(r) {
-            return '<div class="table-tile">' +
-              '<div class="tile-top"><a href="#/vocab-card-detail?id=' + esc(r.id) + '" class="primary-link">' + esc(r.recordCode) + '</a><span class="badge green">' + esc(r.status) + '</span></div>' +
-              '<div style="font-weight:700;font-size:13px;">' + esc(r.title) + '</div>' +
-              '<div class="tile-meta">' + esc(r.secondaryAttrValue) + ' &bull; ' + esc(r.metricValue) + '</div>' +
-            '</div>';
-          }).join('');
-          document.getElementById('dashTable_0').innerHTML = rows.map(function(r) {
-            return '<tr>' +
-              '<td><a href="#/vocab-card-detail?id=' + esc(r.id) + '" class="primary-link">' + esc(r.recordCode) + '</a></td>' +
-              '<td><strong>' + esc(r.title) + '</strong><div style="font-size:11px;color:var(--muted);">' + esc(r.operationalSummary) + '</div></td>' +
-              '<td><span class="badge blue">' + esc(r.secondaryAttrValue) + '</span></td>' +
-              '<td><strong>' + esc(r.metricValue) + '</strong></td>' +
-              '<td><span class="badge green">' + esc(r.status) + '</span></td>' +
-            '</tr>';
-          }).join('');
-        });
-      
   </script>
 </body>
 </html>
